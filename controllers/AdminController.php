@@ -9,4 +9,8 @@ class AdminController extends \yii\web\Controller
         return $this->render('index');
     }
 
+    public function actionArticles(){
+    	return $this->render('articles');
+    }
+
 }
