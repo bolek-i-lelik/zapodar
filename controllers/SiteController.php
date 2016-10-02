@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Signup;
 
 class SiteController extends Controller
 {
@@ -127,4 +128,6 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+
 }
