@@ -7,6 +7,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use app\models\RegForm;
 use app\models\ContactForm;
 use app\models\Signup;
 
@@ -127,6 +128,16 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionReg()
+    {
+
+        $model = new RegForm();
+
+        return $this->render('reg', [
+            'model' => $model,
+        ]);
     }
 
 
