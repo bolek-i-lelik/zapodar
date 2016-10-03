@@ -5,13 +5,23 @@
 /* @var $model app\models\LoginForm */
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use yii\widgets\ActiveForm;
 
 $this->title = 'Регистрация';
 $this->params['breadcrumbs'][] = $this->title;
+
+//var_dump($model);
 ?>
+
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
+
+    <?php if(Yii::$app->session->hasflash('success')):?>
+
+        <?= Yii::$app->session->getFlash('success')?>
+        <?= Yii::$app->session->getFlash('error')?>
+
+    <?php endif;?>
 
     <p>Пожалуйста введите информацию:</p>
 
@@ -24,19 +34,19 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-        <?= $form->field($model, 'familie')->textInput(['autofocus' => true]) ?>
+        <?= $form->field($model, 'familie') ?>
 
-        <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
+        <?= $form->field($model, 'name')?>
 
-        <?= $form->field($model, 'father')->textInput(['autofocus' => true]) ?>
+        <?= $form->field($model, 'father') ?>
 
-        <?= $form->field($model, 'e_mail')->textInput(['autofocus' => true]) ?>
+        <?= $form->field($model, 'e_mail') ?>
 
-        <?= $form->field($model, 'tel')->textInput(['autofocus' => true]) ?>
+        <?= $form->field($model, 'tel') ?>
 
-        <?= $form->field($model, 'adress')->textInput(['autofocus' => true]) ?>
+        <?= $form->field($model, 'adress') ?>
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+        <?= $form->field($model, 'username') ?>
 
         <?= $form->field($model, 'password')->passwordInput() ?>
 
@@ -48,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-primary']) ?>
             </div>
         </div>
 

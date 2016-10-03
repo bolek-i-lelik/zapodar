@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use app\models\User;
+use \yii\db\ActiveRecord;
 
 /**
  * LoginForm is the model behind the login form.
@@ -12,18 +13,13 @@ use app\models\User;
  * @property User|null $user This property is read-only.
  *
  */
-class RegForm extends Model
+class RegForm extends ActiveRecord
 {
-    public $familie;
-    public $name;
-    public $father;
-    public $e_mail;
-    public $tel;
-    public $adress;
-    public $username;
-    public $password;
     public $password2;
-    public $podpiska = true;
+
+    public static function tableName(){
+        return 'user';
+    }
 
     /**
      * @return array the validation rules.
@@ -53,14 +49,14 @@ class RegForm extends Model
     {
         $user = User::find()->where(['username' => $this->username])->one();
 
-        if ($user->id) {
+        if ($user['id']) {
                 $this->addError($attribute, 'Пользователь с таким логином уже существует.');
             }
         }
     
     public function validatePassword($attribute, $params)
     {
-        if ($password != $password2) {
+        if ($this->password != $this->password2) {
                 $this->addError($attribute, 'Пароли не равны. Проверьте правильность ввода паролей.');
             }
         
@@ -70,25 +66,7 @@ class RegForm extends Model
      * Logs in a user using the provided username and password.
      * @return boolean whether the user is logged in successfully
      */
-    public function reg()
-    {
-        if ($this->validate()) 
-        {
-
-            $user = new User();
-            $user->familie = $familie;
-            $user->name = $name;
-            $user->father = $father;
-            $user->e_mail = $e_mail;
-            $user->tel = $tel;
-            $user->adress = $adress;
-            $user->username = $username;
-            $$user->password = md5($password);
-            $user->podpiska = $podpiska;
-
-        }
-        return false;
-    }
+    
 
     public function attributeLabels()
     {

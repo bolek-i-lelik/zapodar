@@ -10,6 +10,7 @@ use app\models\LoginForm;
 use app\models\RegForm;
 use app\models\ContactForm;
 use app\models\Signup;
+use app\models\User;
 
 class SiteController extends Controller
 {
@@ -135,9 +136,19 @@ class SiteController extends Controller
 
         $model = new RegForm();
 
-        return $this->render('reg', [
-            'model' => $model,
-        ]);
+        if($model->load(Yii::$app->request->post())){
+            $model->password = md5($model->password);
+            $model->password2 = md5($model->password2);
+            if($model->save()){
+                Yii::$app->session->setFlash('success', 'Данные приняты');
+                Yii::$app->session->setFlash('error', '');
+                return $this->refresh();
+            }else{
+                Yii::$app->session->setFlash('error', 'Ошибка');
+            }
+        }
+        
+        return $this->render('reg', compact('model'));
     }
 
 
