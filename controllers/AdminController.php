@@ -70,7 +70,11 @@ class AdminController extends \yii\web\Controller
     	//Проверяем права на вход в админку
     	$this->userDostup($id);
 
-    	return $this->render('index');
+    	$count_users = User::find()->count();
+
+    	return $this->render('index',[
+    		'count_users' => $count_users,
+    	]);
     }
 
     public function actionArticles(){
@@ -83,6 +87,6 @@ class AdminController extends \yii\web\Controller
     	return $this->render('articles');
     }
 
-    public function action
+    
 
 }
