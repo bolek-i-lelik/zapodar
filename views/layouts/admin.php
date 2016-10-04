@@ -12,6 +12,7 @@ $css = 'http://zapodar/';
 $js = 'http://zapodar/';
 $img = 'http://zapodar/';
 
+
 ?>
 
 <?php $this->beginPage() ?>
@@ -291,7 +292,7 @@ $img = 'http://zapodar/';
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="site/logout" class="btn btn-default btn-flat">Выйти</a>
                                     </div>
                                 </li>
                             </ul>
@@ -354,7 +355,7 @@ $img = 'http://zapodar/';
                             <a href="#">
                                 <i class="fa fa-laptop"></i>
                                 <span>Пользователи</span>
-                                <i class="fa fa-angle-left pull-right"></i>
+                                
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="pages/UI/general.html"><i class="fa fa-angle-double-right"></i> Новые</a></li>
@@ -416,6 +417,7 @@ $img = 'http://zapodar/';
                 </section>
                 <!-- /.sidebar -->
             </aside>
+            
 
             <?= $content ?>
         </div><!-- ./wrapper -->

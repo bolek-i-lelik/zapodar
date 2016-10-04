@@ -60,16 +60,16 @@
                             <div class="small-box bg-yellow">
                                 <div class="inner">
                                     <h3>
-                                        44
+                                        <?= $count_users ?>
                                     </h3>
                                     <p>
-                                        User Registrations
+                                        Пользователей
                                     </p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-person-add"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
+                                <a href="user" class="small-box-footer">
                                     More info <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
@@ -158,7 +158,7 @@
                                                     <small class="pull-right">30 GB</small>
                                                 </div>
                                                 <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-aqua" style="width: 70%;"></div>
+                                                    <div class="progress-bar progress-bar-aqua" style="width: 30%;"></div>
                                                 </div>
                                                 <!-- Buttons -->
                                                 <p>
@@ -179,7 +179,7 @@
                                             <div class="knob-label">Disk</div>
                                         </div><!-- ./col -->
                                         <div class="col-xs-4 text-center">
-                                            <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#3c8dbc"/>
+                                            <input type="text" class="knob" data-readonly="true" value="90" data-width="60" data-height="60" data-fgColor="#3c8dbc"/>
                                             <div class="knob-label">RAM</div>
                                         </div><!-- ./col -->
                                     </div><!-- /.row -->
