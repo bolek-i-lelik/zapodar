@@ -329,10 +329,17 @@ $img = 'http://zapodar/';
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
-                        <li class="active">
-                            <a href="index.html">
-                                <i class="fa fa-dashboard"></i> <span>Материалы</span>
+                        <li class="active treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> 
+                                <span>Материалы</span>
+                                <i class="fa fa-angle-left pull-right"></i>
                             </a>
+                            <ul class="treeview-menu">
+                                <li><a href="news"><i class="fa fa-angle-double-right"></i> Новости</a></li>
+                                <li><a href="article"><i class="fa fa-angle-double-right"></i> Прочие</a></li>
+                                
+                            </ul>
                         </li>
                         <li>
                             <a href="pages/widgets.html">
