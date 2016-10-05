@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "news".
@@ -20,6 +21,8 @@ use Yii;
  */
 class News extends \yii\db\ActiveRecord
 {
+    
+    
     /**
      * @inheritdoc
      */
@@ -39,6 +42,7 @@ class News extends \yii\db\ActiveRecord
             [['created_at'], 'safe'],
             [['prosmotr'], 'integer'],
             [['title', 'name', 'description', 'keywords', 'prev_text', 'prev_foto'], 'string', 'max' => 255],
+            
         ];
     }
 

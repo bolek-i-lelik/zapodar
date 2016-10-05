@@ -7,6 +7,7 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use app\models\User;
 use yii\web\Controller;
+use app\controllers\DostupController;
 
 class AdminController extends \yii\web\Controller
 {
@@ -47,28 +48,14 @@ class AdminController extends \yii\web\Controller
         ];
     }
 
-    public $user_id;
-
-    public function getUserId(){
-    	$user_id = Yii::$app->user->identity->id;
-    	return $user_id;
-    }
-
-    public function userDostup($id){
-    	$dostup = User::find('category_id')->where(['id'=>$id])->one();
-    	if($dostup->category_id != 1){
-    		return $this->redirect('site/index');
-    	}
-    }
-
-	public $layout = 'admin';
+  	public $layout = 'admin';
 
     public function actionIndex()
     {
     	//Получаем id юзера
-    	$id = $this->getUserId();
+    	$id = DostupController::getUserId();
     	//Проверяем права на вход в админку
-    	$this->userDostup($id);
+    	DostupController::userDostup($id);
 
     	$count_users = User::find()->count();
 
@@ -77,12 +64,13 @@ class AdminController extends \yii\web\Controller
     	]);
     }
 
-    public function actionArticles(){
+    public function actionArticles()
+    {
 
     	//Получаем id юзера
-    	$id = $this->getUserId();
+    	$id = DostupController::getUserId();
     	//Проверяем права на вход в админку
-    	$this->userDostup($id);
+    	DostupController::userDostup($id);
 
     	return $this->render('articles');
     }
