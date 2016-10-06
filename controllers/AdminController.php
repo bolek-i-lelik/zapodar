@@ -8,6 +8,8 @@ use yii\filters\VerbFilter;
 use app\models\User;
 use yii\web\Controller;
 use app\controllers\DostupController;
+use app\models\UploadXML;
+use yii\web\UploadedFile;
 
 class AdminController extends \yii\web\Controller
 {
@@ -20,7 +22,7 @@ class AdminController extends \yii\web\Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'index', 'articles'],
+                'only' => ['logout', 'index', 'articles', 'uploadXML'],
                 'rules' => [
                     [
                         'actions' => ['logout'],
@@ -34,6 +36,11 @@ class AdminController extends \yii\web\Controller
                     ],
                     [
                         'actions' => ['articles'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['uploadXML'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -75,6 +82,36 @@ class AdminController extends \yii\web\Controller
     	return $this->render('articles');
     }
 
-    
+    public function actionUploadxml()
+    {
+
+    	$id = DostupController::getUserId();
+    	DostupController::userDostup($id);
+
+    	$model = new UploadXML();
+
+        if (Yii::$app->request->isPost) {
+            $model->xmlFile = UploadedFile::getInstance($model, 'xmlFile');
+            if ($model->upload()) {
+                // file is uploaded successfully
+                return;
+            }
+        }
+
+        return $this->render('uploadxml', ['model' => $model]);
+
+    }
+
+    public function actionUploadxmlfromnet()
+    {
+
+    	$id = DostupController::getUserId();
+    	DostupController::userDostup($id);
+
+    	$xml = simplexml_load_file('uploads/categories.xml');
+
+    	return $this->render('uploadxmlfromnet', ['xml' => $xml]);
+
+    }
 
 }
