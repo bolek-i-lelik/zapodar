@@ -11,6 +11,7 @@ use app\controllers\DostupController;
 use app\models\UploadXML;
 use yii\web\UploadedFile;
 use app\models\Category;
+use app\models\Products;
 
 class AdminController extends \yii\web\Controller
 {
@@ -148,11 +149,71 @@ class AdminController extends \yii\web\Controller
     	$id = DostupController::getUserId();
     	DostupController::userDostup($id);
 
+    	$xml = NULL;
+
     	$xml = simplexml_load_file('uploads/yml.xml');
 
-    	copy("http://royalpotolok.ru/images/glavnaja-1.jpg","img/products/1.jpg");
+    	/*foreach ($xml->shop->offers->offer as $offer) {
+    		foreach($offer->picture as $picture){
+				$foto = substr($picture, 25);
+				if (file_exists('img/products/'.$foto)) {
+    				echo "The file $filename exists";
+				} else {
+    				copy($picture,"img/products/".$foto);
+				}
 
-    	
+			}
+		}*/
+		foreach ($xml->shop->offers->offer as $offer) {
+			$products = new Products();
+			//echo $a.'<br>';
+			$products->available = (string)$offer['available'];
+			//echo $offer['available'].'<br>';
+			$products->productsid = (string)$offer['id'];
+			//echo $offer['id'].'<br>';
+			$alias = substr((string)$offer->url, 19);
+			$alias = substr($alias, 0, -5);
+			$products->alias = $alias;
+			//echo $offer->url.'<br>';
+			$products->price = (string)$offer->price;
+			//echo $offer->price.'<br>';
+			$products->currencyid = (string)$offer->currencyId;
+			//echo $offer->currencyId.'<br>';
+			$products->categoryid = (string)$offer->categoryId;
+			//echo $offer->categoryId.'<br>';
+			$products->pickup = (string)$offer->pickup;
+			//echo $offer->pickup.'<br>';
+			$products->delivery = (string)$offer->delivery;
+			//echo $offer->delivery.'<br>';
+			$products->name = (string)$offer->name;
+			//echo $offer->name.'<br>';
+			$products->vendorcode = (string)$offer->vendoreCode;
+			//echo $offer->vendoreCode.'<br>';
+			$products->description = (string)$offer->description;
+			//echo $offer->description.'<br>';
+			$products->sales_notes = (string)$offer->sales_notes;
+			$products->vendor = (string)$offer->vendor;
+			$products->country = (string)$offer->country_of_origin;
+			if($products->save()){
+				echo $offer['id'].'сохранено<br>';
+			}else{
+				echo 'хуй тут ночевал';
+			}
+			//echo $offer->sales_notes.'<br>';
+			//echo $offer->vendorCode.'<br>';
+			/*$fotos = '';
+			foreach($offer->picture as $picture){
+				$foto = substr($picture, 25);
+				$fotos .= $foto.',';
+			}
+			echo $fotos.'<br>';
+			print_r($offer->param);
+			*/
+	//print_r($offer);
+	/*echo "<hr>";
+	$a= $a+1;*/
+}
+    	exit();
 
     	/*$prices = array();
 
@@ -170,9 +231,9 @@ class AdminController extends \yii\web\Controller
     		echo '<hr>';
     	}*/
 
-    	$offers = $xml->shop->offers;
+    	//$offers = $xml->shop->offers;
 
-    	return $this->render('uploadproducts', ['offers' => $offers]);
+    	return $this->render('uploadproducts');
     }
 
 }

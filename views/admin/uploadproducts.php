@@ -3,7 +3,7 @@
 print($offer->id.' - '.$offer->available.' - '. $offer->url.'<br>');
 }*/
 //var_dump($offers->offer[2]);
-$a=1;
+/*$a=1;
 foreach ($offers->offer as $offer) {
 	echo $a.'<br>';
 	echo $offer['available'].'<br>';
@@ -31,5 +31,6 @@ foreach ($offers->offer as $offer) {
 	echo "<hr>";
 	$a= $a+1;
 }
-
+*/
+echo 'Всё загрузилось';
 ?>
