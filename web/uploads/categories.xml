@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE yml_catalog SYSTEM "shops.dtd">
 <categories>
       <category id="14544372" parentId="12183198">Камины</category>
       <category id="14314021" parentId="12183679">Датированные</category>
@@ -792,3 +794,4 @@
       <category id="12530423" parentId="12183158">Cпортивные бутылки с логотипом</category>
       <category id="12530424" parentId="12183143">Power Bank с логотипом компании</category>
     </categories>
+    

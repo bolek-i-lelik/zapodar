@@ -10,6 +10,7 @@ use yii\web\Controller;
 use app\controllers\DostupController;
 use app\models\UploadXML;
 use yii\web\UploadedFile;
+use app\models\Category;
 
 class AdminController extends \yii\web\Controller
 {
@@ -110,8 +111,68 @@ class AdminController extends \yii\web\Controller
 
     	$xml = simplexml_load_file('uploads/categories.xml');
 
-    	return $this->render('uploadxmlfromnet', ['xml' => $xml]);
+    	$pokaz = 1;
+    	//var_dump($xml);
+    	//перебираем построчно все категории
+    	foreach ($xml->category as $cat){
+    		//var_dump($cat['id']);
+			//print($cat['id'].' - '.$cat['parentId'].' - '. $cat.'<br>');
+			$caty = Category::find()->where(['id' => (string)$cat['id']])->one();
+			if($caty['id']==0){
 
+    			$category = new Category();
+    			$id = $cat['id'];
+    			$parent = $cat['parentId'];
+    			$category->id = (string)$id;
+				$category->name = (string)$cat;
+				$category->parent = (string)$parent;
+				$category->pokaz = $pokaz;
+				$category->save();
+
+			}else{
+				$catbd = Category::find()->where(['id'=>(string)$cat['id']])->one();
+				$catbd->parent = (string)$cat['parentId'];
+				$catbd->name = (string)$cat;
+				$catbd->save();
+			}
+		//проверяем наличие такой записи в БД, если нет, то вносим новую запись, если есть то делаем апдейт
+    	}
+    	$categories = Category::find()->all();
+
+    	return $this->render('uploadxmlfromnet', ['categories' => $categories]);
+
+    }
+
+    public function actionUploadproducts()
+    {
+    	$id = DostupController::getUserId();
+    	DostupController::userDostup($id);
+
+    	$xml = simplexml_load_file('uploads/yml.xml');
+
+    	copy("http://royalpotolok.ru/images/glavnaja-1.jpg","img/products/1.jpg");
+
+    	
+
+    	/*$prices = array();
+
+    	foreach($xml->offers as $offer){
+    		var_dump($offer);
+    		echo "<hr>";
+
+    	}
+		*/
+
+    	//var_dump($xml->offers);
+
+    	/*foreach ($xml->shop->offers as $offer) {
+    		print_r($offer);
+    		echo '<hr>';
+    	}*/
+
+    	$offers = $xml->shop->offers;
+
+    	return $this->render('uploadproducts', ['offers' => $offers]);
     }
 
 }

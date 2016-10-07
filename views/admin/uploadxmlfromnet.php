@@ -1,7 +1,6 @@
 <?php
-$a = 0;
-foreach ($xml->category as $cat){
-print($cat['id'].' - '.$cat['parentId'].' - '. $cat.'<br>');
+foreach ($categories as $category){
+print($category->id.' - '.$category->parent.' - '. $category->name.'<br>');
 }
 
 ?>
