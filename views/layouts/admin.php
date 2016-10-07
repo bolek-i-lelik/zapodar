@@ -424,9 +424,12 @@ $img = 'http://zapodar/';
                 </section>
                 <!-- /.sidebar -->
             </aside>
-            
-
+            <aside class="right-side">
+            <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
             <?= $content ?>
+            </aside>
         </div><!-- ./wrapper -->
 
         <!-- add new calendar event modal -->

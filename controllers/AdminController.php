@@ -13,6 +13,7 @@ use yii\web\UploadedFile;
 use app\models\Category;
 use app\models\Products;
 
+
 class AdminController extends \yii\web\Controller
 {
 
@@ -165,50 +166,59 @@ class AdminController extends \yii\web\Controller
 			}
 		}*/
 		foreach ($xml->shop->offers->offer as $offer) {
-			$products = new Products();
-			//echo $a.'<br>';
-			$products->available = (string)$offer['available'];
+			$products = Products::find()->where(['productsid'=>(string)$offer['id']])->one();
+            //echo $a.'<br>';
+			//$products->available = (string)$offer['available'];
 			//echo $offer['available'].'<br>';
-			$products->productsid = (string)$offer['id'];
+			//$products->productsid = (string)$offer['id'];
 			//echo $offer['id'].'<br>';
-			$alias = substr((string)$offer->url, 19);
-			$alias = substr($alias, 0, -5);
-			$products->alias = $alias;
+			//$alias = substr((string)$offer->url, 19);
+			//$alias = substr($alias, 0, -5);
+			//$products->alias = $alias;
 			//echo $offer->url.'<br>';
-			$products->price = (string)$offer->price;
+			//$products->price = (string)$offer->price;
 			//echo $offer->price.'<br>';
-			$products->currencyid = (string)$offer->currencyId;
+			//$products->currencyid = (string)$offer->currencyId;
 			//echo $offer->currencyId.'<br>';
-			$products->categoryid = (string)$offer->categoryId;
+			//$products->categoryid = (string)$offer->categoryId;
 			//echo $offer->categoryId.'<br>';
-			$products->pickup = (string)$offer->pickup;
-			//echo $offer->pickup.'<br>';
-			$products->delivery = (string)$offer->delivery;
-			//echo $offer->delivery.'<br>';
-			$products->name = (string)$offer->name;
+			
+            $products->pickup = (string)$offer->pickup;
+			
+            //echo $offer->pickup.'<br>';
+			
+            $products->delivery = (string)$offer->delivery;
+			
+            //echo $offer->delivery.'<br>';
+			//$products->name = (string)$offer->name;
 			//echo $offer->name.'<br>';
-			$products->vendorcode = (string)$offer->vendoreCode;
+			//$products->vendorcode = (string)$offer->vendoreCode;
 			//echo $offer->vendoreCode.'<br>';
-			$products->description = (string)$offer->description;
+			//$products->description = (string)$offer->description;
 			//echo $offer->description.'<br>';
-			$products->sales_notes = (string)$offer->sales_notes;
-			$products->vendor = (string)$offer->vendor;
-			$products->country = (string)$offer->country_of_origin;
-			if($products->save()){
-				echo $offer['id'].'сохранено<br>';
+			//$products->sales_notes = (string)$offer->sales_notes;
+			//$products->vendor = (string)$offer->vendor;
+			//$products->country = (string)$offer->country_of_origin;
+            
+            $fotos = '';
+            foreach($offer->picture as $picture){
+                $foto = substr($picture, 25);
+                $fotos .= $foto.',';
+            }
+            $products->picture = $fotos;
+            
+            //echo $fotos.'<br>';
+			
+            if($products->save()){
+				echo $offer['id'].' изменено <br>';
 			}else{
-				echo 'хуй тут ночевал';
+				echo 'хуй тут ночевал<br>';
 			}
-			//echo $offer->sales_notes.'<br>';
+			
+            //echo $offer->sales_notes.'<br>';
 			//echo $offer->vendorCode.'<br>';
-			/*$fotos = '';
-			foreach($offer->picture as $picture){
-				$foto = substr($picture, 25);
-				$fotos .= $foto.',';
-			}
-			echo $fotos.'<br>';
-			print_r($offer->param);
-			*/
+			
+			
 	//print_r($offer);
 	/*echo "<hr>";
 	$a= $a+1;*/
