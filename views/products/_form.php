@@ -50,6 +50,12 @@ $fotos = explode(",", $model->picture);
 
 <div class="help-block"></div>
 </div>
+
+<?php foreach ($fotos as $foto):?>
+    <?php if($foto != ''):?>
+    <?= Html::img($url.'img/products/'.$foto, ['height' => 120]) ?>
+    <?php endif;?>
+<?php endforeach;?>
     <!--<div class="form-group field-products-picture">
 <label class="control-label" for="products-picture">Фотографии</label>
 <input type="text" id="products-picture" class="form-control" name="Products[picture]" maxlength="1000">
