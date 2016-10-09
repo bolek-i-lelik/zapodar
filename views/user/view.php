@@ -10,7 +10,6 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Пользователи', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<aside class="right-side">
 <div class="row">
 <div class="col-lg-10 col-lg-offset-1">
 <div class="user-view">
@@ -56,4 +55,3 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 </div>
 </div>
-</aside>

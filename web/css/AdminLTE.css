@@ -57,14 +57,16 @@ body > .header {
 }
 /*right side - contins main content*/
 .right-side {
+  position: absolute;
   background-color: #f9f9f9;
   margin-left: 220px;
+  top: 50px;
 }
 /*left side - contains sidebar*/
 .left-side {
-  position: absolute;
+  position: fixed;
   width: 220px;
-  top: 0;
+  top: 50px;
 }
 @media screen and (min-width: 992px) {
   .left-side {
@@ -331,7 +333,7 @@ table.text-center th {
 -------------------------------------------------
 */
 body > .header {
-  position: relative;
+  position: fixed;
   max-height: 100px;
   z-index: 1030;
 }

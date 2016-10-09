@@ -9,11 +9,12 @@ use yii\widgets\DetailView;
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Продукция', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$url = 'http://zapodar/web/';
 ?>
-<aside class="right-side">
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
-            <div class="products-view">
+            <div class="products-view" style="width: 100%;">
 
                 <h1><?= Html::encode($this->title) ?></h1>
 
@@ -27,7 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ]) ?>
                 </p>
-
+                <?php $foto = stristr($model->picture, ',', true);?>
+                <?php $fotos = explode(",", $model->picture);?>
+                <?php foreach ($fotos as $foto):?>
+                    <?php if($foto != ''):?>
+                        <?= Html::img($url.'img/products/'.$foto, ['height' => 120]) ?>
+                    <?php endif;?>
+                <?php endforeach;?>
                 <?= DetailView::widget([
                     'model' => $model,
                     'attributes' => [
@@ -36,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'price',
                         'currencyid',
                         'categoryid',
-                        'picture',
+                        //'picture',
                         'pickup',
                         'delivery',
                         'name',
@@ -57,4 +64,3 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-</aside>

@@ -4,12 +4,16 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+//use app\assets\AppAsset;
+use app\assets\AdminAsset;
 
-$css = 'http://zapodar/';
-$js = 'http://zapodar/';
+//AppAsset::register($this);
+AdminAsset::register($this);
+
 $img = 'http://zapodar/';
 
 
@@ -25,24 +29,7 @@ $img = 'http://zapodar/';
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        <!-- bootstrap 3.0.2 -->
-        <link href="<?= $css ?>css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <!-- font Awesome -->
-        <link href="<?= $css ?>css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <!-- Ionicons -->
-        <link href="<?= $css ?>css/ionicons.min.css" rel="stylesheet" type="text/css" />
-        <!-- Morris chart -->
-        <link href="<?= $css ?>css/morris/morris.css" rel="stylesheet" type="text/css" />
-        <!-- jvectormap -->
-        <link href="<?= $css ?>css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
-        <!-- fullCalendar -->
-        <link href="<?= $css ?>css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
-        <!-- Daterange picker -->
-        <link href="<?= $css ?>css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
-        <!-- bootstrap wysihtml5 - text editor -->
-        <link href="<?= $css ?>css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
-        <!-- Theme style -->
-        <link href="<?= $css ?>css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -56,7 +43,7 @@ $img = 'http://zapodar/';
 
         <!-- header logo: style can be found in header.less -->
         <header class="header">
-            <a href="http://zapodar/admin" class="logo">
+            <a href="<?= Url::toRoute('/admin', true)?>" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
                 AdminLTE
             </a>
@@ -85,7 +72,7 @@ $img = 'http://zapodar/';
                                         <li><!-- start message -->
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="<?= $img ?>img/avatar3.png" class="img-circle" alt="User Image"/>
+                                                    <img src="<?= Url::toRoute('/img/avatar3.png', true)?>" class="img-circle" alt="User Image"/>
                                                 </div>
                                                 <h4>
                                                     Support Team
@@ -97,7 +84,7 @@ $img = 'http://zapodar/';
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="<?= $img ?>img/avatar2.png" class="img-circle" alt="user image"/>
+                                                    <img src="<?= Url::toRoute('/img/avatar2.png', true)?>" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     AdminLTE Design Team
@@ -109,7 +96,7 @@ $img = 'http://zapodar/';
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="<?= $img ?>img/avatar.png" class="img-circle" alt="user image"/>
+                                                    <img src="<?= Url::toRoute('/img/avatar.png', true)?>" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     Developers
@@ -121,7 +108,7 @@ $img = 'http://zapodar/';
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="img/avatar2.png" class="img-circle" alt="user image"/>
+                                                    <img src="<?= Url::toRoute('/img/avatar2.png', true)?>" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     Sales Department
@@ -133,7 +120,7 @@ $img = 'http://zapodar/';
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="img/avatar.png" class="img-circle" alt="user image"/>
+                                                    <img src="<?= Url::toRoute('/img/avatar.png', true)?>" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     Reviewers
@@ -268,7 +255,7 @@ $img = 'http://zapodar/';
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
-                                    <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                                    <img src="<?= Url::toRoute('/img/avatar3.png', true)?>" class="img-circle" alt="User Image" />
                                     <p>
                                         Jane Doe - Web Developer
                                         <small>Member since Nov. 2012</small>
@@ -309,7 +296,7 @@ $img = 'http://zapodar/';
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                            <img src="<?= Url::toRoute('/img/avatar3.png', true)?>" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
                             <p>Hello, Jane</p>
@@ -425,10 +412,12 @@ $img = 'http://zapodar/';
                 <!-- /.sidebar -->
             </aside>
             <aside class="right-side">
+            
             <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
             <?= $content ?>
+
             </aside>
         </div><!-- ./wrapper -->
 
@@ -437,35 +426,9 @@ $img = 'http://zapodar/';
 
         <!-- jQuery 2.0.2 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <!-- jQuery UI 1.10.3 -->
-        <script src="<?= $js ?>js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
-        <!-- Bootstrap -->
-        <script src="<?= $js ?>js/bootstrap.min.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-        <script src="<?= $js ?>js/plugins/morris/morris.min.js" type="text/javascript"></script>
-        <!-- Sparkline -->
-        <script src="<?= $js ?>js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
-        <!-- jvectormap -->
-        <script src="<?= $js ?>js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
-        <script src="<?= $js ?>js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
-        <!-- fullCalendar -->
-        <script src="<?= $js ?>js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-        <!-- jQuery Knob Chart -->
-        <script src="<?= $js ?>js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
-        <!-- daterangepicker -->
-        <script src="<?= $js ?>js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
-        <!-- Bootstrap WYSIHTML5 -->
-        <script src="<?= $js ?>js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
-        <!-- iCheck -->
-        <script src="<?= $js ?>js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-
-        <!-- AdminLTE App -->
-        <script src="<?= $js ?>js/AdminLTE/app.js" type="text/javascript"></script>
         
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="<?= $js ?>js/AdminLTE/dashboard.js" type="text/javascript"></script> 
-
 
 
     <?php $this->endBody() ?>

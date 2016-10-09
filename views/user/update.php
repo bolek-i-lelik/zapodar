@@ -10,7 +10,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Пользователи', 'url' =
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<aside class="right-side">
 <div class="row">
 <div class="col-lg-10 col-lg-offset-1">
 <div class="user-update">
@@ -24,4 +23,3 @@ $this->params['breadcrumbs'][] = 'Update';
 </div>
 </div>
 </div>
-</aside>

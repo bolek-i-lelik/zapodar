@@ -9,7 +9,6 @@ use yii\grid\GridView;
 $this->title = 'Продукция';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<aside class="right-side">
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
             <div class="products-index">
@@ -51,4 +50,3 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-</aside>

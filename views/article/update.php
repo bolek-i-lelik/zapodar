@@ -10,7 +10,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Материалы', 'url' => ['in
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Редактировать';
 ?>
-<aside class="right-side">
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-1">
 			<div class="articles-update">
@@ -24,4 +23,3 @@ $this->params['breadcrumbs'][] = 'Редактировать';
 			</div>
 		</div>
 	</div>
-</aside>
