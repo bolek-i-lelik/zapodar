@@ -151,5 +151,23 @@ class SiteController extends Controller
         return $this->render('reg', compact('model'));
     }
 
+    public function actionCatalog()
+    {
+        return $this->render('catalog');
+    }
 
+    public function actionAction()
+    {
+        return $this->render('action');
+    }
+
+    public function actionNews()
+    {
+        return $this->render('news');
+    }
+
+    public function actionPartner()
+    {
+        return $this->render('partner');
+    }
 }

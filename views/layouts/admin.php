@@ -14,7 +14,6 @@ use app\assets\AdminAsset;
 //AppAsset::register($this);
 AdminAsset::register($this);
 
-$img = 'http://zapodar/';
 
 
 ?>
@@ -330,7 +329,7 @@ $img = 'http://zapodar/';
                         </li>
                         <li>
                             <a href="pages/widgets.html">
-                                <i class="fa fa-th"></i> <span>Категории</span> <small class="badge pull-right bg-green">new</small>
+                                <i class="fa fa-th"></i> <span>Категории</span>
                             </a>
                         </li>
                         <li class="treeview">
@@ -383,13 +382,13 @@ $img = 'http://zapodar/';
                         <li>
                             <a href="pages/calendar.html">
                                 <i class="fa fa-calendar"></i> <span>Заявки</span>
-                                <small class="badge pull-right bg-red">3</small>
+                                
                             </a>
                         </li>
                         <li>
                             <a href="pages/mailbox.html">
                                 <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                                <small class="badge pull-right bg-yellow">12</small>
+                                
                             </a>
                         </li>
                         <li class="treeview">
