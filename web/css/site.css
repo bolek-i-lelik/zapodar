@@ -2697,7 +2697,7 @@ a.btn-rnd-inv:hover i {
 .btn-rnd-inv-dark:hover i {
     border-color:#AACF9D
 }
-.btn {
+.bton {
     -webkit-transition:all .2s;
     -moz-transition:all .2s;
     transition:all .2s;
@@ -2711,11 +2711,11 @@ a.btn-rnd-inv:hover i {
     border:none;
     display:inline-block
 }
-.btn:hover {
+.bton:hover {
     background:#AACF9D;
     color:#fff
 }
-.btn:active {
+.bton:active {
     outline:0;
     box-shadow:inset 0 1px 10px rgba(0,0,0,.2)
 }

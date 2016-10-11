@@ -124,7 +124,7 @@ AppAsset::register($this);
                                     <textarea required="" class="txtr" name="wqretyiu" rows="10" maxlength="9000" placeholder="Текст сообщения"></textarea>
                                 </li>
                             </ul>
-                            <button class="btn" type="submit">Отправить сообщение</button>
+                            <button class="bton" type="submit">Отправить сообщение</button>
                         </form>
                     </div>
                 </div>
@@ -148,7 +148,7 @@ AppAsset::register($this);
                 <input id="hb-but-login" class="j_hcb j_off" type="checkbox">
                 <label for="hb-but-login">
                     <span class="hb-but-wrap">
-                        <a href="<?= Url::toRoute('/site/login', true)?>" class="btn btn-sm">Войти</a>
+                        <a href="<?= Url::toRoute('/site/login', true)?>" class="bton btn-sm">Войти</a>
                     </span>
                 </label>
             </li> 
