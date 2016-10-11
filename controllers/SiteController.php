@@ -11,6 +11,9 @@ use app\models\RegForm;
 use app\models\ContactForm;
 use app\models\Signup;
 use app\models\User;
+use app\models\Category;
+use app\models\Products;
+use yii\data\Pagination;
 
 class SiteController extends Controller
 {
@@ -153,7 +156,21 @@ class SiteController extends Controller
 
     public function actionCatalog()
     {
-        return $this->render('catalog');
+
+        $category = Category::find()->where(['parent'=>0, 'pokaz'=>1])->all();
+
+        $subcategory = array();
+
+        foreach ($category as $value) {
+            $id = $value->id;
+            $sub = Category::find()->where(['parent'=>$id])->all();
+            $subcategory[$id] = $sub;
+        }
+
+        return $this->render('catalog',[
+            'category' => $category,
+            'subcategory' => $subcategory,
+        ]);
     }
 
     public function actionAction()
@@ -169,5 +186,40 @@ class SiteController extends Controller
     public function actionPartner()
     {
         return $this->render('partner');
+    }
+
+    public function actionCategory(){
+
+        $request = Yii::$app->request;
+
+        $id = $request->get('id');
+
+        $subcategory = Category::find()->where(['parent' => $id])->one();
+
+        if($subcategory = Category::find()->where(['parent' => $id])->one()){
+            $results = Category::find()->where(['parent'=>$id])->all();
+            $tip = 1;
+            $models = 0;
+        }
+        else
+        {
+            $query = Products::find()->where(['categoryid'=>$id]);
+            $tip = 2;
+
+            $count = Products::find()->where(['categoryid'=>$id])->count();
+
+            $results = new Pagination(['totalCount' => $count, 'pageSize' => 18]);
+
+            $models = $query->offset($results->offset)
+                ->limit($results->limit)
+                ->all();
+        }
+
+        return $this->render('category', [
+            'models' => $models,
+            'results' => $results,
+            'tip' => $tip,
+        ]);
+
     }
 }

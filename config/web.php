@@ -44,6 +44,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
             'site/contact/<name>' => 'site/contact',
+            'category/<id>' => 'site/category',
             ],
         ],
         
