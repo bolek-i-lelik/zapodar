@@ -89,9 +89,9 @@ class UserController extends Controller
     {
 
         //Получаем id юзера
-        $id = $this->getUserId();
+        $idu = $this->getUserId();
         //Проверяем права на вход в админку
-        $this->userDostup($id);
+        $this->userDostup($idu);
 
         $dataProvider = new ActiveDataProvider([
             'query' => User::find(),
@@ -111,9 +111,9 @@ class UserController extends Controller
     {
 
         //Получаем id юзера
-        $id = $this->getUserId();
+        $idu = $this->getUserId();
         //Проверяем права на вход в админку
-        $this->userDostup($id);
+        $this->userDostup($idu);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -129,9 +129,9 @@ class UserController extends Controller
     {
 
         //Получаем id юзера
-        $id = $this->getUserId();
+        $idu = $this->getUserId();
         //Проверяем права на вход в админку
-        $this->userDostup($id);
+        $this->userDostup($idu);
 
         $model = new User();
 
@@ -154,9 +154,9 @@ class UserController extends Controller
     {
 
         //Получаем id юзера
-        $id = $this->getUserId();
+        $idu = $this->getUserId();
         //Проверяем права на вход в админку
-        $this->userDostup($id);
+        $this->userDostup($idu);
 
         $model = $this->findModel($id);
 
@@ -179,9 +179,9 @@ class UserController extends Controller
     {
 
         //Получаем id юзера
-        $id = $this->getUserId();
+        $idu = $this->getUserId();
         //Проверяем права на вход в админку
-        $this->userDostup($id);
+        $this->userDostup($idu);
 
         $this->findModel($id)->delete();
 

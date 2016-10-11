@@ -44,7 +44,7 @@ class Products extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['pickup', 'delivery', 'prosmotr', 'buy', 'productsid', 'vendorcode'], 'string'],
+            //[['pickup', 'delivery', 'prosmotr', 'buy', 'productsid', 'vendorcode'], 'string'],
             [['description'], 'string'],
             [['available', 'productsid'], 'required'],
             [['id', 'alias', 'price', 'currencyid', 'categoryid','name', 'sales_notes', 'group_id', 'available', 'vendor', 'country'], 'string', 'max' => 255],

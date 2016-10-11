@@ -1,16 +1,12 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
 /* @var $this yii\web\View */
 /* @var $model app\models\News */
-
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Новости', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<aside class="right-side">
 <div class="row">
 <div class="col-lg-10 col-lg-offset-1">
 <div class="news-view">
@@ -28,24 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'title',
-            'name',
-            'description',
-            'keywords',
-            'text:ntext',
-            'prev_text',
-            'created_at',
-            'prosmotr',
-            'prev_foto',
-        ],
-    ]) ?>
+    <?= $model->id ?>
+
+    <?= $model->id ?>
 
 </div>
 </div>
 </div>
-</aside>
-

@@ -14,6 +14,7 @@ use app\models\User;
 use app\models\Category;
 use app\models\Products;
 use yii\data\Pagination;
+use app\controllers\NewController;
 
 class SiteController extends Controller
 {
@@ -66,7 +67,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+
+        $news = NewController::populationNews();
+
+        return $this->render('index', [
+            'news' => $news,
+        ]);
     }
 
     /**
@@ -178,11 +184,6 @@ class SiteController extends Controller
         return $this->render('action');
     }
 
-    public function actionNews()
-    {
-        return $this->render('news');
-    }
-
     public function actionPartner()
     {
         return $this->render('partner');
@@ -203,7 +204,7 @@ class SiteController extends Controller
         }
         else
         {
-            $query = Products::find()->where(['categoryid'=>$id]);
+            $query = Products::find('alias', 'picture', 'name', 'price')->where(['categoryid'=>$id]);
             $tip = 2;
 
             $count = Products::find()->where(['categoryid'=>$id])->count();

@@ -9,15 +9,14 @@ use yii\grid\GridView;
 $this->title = 'Новости';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<aside class="right-side">
 <div class="row">
-<div class="col-lg-10 col-lg-offset-1">
+        <div class="col-lg-10 col-lg-offset-1">
 <div class="news-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Содать новость', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -30,10 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'description',
             'keywords',
             // 'text:ntext',
-            // 'prev_text',
-            // 'created_at',
+             'prev_text',
+             'created_at',
             // 'prosmotr',
-            // 'prev_foto',
+             'prev_foto',
+            // 'alias',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
@@ -41,4 +41,3 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 </div>
 </div>
-</aside>

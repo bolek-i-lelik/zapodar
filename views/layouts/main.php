@@ -32,7 +32,7 @@ AppAsset::register($this);
                 (495) 737-90-22
         </span>
         <a href="/site/about">   О нас   </a>   
-        <a href="/site/news">   Новости   </a>   
+        <a href="/new/">   Новости   </a>   
         <a href="/site/action">   Акции   </a>   
         <a href="/site/partner">   Партнерам   </a>   
         <a href="/site/contact">   Контакты   </a>   

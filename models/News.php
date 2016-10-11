@@ -38,7 +38,7 @@ class News extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'name', 'description', 'keywords', 'prev_text'], 'required'],
-            [['text'], 'string'],
+            [['text', 'alias'], 'string'],
             [['created_at'], 'safe'],
             [['prosmotr'], 'integer'],
             [['title', 'name', 'description', 'keywords', 'prev_text', 'prev_foto'], 'string', 'max' => 255],
@@ -62,6 +62,7 @@ class News extends \yii\db\ActiveRecord
             'created_at' => 'Добавлена',
             'prosmotr' => 'Кол-во просмотров',
             'prev_foto' => 'Фото к превью',
+            'alias' => 'Алиас'
         ];
     }
 }

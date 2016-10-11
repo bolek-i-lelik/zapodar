@@ -8,24 +8,22 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use app\models\User;
 use app\controllers\DostupController;
+use yii\filters\AccessControl;
 
 /**
  * NewsController implements the CRUD actions for News model.
  */
 class NewsController extends Controller
 {
-    
-	public $layout = 'admin';
+    public $layout = 'admin';
     /**
      * @inheritdoc
      */
     public function behaviors()
     {
         return [
-        	'access' => [
+            'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['logout', 'index', 'view', 'create', 'update', 'delete'],
                 'rules' => [
@@ -76,11 +74,10 @@ class NewsController extends Controller
      */
     public function actionIndex()
     {
-
-    	//Получаем id юзера
-    	$id = DostupController::getUserId();
-    	//Проверяем права на вход в админку
-    	DostupController::userDostup($id);
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
 
         $dataProvider = new ActiveDataProvider([
             'query' => News::find(),
@@ -98,11 +95,10 @@ class NewsController extends Controller
      */
     public function actionView($id)
     {
-
-    	//Получаем id юзера
-    	$id = DostupController::getUserId();
-    	//Проверяем права на вход в админку
-    	DostupController::userDostup($id);
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -116,11 +112,10 @@ class NewsController extends Controller
      */
     public function actionCreate()
     {
-
-    	//Получаем id юзера
-    	$id = DostupController::getUserId();
-    	//Проверяем права на вход в админку
-    	DostupController::userDostup($id);
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
 
         $model = new News();
 
@@ -141,11 +136,10 @@ class NewsController extends Controller
      */
     public function actionUpdate($id)
     {
-
-    	//Получаем id юзера
-    	$id = DostupController::getUserId();
-    	//Проверяем права на вход в админку
-    	DostupController::userDostup($id);
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
 
         $model = $this->findModel($id);
 
@@ -166,11 +160,10 @@ class NewsController extends Controller
      */
     public function actionDelete($id)
     {
-
-    	//Получаем id юзера
-    	$id = DostupController::getUserId();
-    	//Проверяем права на вход в админку
-    	DostupController::userDostup($id);
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
 
         $this->findModel($id)->delete();
 

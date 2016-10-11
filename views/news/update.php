@@ -10,9 +10,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Новости', 'url' => ['index'
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Редактировать';
 ?>
-<aside class="right-side">
 <div class="row">
-<div class="col-lg-10 col-lg-offset-1">
+        <div class="col-lg-10 col-lg-offset-1">
 <div class="news-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -24,4 +23,3 @@ $this->params['breadcrumbs'][] = 'Редактировать';
 </div>
 </div>
 </div>
-</aside>

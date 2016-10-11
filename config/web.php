@@ -45,6 +45,8 @@ $config = [
             'rules' => [
             'site/contact/<name>' => 'site/contact',
             'category/<id>' => 'site/category',
+            'product/<alias>' => 'product/index',
+            'new/<alias>' => 'new/onenew',
             ],
         ],
         

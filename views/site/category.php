@@ -3,10 +3,12 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
 $this->title = 'имя категории';
 $this->params['breadcrumbs'][] = $this->title;
+Yii::$app->language = 'ru';
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
@@ -35,7 +37,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php if(empty($fotos[0])):?>
                     <center><img src="/img/products/empty_thumb.jpg" height="100">
                 <?php endif;?>
-                <h4><?= Html::a($model->name, ['product/'.$model->alias]) ?></h4></center>
+                <p><?= $model->name ?></p>
+                <p><?= $model->price ?> руб.</p>
+                <a href="<?= Url::toRoute('/product/'.$model->alias, true)?>"><button class="btn btn-success">подробнее</button></a></center>
 
                 </div>
             </div>
