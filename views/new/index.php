@@ -26,9 +26,11 @@ Yii::$app->language = 'ru';
         	</div>
         	<hr>
         </div>
-        
     <?php endforeach;?>
     <?php echo LinkPager::widget([
     'pagination' => $results,
 ]);?>
 </div>
+
+
+

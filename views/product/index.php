@@ -12,7 +12,6 @@ Yii::$app->language = 'ru';
 $foto = stristr($product->picture, ',', true);
 $fotos = explode(",", $product->picture);
 
-
 ?>
 <div class="product">
     <div class="row">
@@ -28,7 +27,7 @@ $fotos = explode(",", $product->picture);
     		<?php endif;?>
     		</center>
     	</div>
-    	<div class="dol-lg-5">
+    	<div class="col-lg-5">
     		<p><?= $product->vendorcode ?></p>
                 
     		<h1><?= Html::encode($this->title) ?></h1>

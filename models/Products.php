@@ -27,6 +27,14 @@ use Yii;
  * @property integer $vendorcode
  * @property string $vendor
  * @property string $country
+ * @property string $edinica
+ * @property string $nalichie
+ * @property string $count
+ * @property string $podrazdelid
+ * @property string $garantie
+ * @property string $sale
+ * @property string $group_raznovid_id
+ * @property string $keywords
  */
 class Products extends \yii\db\ActiveRecord
 {
@@ -45,11 +53,11 @@ class Products extends \yii\db\ActiveRecord
     {
         return [
             //[['pickup', 'delivery', 'prosmotr', 'buy', 'productsid', 'vendorcode'], 'string'],
-            [['description'], 'string'],
+            //[['description', 'edinica', 'nalichie', 'garantie', 'sale', 'keywords'], 'string'],
             [['available', 'productsid'], 'required'],
-            [['id', 'alias', 'price', 'currencyid', 'categoryid','name', 'sales_notes', 'group_id', 'available', 'vendor', 'country'], 'string', 'max' => 255],
-            [['picture'], 'string', 'max' => 1000],
-            [['params'], 'string', 'max' => 1500],
+            //[['id', 'alias', 'price', 'currencyid', 'categoryid','name', 'sales_notes', 'group_id', 'available', 'vendor', 'country'], 'string', 'max' => 255],
+            //[['picture'], 'string', 'max' => 1000],
+            //[['params'], 'string', 'max' => 1500],
         ];
     }
 
@@ -79,6 +87,14 @@ class Products extends \yii\db\ActiveRecord
             'vendorcode' => 'Vendorcode',
             'vendor' => 'Производитель/Продавец',
             'country' => 'Страна производитель',
+            'edinica' => 'Единица измерения',
+            'nalichie' => 'Наличие',
+            'count' => 'Количество на складе',
+            'podrazdelid' => 'Идентификатор подраздела',
+            'garantie' => 'Гарантия',
+            'sale' => 'Скидка',
+            'group_raznovid_id' => 'Идентификатор группы разновидностей',
+            'keywords' => 'Ключевые слова и фразы',
         ];
     }
 }

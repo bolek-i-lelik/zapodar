@@ -6,22 +6,16 @@ use yii\helpers\Html;
 /* @var $model app\models\Products */
 
 $this->title = 'Редактировать продукт: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Продукция', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Продукты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->productsid]];
 $this->params['breadcrumbs'][] = 'Редактировать';
 ?>
+<div class="products-update">
 
-	<div class="row">
-		<div class="col-lg-10 col-lg-offset-1">
-			<div class="products-view">
+    <h1><?= Html::encode($this->title) ?></h1>
 
-			    <h1><?= Html::encode($this->title) ?></h1>
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
 
-			    <?= $this->render('_form', [
-			        'model' => $model,
-			    ]) ?>
-
-			</div>
-		</div>
-	</div>
-
+</div>

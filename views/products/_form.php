@@ -2,22 +2,16 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\helpers\Url;
-
+use mihaildev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Products */
 /* @var $form yii\widgets\ActiveForm */
-
-$foto = stristr($model->picture, ',', true);
-$fotos = explode(",", $model->picture);
-
-
 ?>
 
-<?php $url = 'http://zapodar/web/';?>
+<div class="products-form">
 
-<?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'id')->textInput(['maxlength' => true]) ?>
 
@@ -29,11 +23,7 @@ $fotos = explode(",", $model->picture);
 
     <?= $form->field($model, 'categoryid')->textInput(['maxlength' => true]) ?>
 
-    <?php foreach ($fotos as $foto):?>
-        <?php if($foto != ''):?>
-            <?= Html::img($url.'img/products/'.$foto, ['height' => 120]) ?>
-        <?php endif;?>
-    <?php endforeach;?>
+    <?= $form->field($model, 'picture')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'pickup')->textInput(['maxlength' => true]) ?>
 
@@ -41,7 +31,12 @@ $fotos = explode(",", $model->picture);
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'description')->widget(CKEditor::className(),[
+        'editorOptions' => [
+            'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную   возможность не обязательно использовать
+            'inline' => false, //по умолчанию false
+        ],
+    ]); ?>
 
     <?= $form->field($model, 'sales_notes')->textInput(['maxlength' => true]) ?>
 
@@ -49,7 +44,7 @@ $fotos = explode(",", $model->picture);
 
     <?= $form->field($model, 'params')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'prosmotr')->textInput() ?>
+    <?= $form->field($model, 'prosmotr')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'buy')->textInput() ?>
 
@@ -63,14 +58,20 @@ $fotos = explode(",", $model->picture);
 
     <?= $form->field($model, 'country')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'edinica')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'nalichie')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'garantie')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'sale')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
+
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Добавить' : 'Редактировать', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
-                   
-
-
 </div>
-

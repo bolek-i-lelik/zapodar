@@ -32,6 +32,7 @@ a:focus {
 /* Layouts */
 .wrapper {
   min-height: 100%;
+  width: 100%;
 }
 .wrapper:before,
 .wrapper:after {
@@ -53,6 +54,7 @@ body > .header {
 .right-side,
 .left-side {
   min-height: 100%;
+  width:80%;
   display: block;
 }
 /*right side - contins main content*/

@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Products;
-use yii\data\ActiveDataProvider;
+use app\models\ProductsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -76,15 +76,15 @@ class ProductsController extends Controller
     {
 
         //Получаем id юзера
-        $id = DostupController::getUserId();
+        $idu = DostupController::getUserId();
         //Проверяем права на вход в админку
-        DostupController::userDostup($id);
+        DostupController::userDostup($idu);
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => Products::find(),
-        ]);
+        $searchModel = new ProductsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -116,9 +116,9 @@ class ProductsController extends Controller
     {
 
         //Получаем id юзера
-        $id = DostupController::getUserId();
+        $idu = DostupController::getUserId();
         //Проверяем права на вход в админку
-        DostupController::userDostup($id);
+        DostupController::userDostup($idu);
 
         $model = new Products();
 
@@ -190,6 +190,4 @@ class ProductsController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-
-   
 }

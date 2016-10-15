@@ -12,6 +12,8 @@ use app\models\UploadXML;
 use yii\web\UploadedFile;
 use app\models\Category;
 use app\models\Products;
+use app\models\UploadExcel;
+
 
 
 class AdminController extends \yii\web\Controller
@@ -212,7 +214,7 @@ class AdminController extends \yii\web\Controller
             if($products->save()){
 				echo $offer['id'].' изменено <br>';
 			}else{
-				echo 'хуй тут ночевал<br>';
+				echo 'неудача,<br>';
 			}
 			
             //echo $offer->sales_notes.'<br>';
@@ -244,6 +246,198 @@ class AdminController extends \yii\web\Controller
     	//$offers = $xml->shop->offers;
 
     	return $this->render('uploadproducts');
+    }
+
+    public function actionUpload()
+    {
+        $model = new UploadExcel();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload()) {
+                // file is uploaded successfully
+                return;
+            }
+        }
+
+        return $this->render('upload', ['model' => $model]);
+    }
+
+    public function actionUpdatedb()
+    {
+
+        //$inputFile = 'uploads/products.xlsx';
+
+        try
+        {
+
+            $inputFileType = \PHPExcel_IOFactory::identify('uploads/products.xlsx');
+            $objReader = \PHPExcel_IOFactory::createReader($inputFileType);
+            $objPHPExcel = $objReader->load('uploads/products.xlsx');
+            //$objPHPExcel = $objReader->load($inputFile);
+
+        }catch(Exception $e)
+        {
+            die('Error');
+        }
+
+        $sheet = $objPHPExcel->getSheet(0);
+        $highestRow = $sheet->getHighestRow();
+        $highestColumn = $sheet->getHighestColumn();
+        $highestColumn = 'BA';
+        //$highestRow = 2000;
+        //var_dump($highestRow);exit();
+
+        $np = 0;
+        $up = 0;
+        for( $row = 1; $row <= $highestRow; $row++)
+        {
+            $rowData = $sheet->rangeToArray('A'.$row .':'.$highestColumn.$row,NULL,TRUE,FALSE);
+
+            foreach($rowData as $value ){
+
+                
+
+                //разбираем фотографии и загружаем в папку с фотками если их нет
+                $fotos = '';
+
+                $photos = explode(", ", $value[11]);
+                foreach ($photos as $photo) {
+                    $foto = substr($photo, 25);
+                    if (file_exists('img/products/'.$foto)) {
+                        //echo "Файл в наличии";
+                    } else {
+                        //copy($photo,"img/products/".$foto);
+                        //echo 'Файл не загружен<br>';
+                    }
+                        
+                    $fotos .= $foto.',';
+                }
+                //составляем строку с параметрами
+
+                $count = count($value);
+
+                $param = '';
+
+                for($i = 28; $i <= $count-2; $i = $i+3){
+                    $param .= $value[$i].','.$value[$i+2].','.$value[$i+1].'|';
+                }
+
+                //Генерируем alias
+
+                $alias = $this->str2url($value[1]);
+                //echo $alias; exit();
+
+                //проверяем есть ли такой продукт в базе
+                $product = Products::find()->where(['productsid'=>$value[19]])->one();
+
+                    //var_dump($product);
+
+                    if($product['productsid']){
+                        
+                        $product->vendorcode = $value[0];
+                        $product->keywords = $value[2];
+                        $product->description = $value[3];
+                        $product->name = $value[1];
+                        $product->price = $value[5];
+                        $product->edinica = $value[7];
+                        $product->nalichie = $value[12];
+                        $product->count = $value[13];
+                        $product->group_id = $value[14];
+                        $product->podrazdelid = $value[21];
+                        $product->vendor = $value[23];
+                        $product->picture = $fotos;
+                        $product->garantie = $value[24];
+                        $product->country = $value[25];
+                        $product->sale = $value[26];
+                        $product->params = $param;
+                        $product->save();
+                        //echo 'продукт '.$value[19].' обновлён';
+                        //echo $a;
+                        $up++;
+                    }else{
+                        $product = new Products();
+                        $product->alias = $alias;
+                        $product->price = $value[5];
+                        $product->categoryid = $value[14];
+                        $product->currencyid = $value[6];
+                        $product->picture = $fotos;
+                        $product->name = $value[1];
+                        $product->description = $value[3];
+                        $product->group_id = $value[14];
+                        $product->params = $param;
+                        $product->productsid = $value[19];
+                        $product->vendorcode = $value[0];
+                        $product->vendor = $value[23];
+                        $product->country = $value[25];
+                        $product->edinica = $value[7];
+                        $product->nalichie = $value[12];
+                        $product->count = $value[13];
+                        $product->podrazdelid = $value[21];
+                        $product->garantie = $value[24];
+                        $product->sale = $value[26];
+                        $product->keywords = $value[2];
+                        $product->available = TRUE;
+                        $product->save();
+                        //echo 'продукт '.$value[19].' создан';
+                        //echo $a;
+                        $np++;
+                    }
+
+            }
+            
+            //var_dump($rowData);exit();
+            //echo '<hr>';
+        }
+
+        
+       
+        return $this->render('updatedb',[
+            'up' => $up,
+            'np' => $np,
+            'highestRow' => $highestRow,
+        ]);
+    }
+
+    protected function rus2translit($string) {
+        $converter = array(
+            'а' => 'a',   'б' => 'b',   'в' => 'v',
+            'г' => 'g',   'д' => 'd',   'е' => 'e',
+            'ё' => 'e',   'ж' => 'zh',  'з' => 'z',
+            'и' => 'i',   'й' => 'y',   'к' => 'k',
+            'л' => 'l',   'м' => 'm',   'н' => 'n',
+            'о' => 'o',   'п' => 'p',   'р' => 'r',
+            'с' => 's',   'т' => 't',   'у' => 'u',
+            'ф' => 'f',   'х' => 'h',   'ц' => 'c',
+            'ч' => 'ch',  'ш' => 'sh',  'щ' => 'sch',
+            'ь' => '\'',  'ы' => 'y',   'ъ' => '\'',
+            'э' => 'e',   'ю' => 'yu',  'я' => 'ya',
+        
+            'А' => 'A',   'Б' => 'B',   'В' => 'V',
+            'Г' => 'G',   'Д' => 'D',   'Е' => 'E',
+            'Ё' => 'E',   'Ж' => 'Zh',  'З' => 'Z',
+            'И' => 'I',   'Й' => 'Y',   'К' => 'K',
+            'Л' => 'L',   'М' => 'M',   'Н' => 'N',
+            'О' => 'O',   'П' => 'P',   'Р' => 'R',
+            'С' => 'S',   'Т' => 'T',   'У' => 'U',
+            'Ф' => 'F',   'Х' => 'H',   'Ц' => 'C',
+            'Ч' => 'Ch',  'Ш' => 'Sh',  'Щ' => 'Sch',
+            'Ь' => '\'',  'Ы' => 'Y',   'Ъ' => '\'',
+            'Э' => 'E',   'Ю' => 'Yu',  'Я' => 'Ya',
+        );
+        return strtr($string, $converter);
+    }
+
+    protected function str2url($str) {
+        // переводим в транслит
+        $str = $this->rus2translit($str);
+        // в нижний регистр
+        $str = strtolower($str);
+        // заменям все ненужное нам на "-"
+        $str = preg_replace('~[^-a-z0-9_]+~u', '-', $str);
+        // удаляем начальные и конечные '-'
+        $str = trim($str, "-");
+        return $str;
     }
 
 }
