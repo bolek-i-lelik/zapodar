@@ -266,16 +266,11 @@ class AdminController extends \yii\web\Controller
     public function actionUpdatedb()
     {
 
-        //$inputFile = 'uploads/products.xlsx';
-
         try
         {
-
             $inputFileType = \PHPExcel_IOFactory::identify('uploads/products.xlsx');
             $objReader = \PHPExcel_IOFactory::createReader($inputFileType);
             $objPHPExcel = $objReader->load('uploads/products.xlsx');
-            //$objPHPExcel = $objReader->load($inputFile);
-
         }catch(Exception $e)
         {
             die('Error');
@@ -285,8 +280,6 @@ class AdminController extends \yii\web\Controller
         $highestRow = $sheet->getHighestRow();
         $highestColumn = $sheet->getHighestColumn();
         $highestColumn = 'BA';
-        //$highestRow = 2000;
-        //var_dump($highestRow);exit();
 
         $np = 0;
         $up = 0;
