@@ -57,7 +57,7 @@ AppAsset::register($this);
                     </a> 
                 </li>
                 <li class="hb-but hb-but-search hb-but-main"> 
-                    <input id="hb-but-search" class="j_search_cb j_hcb j_main_page j_off" checked="" type="checkbox"> 
+                    <input id="hb-but-search" class="j_search_cb j_hcb j_main_page j_off" type="checkbox"> 
                         <label class="hb-but-action j_off" for="hb-but-search" id="j_search_toggler">
                             <span class="hb-but-wrap">
                                 <img class="hb-but-icon" src="<?= Url::toRoute('/img/search.png', true)?>" alt="Поиск"> 
@@ -144,13 +144,43 @@ AppAsset::register($this);
                     </div>
                 </div>
             </li>
-            <li class="hb-but hb-but-login hb-but-main">
+ <!--           <li class="hb-but hb-but-login hb-but-main">
                 <input id="hb-but-login" class="j_hcb j_off" type="checkbox">
                 <label for="hb-but-login">
                     <span class="hb-but-wrap">
                         <a href="<?= Url::toRoute('/site/login', true)?>" class="bton btn-sm">Войти</a>
                     </span>
                 </label>
+            </li> -->
+            <li class="hb-but hb-but-login hb-but-main">
+                <input id="hb-but-login" class="j_hcb j_off" type="checkbox">
+                <label for="hb-but-login">
+                    <span class="hb-but-wrap">
+                        <img class="hb-but-icon" src="<?= Url::toRoute('/img/enter.png', true)?>" alt="Вход/Регистрация">
+                        <span class="hb-but-text" style="color:#AACF9D;">Вход/Регистрация</span>
+                        <!--<a href="<?= Url::toRoute('/site/login', true)?>" class="bton btn-sm">Âîéòè</a>-->
+                    </span>
+                </label>
+                <div id="Div1" class="hb-mod hb-mod-dark hb-mod-messages hb-mod-left">
+                    <div class="hb-mod-wrap">
+                        <form id="Form2" action="/site/reg" class="-metrika-noform j_off" method="post">
+                            <div class="h4_header">Вход</div>
+                            <input id="Text1" class="hidden" name="srcpage" value="" type="text">
+                            <ul class="form_hor">
+                                <li>
+                                    <input class="inp" name="adgj" required="" placeholder="логин" value="" type="text">
+                                    <input class="hidden" name="message" value="" type="text">
+                                </li>
+                                <li>
+                                    <input class="inp" name="adgj" required="" placeholder="пароль" value="" type="text">
+                                    <input class="hidden" name="message" value="" type="text">
+                                </li>
+                            </ul>
+                            <button class="bton" type="submit">Вход</button></br>
+                            <a href="/site/reg">
+                        </form>
+                    </div>
+                </div>
             </li> 
         </ul>
     </div>

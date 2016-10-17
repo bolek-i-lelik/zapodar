@@ -16,7 +16,7 @@ $fotos = explode(",", $product->picture);
 <div class="product">
     <div class="row">
     	<div class="col-lg-7">
-    		<img src="/img/products/<?= $fotos[0] ?>" alt="" class="img-thumbnail"><br/><br/>
+    		<img src="/img/products/<?= $fotos[0] ?>" height="50" alt="" class="img-thumbnail"><br/><br/>
     		<center>
     		<?php if(isset($fotos[1])):?>
     			<?php foreach ($fotos as $key => $value): ?>

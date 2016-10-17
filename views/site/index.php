@@ -30,3 +30,5 @@ $this->title = 'Подарки';
 
     </div>
 </div>
+
+<?= var_dump($sliders) ?>

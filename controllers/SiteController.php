@@ -15,6 +15,7 @@ use app\models\Category;
 use app\models\Products;
 use yii\data\Pagination;
 use app\controllers\NewController;
+use app\models\Slider;
 
 class SiteController extends Controller
 {
@@ -43,7 +44,7 @@ class SiteController extends Controller
             ],
         ];
     }
-
+ 
     /**
      * @inheritdoc
      */
@@ -70,8 +71,55 @@ class SiteController extends Controller
 
         $news = NewController::populationNews();
 
+        $count_all_products = Products::find()->count();
+
+        //echo $count_all_products; exit();
+
+        $rand_int = array();
+
+        for($i=1; $i<=5; $i++){
+            $num = rand(1, $count_all_products);
+            $rand_int[] = $num;
+        }
+
+        //var_dump($rand_int); echo '<br>';
+
+        $products = array();
+
+        for($i=0; $i<=4; $i++){
+            //echo $rand_int[$i].'<br>';
+            //$product = Products::find()->limit($rand_int[$i])->one();
+            //$product = Products::findBySql('SELECT * FROM `products` LIMIT '.$rand_int[$i].', 1');
+
+            $db = new yii\db\Connection([
+                'dsn' => 'mysql:host=localhost;dbname=zapodar',
+                'username' => 'root',
+                'password' => '050184',
+                'charset' => 'utf8',
+            ]);
+
+            $product = Yii::$app->db->createCommand('SELECT * FROM `products` LIMIT '.$rand_int[$i].', 1')
+           ->queryOne();
+
+            //var_dump($product);
+            //$fotos = $product->picture;
+            $fotos = explode(",", $product['picture']);
+            $product['picture'] = $fotos[0];
+
+            $group = Category::find()->where(['id'=>$product['group_id']])->one();
+            $product['group_id'] = $group->name;
+
+            $products[$i] = $product;
+        }
+
+        //Получение информации для слайдера
+
+        $sliders = Slider::find()->all();
+
         return $this->render('index', [
             'news' => $news,
+            'products' => $products,
+            'sliders' => $sliders,
         ]);
     }
 
