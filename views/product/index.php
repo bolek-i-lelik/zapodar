@@ -32,10 +32,22 @@ $fotos = explode(",", $product->picture);
                 
     		<h1><?= Html::encode($this->title) ?></h1>
     		<p><?= $product->price?> рублей</p>
+            <?php if($guest == FALSE):?>
+                <?php if($onbasket == FALSE):?>
+                    <div id="basket">
+                        <button class="btn btn-success" onclick="putInCorzina(<?= $product->productsid ?>, <?= Yii::$app->user->id ?>)">В корзину</button>
+                    </div>
+                <?php else:?>
+                    <p>В корзине</p>
+                <?php endif;?>
+            <?php else:?>
+                <p>Войдите или зарегистрируйтесь, чтобы положить в корзину</p>
+            <?php endif;?>
     	</div>
     </div>
     <div class="row">
     	<?= $product->description ?>
     </div>
+    <div id="korzina"></div>
 </div>
 

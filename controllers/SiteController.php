@@ -16,6 +16,7 @@ use app\models\Products;
 use yii\data\Pagination;
 use app\controllers\NewController;
 use app\models\Slider;
+use app\models\Articles;
 
 class SiteController extends Controller
 {
@@ -116,11 +117,15 @@ class SiteController extends Controller
 
         $sliders = Slider::find()->all();
 
+        //Получение статьи
+        $article = Articles::find()->where(['ishome'=>1])->one();
+
         return $this->render('index', [
             'news' => $news,
             'products' => $products,
             'sliders' => $sliders,
-        ]);
+            'article' => $article,
+        ]); 
     }
 
     /**
@@ -239,6 +244,12 @@ class SiteController extends Controller
 
     public function actionCategory(){
 
+        if (!Yii::$app->user->isGuest) {
+            $guest = FALSE;
+        }else{
+            $guest = TRUE;
+        }
+
         $request = Yii::$app->request;
 
         $id = $request->get('id');
@@ -268,6 +279,7 @@ class SiteController extends Controller
             'models' => $models,
             'results' => $results,
             'tip' => $tip,
+            'guest' => $guest,
         ]);
 
     }

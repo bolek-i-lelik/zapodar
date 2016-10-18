@@ -327,7 +327,7 @@ class AdminController extends \yii\web\Controller
                     //var_dump($product);
 
                     if($product['productsid']){
-                        
+                        $product->alias = 'p'.$value[19].'-'.$alias;
                         $product->vendorcode = $value[0];
                         $product->keywords = $value[2];
                         $product->description = $value[3];
@@ -350,7 +350,7 @@ class AdminController extends \yii\web\Controller
                         $up++;
                     }else{
                         $product = new Products();
-                        $product->alias = $alias;
+                        $product->alias = 'p'.$value[19].'-'.$alias;
                         $product->price = $value[5];
                         $product->categoryid = $value[14];
                         $product->currencyid = $value[6];

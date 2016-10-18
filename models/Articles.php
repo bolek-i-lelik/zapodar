@@ -31,7 +31,7 @@ class Articles extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'title', 'description', 'keywords', 'alias'], 'required'],
+            [['name', 'title', 'description', 'keywords', 'ishome', 'text'], 'required'],
             [['created_at'], 'safe'],
             [['name', 'title', 'description', 'keywords', 'alias'], 'string', 'max' => 255],
         ];
@@ -50,6 +50,7 @@ class Articles extends \yii\db\ActiveRecord
             'keywords' => 'Keywords',
             'alias' => 'Alias',
             'created_at' => 'Добавлена',
+            'ishome' => 'Главная',
         ];
     }
 }

@@ -5,6 +5,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
+use Yii;
 
 $this->title = 'имя категории';
 $this->params['breadcrumbs'][] = $this->title;
@@ -40,7 +41,7 @@ Yii::$app->language = 'ru';
                 <p><?= $model->name ?></p>
                 <p><?= $model->price ?> руб.</p>
                 <a href="<?= Url::toRoute('/product/'.$model->alias, true)?>"><button class="btn btn-success">подробнее</button></a></center>
-
+                
                 </div>
             </div>
         <?php endforeach;?>

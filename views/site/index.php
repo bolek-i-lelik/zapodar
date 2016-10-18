@@ -32,3 +32,7 @@ $this->title = 'Подарки';
 </div>
 
 <?= var_dump($sliders) ?>
+<hr>
+<?= var_dump($products) ?>
+<hr>
+<?= var_dump($article) ?>

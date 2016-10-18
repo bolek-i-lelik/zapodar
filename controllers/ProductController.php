@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Products;
+use app\models\Basket;
+
 
 class ProductController extends \yii\web\Controller
 {
@@ -20,8 +22,32 @@ class ProductController extends \yii\web\Controller
 
         $product->save();
 
+        if(Yii::$app->user->isGuest){
+            $guest = TRUE;
+            
+            $onbasket = FALSE;           
+
+        }else{
+            $guest = FALSE;
+
+            $user_id = Yii::$app->user->id;
+
+            $basket = Basket::find()->where(['user_id'=>$user_id, 'product_id'=>$product->productsid])->one();
+
+            if($basket){
+
+                $onbasket = TRUE;
+
+            }else{
+                $onbasket = FALSE;
+            }
+            
+        }
+
         return $this->render('index',[
         	'product' => $product,
+            'guest' => $guest,
+            'onbasket' => $onbasket,
         ]);
     }
 
