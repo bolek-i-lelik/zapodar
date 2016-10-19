@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Basket;
+use app\models\Products;
 
 class BasketController extends \yii\web\Controller
 {
@@ -17,6 +18,7 @@ class BasketController extends \yii\web\Controller
 			$postquery = Yii::$app->request->get();
 			$basket->product_id = $postquery['product_id'];
 			$basket->user_id = $postquery['user_id'];
+			$basket->count = 1;
 			$basket->save();
 
 			//считаем кол-во товара в корзине на этого юзера
@@ -43,6 +45,30 @@ class BasketController extends \yii\web\Controller
 		}
 
 		
+
+	}
+
+	public function actionBasket()
+	{
+
+		$user_id = Yii::$app->user->id;
+
+		$in_basket = Basket::find()->where(['user_id'=>$user_id, 'buy'=>NULL])->all();
+
+		$products = array();
+
+		foreach($in_basket as $product_in_basket){
+
+			$product = Products::find()->where(['productsid' => $product_in_basket->product_id])->one();
+
+			$products[$product_in_basket->product_id] = $product;
+
+		}
+
+		return $this->render('basket', [
+			'in_basket' => $in_basket,
+			'products' => $products,
+		]);
 
 	}
 }

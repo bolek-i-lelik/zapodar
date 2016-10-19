@@ -36,3 +36,7 @@ $this->title = 'Подарки';
 <?= var_dump($products) ?>
 <hr>
 <?= var_dump($article) ?>
+<hr>
+<?php foreach($products as $prod):?>
+    <?= $prod['name'] ?>
+<?php endforeach;?>
