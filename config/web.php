@@ -59,6 +59,7 @@ $config = [
             'news' => 'site/news',
             'partner' => 'site/partner',
             'reg' => 'site/reg',
+            
             ],
         ],
         

@@ -10,6 +10,8 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use yii\helpers\Url;
 
+use yii\bootstrap\ActiveForm;
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -57,11 +59,11 @@ AppAsset::register($this);
                     </a> 
                 </li>
                 <li class="hb-but hb-but-search hb-but-main"> 
-                    <input id="hb-but-search" class="j_search_cb j_hcb j_main_page j_off" type="checkbox"> 
-                        <label class="hb-but-action j_off" for="hb-but-search" id="j_search_toggler">
+                    <input id="hb-but-search" class="j_search_cb j_hcb j_main_page j_off" type="checkbox" > 
+                        <label class="hb-but-action j_off" for="hb-but-search" id="j_search_toggler" onclick="searchBTN();">
                             <span class="hb-but-wrap">
                                 <img class="hb-but-icon" src="<?= Url::toRoute('/img/search.png', true)?>" alt="Поиск"> 
-                                <span id="j_search_button" class="hb-but-text" style="color:#AACF9D" font-size: 14px;>Поиск</span>
+                                <span id="j_search_button" class="hb-but-text" style="color:#AACF9D" font-size: 14px;><b>Поиск</b></span>
                             </span>
                         </label>
                         <div class="hb-mod hb-mod-full hb-mod-search">
@@ -85,65 +87,66 @@ AppAsset::register($this);
                                                 <input class="j_filterInput1 inp j_off" maxlength="6" value="" name="1000value1" placeholder="цена от" type="text">
                                             </div>
                                             <div class="col-4-12 j_do"> 
-                                                <input class="j_filterInput2 inp j_off" maxlength="6" value="" name="1000value2" placeholder="цена до" type="text"></div>
+                                                <input class="j_filterInput2 inp j_off" maxlength="6" value="" name="1000value2" placeholder="цена до" type="text">
                                             </div>
                                         </div>
+                                </div>
                             </form>
                             <div class="hb-mod-search-result hidden" id="j_msac_host">
                                 <div class="hb-mod-wrap j_off" id="j_msac_list"></div>
-                        </div>
-                </div>
-            </li>
-            <li class="hb-but hb-but-main hb-but-messages">  
-                <input id="hb-but-messages" class="j_hcb j_off" type="checkbox"> 
-                <label class="hb-but-action" for="hb-but-messages">
-                    <span class="hb-but-wrap">
-                        <img class="hb-but-icon" src="<?= Url::toRoute('/img/letter.png', true)?>" alt="Контакты">
-                        <span class="hb-but-text" style="color:#AACF9D;">Написать</span>
-                    </span>
-                </label> 
-                <div id="j_feedbackBlock" class="hb-mod hb-mod-dark hb-mod-messages hb-mod-left">
-                    <div class="hb-mod-wrap">
-                        <form id="j_feedback_header" action="/contacts/feedback" class="-metrika-noform j_off" method="post">
-                            <div class="h4_header">Отправка сообщения</div>
-                            <input id="j_page_location" class="hidden" name="srcpage" value="" type="text">
-                            <ul class="form_hor">
-                                <li>
-                                    <input class="inp" name="adgj" required="" placeholder="ваше имя" value="" type="text">
-                                    <input class="hidden" name="message" value="" type="text">
-                                </li>
-                                <li>
-                                    <input class="inp" required="" name="sfhk" placeholder="электронная почта" value="" type="text">
-                                    <input style="display:none;" name="message1" value="" type="text">
-                                </li>
-                                <li>
-                                    <input required="" class="inp" name="xvnm" placeholder="город" value="" type="text">
-                                    <input style="display:none;" tabindex="-1" name="message2" value="" type="text">
-                                </li>
-                                <li>
-                                    <textarea required="" class="txtr" name="wqretyiu" rows="10" maxlength="9000" placeholder="Текст сообщения"></textarea>
-                                </li>
-                            </ul>
-                            <button class="bton" type="submit">Отправить сообщение</button>
-                        </form>
-                    </div>
-                </div>
-            </li> 
-            <li id="j_carthost" class="hb-but hb-but-cart hb-but-main">
-                <a class="hb-but-action hb-but-hover" id="cart" href="/howtobuy">
-                    <span class="hb-but-wrap">
-                        <img class="hb-but-icon" src="<?= Url::toRoute('/img/bug.png', true)?>" alt="Корзина">
-                        <span class="hb-but-text" style="color:#AACF9D;">Корзина</span>
-                    </span>
-                </a>
-                <div class="hb-mod hb-mod-dark hb-mod-info">
-                    <div class="hb-mod-wrap">
-                        <div class="h3_header">Условия оформления заказа</div>
-                        <p>
-                        </p>
-                    </div>
-                </div>
-            </li>
+                        	</div>
+                		</div>
+            	</li>
+            	<li class="hb-but hb-but-main hb-but-messages">  
+                	<input id="hb-but-messages" class="j_hcb j_off" type="checkbox"> 
+                	<label class="hb-but-action" for="hb-but-messages">
+                    	<span class="hb-but-wrap">
+                        	<img class="hb-but-icon" src="<?= Url::toRoute('/img/letter.png', true)?>" alt="Контакты">
+                        	<span class="hb-but-text" style="color:#AACF9D;"><b>Написать</b></span>
+                    	</span>
+                	</label> 
+                	<div id="j_feedbackBlock" class="hb-mod hb-mod-dark hb-mod-messages hb-mod-left">
+                    	<div class="hb-mod-wrap">
+                        	<form id="j_feedback_header" action="/contacts/feedback" class="-metrika-noform j_off" method="post">
+                            	<div class="h4_header">Отправка сообщения</div>
+                            	<input id="j_page_location" class="hidden" name="srcpage" value="" type="text">
+                            	<ul class="form_hor">
+                                	<li>
+                                    	<input class="inp" name="adgj" required="" placeholder="ваше имя" value="" type="text">
+                                    	<input class="hidden" name="message" value="" type="text">
+                                	</li>
+                                	<li>
+                                    	<input class="inp" required="" name="sfhk" placeholder="электронная почта" value="" type="text">
+                                    	<input style="display:none;" name="message1" value="" type="text">
+                                	</li>
+                                	<li>
+                                    	<input required="" class="inp" name="xvnm" placeholder="город" value="" type="text">
+                                    	<input style="display:none;" tabindex="-1" name="message2" value="" type="text">
+                                	</li>
+                                	<li>
+                                    	<textarea required="" class="txtr" name="wqretyiu" rows="10" maxlength="9000" placeholder="Текст сообщения"></textarea>
+                                	</li>
+                            	</ul>
+                            	<button class="bton" type="submit">Отправить сообщение</button>
+                        	</form>
+                    	</div>
+                	</div>
+            	</li> 
+            	<li id="j_carthost" class="hb-but hb-but-cart hb-but-main">
+            		<a class="hb-but-action hb-but-hover" id="cart" href="/howtobuy">
+            			<span id="kzn" class="badge pull-right" style="background:#AACF9D;"><?= Yii::$app->request->cookies['countbasket'] ?></span>
+                		<span class="hb-but-wrap">
+                    		<img class="hb-but-icon" src="http://buhcomfort.ru/img/bug.png" alt="Корзина">
+                    		<span class="hb-but-text" style="color:#AACF9D;"><b>Корзина</b></span>
+                		</span>
+            		</a>
+                	<div class="hb-mod hb-mod-dark hb-mod-info">
+                    	<div class="hb-mod-wrap">
+                        	<div class="h3_header">Условия оформления заказа</div>
+                        	<p></p>
+                    	</div>
+                	</div>
+            	</li>
  <!--           <li class="hb-but hb-but-login hb-but-main">
                 <input id="hb-but-login" class="j_hcb j_off" type="checkbox">
                 <label for="hb-but-login">
@@ -152,59 +155,143 @@ AppAsset::register($this);
                     </span>
                 </label>
             </li> -->
-            <li class="hb-but hb-but-login hb-but-main">
-                <input id="hb-but-login" class="j_hcb j_off" type="checkbox">
-                <label for="hb-but-login">
-                    <span class="hb-but-wrap">
-                        <img class="hb-but-icon" src="<?= Url::toRoute('/img/enter.png', true)?>" alt="Вход/Регистрация">
-                        <span class="hb-but-text" style="color:#AACF9D;">Вход/Регистрация</span>
-                        <!--<a href="<?= Url::toRoute('/site/login', true)?>" class="bton btn-sm">Âîéòè</a>-->
-                    </span>
-                </label>
-                <div id="Div1" class="hb-mod hb-mod-dark hb-mod-messages hb-mod-left">
-                    <div class="hb-mod-wrap">
-                        <form id="Form2" action="/site/reg" class="-metrika-noform j_off" method="post">
-                            <div class="h4_header">Вход</div>
-                            <input id="Text1" class="hidden" name="srcpage" value="" type="text">
-                            <ul class="form_hor">
-                                <li>
-                                    <input class="inp" name="adgj" required="" placeholder="логин" value="" type="text">
-                                    <input class="hidden" name="message" value="" type="text">
-                                </li>
-                                <li>
-                                    <input class="inp" name="adgj" required="" placeholder="пароль" value="" type="text">
-                                    <input class="hidden" name="message" value="" type="text">
-                                </li>
-                            </ul>
-                            <button class="bton" type="submit">Вход</button></br>
-                            <a href="/site/reg">
-                        </form>
-                    </div>
-                </div>
-            </li> 
-        </ul>
-    </div>
-</div>
+                <? echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => [
+            Yii::$app->user->isGuest ? (
+                ['label' => 'Login', 'url' => ['/site/login']]
+            ) : (
+                '<li>'
+                . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link']
+                )
+                . Html::endForm()
+                . '</li>'
+            )
+        ],
+    ]);
+            ?>
+            	<li class="hb-but hb-but-login hb-but-main">
+                	<input id="hb-but-login" class="j_hcb j_off" type="checkbox">
+                	<label for="hb-but-login">
+                    	<span class="hb-but-wrap">
+                        <?php if(Yii::$app->user->isGuest):?>
+                        <a href="<?= Url::toRoute('/login', true)?>">
+                        	<img class="hb-but-icon" src="<?= Url::toRoute('/img/enter.png', true)?>" alt="Вход/Регистрация">
+                        	<span class="hb-but-text" style="color:#AACF9D;"><b>Вход/Регистрация</b></span>
+                        </a>
+                        <?php else:?>
+                            <a href="<?= Url::toRoute('/site/logout', true)?>">
+                            <img class="hb-but-icon" src="<?= Url::toRoute('/img/enter.png', true)?>" alt="Вход/Регистрация">
+                            <span class="hb-but-text" style="color:#AACF9D;"><b>Выйти</b></span>
+                        </a>
+                        <?php endif;?>
+                    	</span>
+                	</label>
+                	
+                	</div>
+            	</li> 
+        	</ul>
+    	</div>
+	</div>
 </header>
 <div class="wrap">
-    <div class="container">
+    <!--<div class="container minStyle">-->
     <br>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
 
         <?= $content ?>
-    </div>
+    <!--</div>-->
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+<footer class="footer footerStyle">
+ <div class="row " style="background-color:#064727">
+ 	<center>
+ 		<div class="col-lg-9">
+      		<div class="col-lg-6">
+      			<center>
 
-        <!--<p class="pull-right"><?= Yii::powered() ?></p>-->
-    </div>
+                	<a href="/">
+                    	<span class="hb-but-wrap" style="vertical-align: middle; display: inline-block;">
+                        	<p style="color:#AACF9D; vertical-align: middle; display: inline-block; font: 28px 'Open Sans',Arial,sans-serif">"DECO Media"</p>
+                    	</span>
+                	</a>
+            	</center>
+      		</div>
+      		<div class="col-lg-1">
+                <a href="/site/catalog">
+                    <span class="hb-but-wrap">
+                        <span class="hb-but-text" style="color:#AACF9D;"><b>Каталог</b></span>
+                    </span>
+                </a> 
+      		</div>
+      		<div class="col-lg-1"> 
+                <a href="/site/about">
+                    <span class="hb-but-wrap">
+                        <span class="hb-but-text" style="color:#AACF9D;"><b>О нас</b></span>
+                    </span>
+                </a> 
+      		</div>
+      		<div class="col-lg-1"> 
+                <a href="/new/">
+                    <span class="hb-but-wrap">
+                        <span class="hb-but-text" style="color:#AACF9D;"><b>Новости</b></span>
+                    </span>
+                </a> 
+      		</div>
+      		<div class="col-lg-1"> 
+                <a href="/site/action">
+                    <span class="hb-but-wrap">
+                        <span class="hb-but-text" style="color:#AACF9D;"><b>Акции</b></span>
+                    </span>
+                </a> 
+      		</div>
+      		<div class="col-lg-1">
+                <a href="/site/partner">
+                    <span class="hb-but-wrap">
+                        <span class="hb-but-text" style="color:#AACF9D;"><b>Партнерам</b></span>
+                    </span>
+                </a> 
+      		</div>   
+      		<div class="col-lg-1">  
+                <a href="/site/contact">
+                    <span class="hb-but-wrap">
+                        <span class="hb-but-text" style="color:#AACF9D;"><b>Контакты</b></span>
+                    </span>
+                </a> 
+      		</div>     
+      	</div>
+    </center>
+    <div class="col-lg-12">
+		<div class="corp_menu logrus-ajax-load" data-type="header-anonymous-menu">
+			<span class="phone hint hint_right" data-hint="Наш контактный телефон" style="color: #153928;">
+				<i aria-hidden="true"></i>
+				(495) 737-90-22
+			</span>
+			<span class="phone hint hint_right" style ="width: 500px;">
+				<p>107023, Москва, ул. Большая Семеновская, 49. </p>
+			</span>
+			<span>
+				Copyright &copy; DEKO Media, 2002 - 2016.
+			</span>
+		</div> <br/>
+	</div>
+  </div>
 </footer>
-
+<script type="text/javascript">
+	function searchBTN()
+	{
+		var chec = document.getElementById("hb-but-search");
+		var slo = document.getElementById("j_header");
+		if(chec.checked == false){slo.style = "margin-bottom:140px;"}
+			else{slo.style = "margin-bottom:0px;"}
+		
+	}
+</script>
 <?php $this->endBody() ?>
 
 </body>
