@@ -61,7 +61,14 @@ $this->params['breadcrumbs'][] = $this->title;
     					<?= $products[$value->product_id]['price'] ?>
     				</td>
     				<td>
-    					<?= $value->count ?>
+                        <div id="countinbasket"><?= $value->count ?></div>
+                        <button class="btn btn-default btn-xs" onclick="minusP(<?=($value->count)-1?>, <?= $value->id ?>)">-</button>
+                                        
+                            <!--<input type="text" placeholder="1" size="3"  value="1" id="<?=($value->count)?>" name="<?=$value->product_id['price']?>">-->
+                            
+                        <button class="btn btn-default btn-xs" onclick="plusP(<?=($value->count)+1?>,<?= $value->id ?>)">+</button>
+    					<br/><br/>
+                        <button class="btn btn-danger" onclick="delFromBasket(<?= $value->id ?>,<?= Yii::$app->user->id ?>)">Удалить</button>
     				</td>
     				<td>
     					<?= $products[$value->product_id]['price'] * $value->count ?>
@@ -81,7 +88,6 @@ $this->params['breadcrumbs'][] = $this->title;
 	</div>
 	<center>
 		<button class="btn btn-success">Отправить заказ</button>
-		<button class="btn btn-danger">Очистить корзину</button>
-		<button class="btn btn-primary">Сохранить</button>
+		<button class="btn btn-danger" onclick="deleteall(<?= Yii::$app->user->id ?>)">Очистить корзину</button>
     </center>
 </div>

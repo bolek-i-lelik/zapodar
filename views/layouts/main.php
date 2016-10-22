@@ -133,10 +133,10 @@ AppAsset::register($this);
                 	</div>
             	</li> 
             	<li id="j_carthost" class="hb-but hb-but-cart hb-but-main">
-            		<a class="hb-but-action hb-but-hover" id="cart" href="/howtobuy">
+            		<a class="hb-but-action hb-but-hover" id="cart" href="/basket">
             			<span id="kzn" class="badge pull-right" style="background:#AACF9D;"><?= Yii::$app->request->cookies['countbasket'] ?></span>
                 		<span class="hb-but-wrap">
-                    		<img class="hb-but-icon" src="http://buhcomfort.ru/img/bug.png" alt="Корзина">
+                    		<img class="hb-but-icon" src="<?= Url::toRoute('/img/bug.png', true)?>" alt="Корзина">
                     		<span class="hb-but-text" style="color:#AACF9D;"><b>Корзина</b></span>
                 		</span>
             		</a>
@@ -147,51 +147,24 @@ AppAsset::register($this);
                     	</div>
                 	</div>
             	</li>
- <!--           <li class="hb-but hb-but-login hb-but-main">
-                <input id="hb-but-login" class="j_hcb j_off" type="checkbox">
-                <label for="hb-but-login">
-                    <span class="hb-but-wrap">
-                        <a href="<?= Url::toRoute('/site/login', true)?>" class="bton btn-sm">Войти</a>
-                    </span>
-                </label>
-            </li> -->
-                <? echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-            ?>
+ 
+                
             	<li class="hb-but hb-but-login hb-but-main">
                 	<input id="hb-but-login" class="j_hcb j_off" type="checkbox">
                 	<label for="hb-but-login">
                     	<span class="hb-but-wrap">
                         <?php if(Yii::$app->user->isGuest):?>
                         <a href="<?= Url::toRoute('/login', true)?>">
-                        	<img class="hb-but-icon" src="<?= Url::toRoute('/img/enter.png', true)?>" alt="Вход/Регистрация">
-                        	<span class="hb-but-text" style="color:#AACF9D;"><b>Вход/Регистрация</b></span>
+                        	<img class="hb-but-icon" src="<?= Url::toRoute('/img/enter.png', true)?>" ><span class="hb-but-text" style="color:#AACF9D;"><b>Вход/Регистрация</b></span>
                         </a>
                         <?php else:?>
-                            <a href="<?= Url::toRoute('/site/logout', true)?>">
-                            <img class="hb-but-icon" src="<?= Url::toRoute('/img/enter.png', true)?>" alt="Вход/Регистрация">
-                            <span class="hb-but-text" style="color:#AACF9D;"><b>Выйти</b></span>
-                        </a>
+                            <form class="navbar-form" action="/site/logout" method="post">
+                            <input type="hidden" name="_csrf" value="<?= Html::csrfMetaTags() ?>"><button type="submit" class="btn btn-link">Выйти</button></form>
                         <?php endif;?>
                     	</span>
                 	</label>
                 	
-                	</div>
+                	
             	</li> 
         	</ul>
     	</div>
@@ -203,11 +176,12 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-
+        <div class="container">
         <?= $content ?>
+        </div>
     <!--</div>-->
 </div>
-
+<br/>
 <footer class="footer footerStyle">
  <div class="row " style="background-color:#064727">
  	<center>

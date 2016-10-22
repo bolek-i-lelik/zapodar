@@ -26,12 +26,14 @@ class LoginForm extends Model
     public function rules()
     {
         return [
+            [['username', 'password'], 'trim'],
             // username and password are both required
             [['username', 'password'], 'required'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
+            ['username', 'email'],
         ];
     }
 
@@ -82,7 +84,7 @@ class LoginForm extends Model
     public function attributeLabels()
     {
         return [
-            'username' => 'Логин',
+            'username' => 'Email',
             'password' => 'Пароль',
             'rememberMe' => 'Запомнить меня'
         ];

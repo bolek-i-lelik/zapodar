@@ -17,7 +17,7 @@ class DostupController
     public function userDostup($id){
     	$dostup = User::find('category_id')->where(['id'=>$id])->one();
     	if($dostup->category_id != 1){
-    		return $this->redirect('site/index');
+    		return $this->redirect('/index');
     	}
     }
 }

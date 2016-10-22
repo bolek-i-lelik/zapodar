@@ -10,6 +10,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\UploadImage;
 use yii\web\UploadedFile;
+use yii\filters\AccessControl;
+use app\controllers\DostupController;
 
 /**
  * SliderController implements the CRUD actions for Slider model.
@@ -25,6 +27,47 @@ class SliderController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['logout', 'index', 'view', 'image', 'create', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['image'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['create'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['update'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -40,6 +83,12 @@ class SliderController extends Controller
      */
     public function actionIndex()
     {
+
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $searchModel = new SliderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -57,6 +106,11 @@ class SliderController extends Controller
     public function actionView($id)
     {
 
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $slider = Slider::find()->where(['id'=>$id])->one();
 
         if($slider->image == NULL){
@@ -70,6 +124,12 @@ class SliderController extends Controller
 
     public function actionImage()
     {
+
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $model = new UploadImage();
 
         $request = Yii::$app->request;
@@ -100,6 +160,12 @@ class SliderController extends Controller
      */
     public function actionCreate()
     {
+
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $model = new Slider();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -119,6 +185,10 @@ class SliderController extends Controller
      */
     public function actionUpdate($id)
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
         
         $model = $this->findModel($id);
 
@@ -139,6 +209,11 @@ class SliderController extends Controller
      */
     public function actionDelete($id)
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

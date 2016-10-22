@@ -67,7 +67,11 @@ class AdminController extends \yii\web\Controller
     	//Получаем id юзера
     	$id = DostupController::getUserId();
     	//Проверяем права на вход в админку
-    	DostupController::userDostup($id);
+    	//DostupController::userDostup($id);
+        $dostup = User::find('category_id')->where(['id'=>$id])->one();
+        if($dostup->category_id != 1){
+            return $this->redirect('/');
+        }
 
     	$count_users = User::find()->count();
 

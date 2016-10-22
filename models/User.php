@@ -15,7 +15,7 @@ use Yii;
  * @property string $foto
  * @property string $born
  * @property integer $sex
- * @property string $e-mail
+ * @property string $e_mail
  * @property string $tel
  * @property string $adress
  * @property string $info
@@ -44,11 +44,11 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['category_id', 'sex', 'reg_email', 'podpiska'], 'integer'],
-            [['familie', 'name', 'father', 'foto', 'born', 'sex', 'e-mail', 'tel', 'adress', 'info', 'password', 'username'], 'required'],
+            [['familie', 'name', 'father', 'foto', 'born', 'sex', 'e_mail', 'tel', 'adress', 'info', 'password', 'username'], 'required'],
             [['created_at'], 'safe'],
-            [['familie', 'name', 'father', 'foto', 'born', 'e-mail'], 'string', 'max' => 100],
+            /*[['familie', 'name', 'father', 'foto', 'born', 'e_mail'], 'string', 'max' => 100],*/
             [['tel'], 'string', 'max' => 11],
-            [['adress', 'info', 'username'], 'string', 'max' => 255],
+            [['adress', 'info', 'username', 'secret_key', 'date_valid_secret_key'], 'string', 'max' => 255],
             [['password', 'auth_key', 'access_token'], 'string', 'max' => 32],
         ];
     }
@@ -67,7 +67,7 @@ class User extends \yii\db\ActiveRecord
             'foto' => 'Фото',
             'born' => 'Дата рождения',
             'sex' => 'Пол',
-            'e-mail' => 'EMail',
+            'e_mail' => 'EMail',
             'tel' => 'Телефон',
             'adress' => 'Адрес',
             'info' => 'Информация',
@@ -78,6 +78,8 @@ class User extends \yii\db\ActiveRecord
             'created_at' => 'Добавлен',
             'username' => 'Логин',
             'access_token' => 'Access Token',
+            'secret_key' => 'код восстановления пароля',
+            'date_valid_secret_key' => 'дата генерации кода восстановления пароля',
         ];
     }
 }

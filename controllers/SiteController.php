@@ -17,6 +17,11 @@ use yii\data\Pagination;
 use app\controllers\NewController;
 use app\models\Slider;
 use app\models\Articles;
+use app\controllers\ArticleController;
+use yii\helpers\Url;
+use app\models\VostparolForm;
+use app\models\Vastparol;
+
 
 class SiteController extends Controller
 {
@@ -167,19 +172,12 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
-        $request = Yii::$app->request;
+        $url = Url::to('');
 
-        $name = $request->get('name');
+        $article = ArticleController::getArticle($url);
 
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
         return $this->render('contact', [
-            'model' => $model,
-            'name' => $name,
+            'article' => $article,
         ]);
     }
 
@@ -190,7 +188,14 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+
+        $url = Url::to('');
+
+        $article = ArticleController::getArticle($url);
+
+        return $this->render('about', [
+            'article' => $article,
+        ]);
     }
 
     public function actionReg()
@@ -234,12 +239,28 @@ class SiteController extends Controller
 
     public function actionAction()
     {
-        return $this->render('action');
+
+        $url = Url::to('');
+
+        $article = ArticleController::getArticle($url);
+
+        return $this->render('action', [
+            'article' => $article,
+        ]);
+        
     }
 
     public function actionPartner()
     {
-        return $this->render('partner');
+        $url = Url::to('');
+
+        $article = ArticleController::getArticle($url);
+
+        return $this->render('partner', [
+            'article' => $article,
+        ]);
+
+        
     }
 
     public function actionCategory(){
@@ -282,5 +303,45 @@ class SiteController extends Controller
             'guest' => $guest,
         ]);
 
+    }
+
+    public function actionNewparol()
+    {
+        $model = new VostparolForm();
+
+        if($model->load(Yii::$app->request->post())){
+
+            //var_dump($model); exit();
+            
+            $secret_key = random_int(100, 999);
+            $secret_key = md5((string)$secret_key);
+
+            $email = $model->username;
+
+            $user = User::find()->where(['username'=>$email])->one();
+
+            if(isset($user)){
+                $vastparol = new Vastparol();
+                $vastparol->secret_key = $secret_key;
+                $vastparol->date_valid_secret_key = time();
+                $vastparol->username = $email;
+                $vastparol->save();
+
+                Yii::$app->mailer->compose()
+                    ->setTo($email)
+                    ->setSubject('Восстановление пароля на сайте zapodar.com')
+                    ->setTextBody('Для восстановления пароля пройдите пожалуйста по ссылке: http://buhcomfort.ru/vp/'.$secret_key)
+                    ->send();
+                
+                Yii::$app->session->setFlash('success', 'Перейдите пожалуйста на вашу почту и следуйте инструкциям в письме.');
+                Yii::$app->session->setFlash('error', '');
+                return $this->refresh();
+            }else{
+                Yii::$app->session->setFlash('error', 'Пользователь с таким email не найден');
+            }
+
+        }
+        
+        return $this->render('newparol', compact('model'));
     }
 }

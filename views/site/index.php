@@ -111,13 +111,13 @@ function show_buy_text_end(obj) {
             <div class="progItem col-lg-1-5"  >
                 <br/>
                 <div class="prodImg">
-                    <a href="/products/<?= $prod['alias'] ?>" target="_self">
+                    <a href="/product/<?= $prod['alias'] ?>" target="_self">
                         <img src="/img/products/<?= $prod['picture'] ?>" alt="<?= $prod['name'] ?>" height="150">
                     </a>
                 </div>
                 <br/>
                 
-                <div><?= $prod['name'] ?></div>
+                <div><a href="/product/<?= $prod['alias'] ?>" target="_self"><?= $prod['name'] ?></a></div>
                 <div><br></div>
                 <div class="cach">
                     <a href="//" id="<?= $prod['id'] ?>" name="<?= $prod['price']?> руб." onmouseover="show_buy_text(this);" onmouseleave="show_buy_text_end(this);">

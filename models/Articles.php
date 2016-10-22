@@ -53,4 +53,6 @@ class Articles extends \yii\db\ActiveRecord
             'ishome' => 'Главная',
         ];
     }
+
+    
 }

@@ -5,10 +5,41 @@ namespace app\controllers;
 use Yii;
 use app\models\Basket;
 use app\models\Products;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 
 class BasketController extends \yii\web\Controller
 {
     //public $modelClass = 'app\models\Basket';
+
+	public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['logout', 'basket'],
+                'rules' => [
+                    [
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['basket'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
+    }
 
 	public function actionNeworder()
 	{
@@ -44,8 +75,71 @@ class BasketController extends \yii\web\Controller
 			return json_encode($result);
 		}
 
-		
+	}
 
+	public function actionDeleteoneproduct()
+	{
+		if(Yii::$app->request->isAjax ){
+			
+			$getquery = Yii::$app->request->get();
+			$id = $getquery['id'];
+			$basket = Basket::find()->where(['id'=>$id])->one();
+			$basket->delete();
+
+			$products_in_basket = Basket::find()->where(['user_id'=>$getquery['user']])->count();
+
+			Yii::$app->response->cookies->add(new \yii\web\Cookie([
+        			'name' => 'countbasket',
+        			'value' => $products_in_basket,
+    			]));
+		}
+	}
+
+	public function actionMinus()
+	{
+		if(Yii::$app->request->isAjax ){
+			
+			$getquery = Yii::$app->request->get();
+			$id = $getquery['id'];
+			$count = $getquery['count'];
+			$basket = Basket::find()->where(['id'=>$id])->one();
+			$basket->count = $count;
+			$basket->save();
+			
+		}
+	}
+
+	public function actionPlus()
+	{
+		if(Yii::$app->request->isAjax ){
+			
+			$getquery = Yii::$app->request->get();
+			$id = $getquery['id'];
+			$count = $getquery['count'];
+			$basket = Basket::find()->where(['id'=>$id])->one();
+			$basket->count = $count;
+			$basket->save();
+			
+		}
+	}
+
+	public function actionDeleteall()
+	{
+		if(Yii::$app->request->isAjax ){
+			
+			$getquery = Yii::$app->request->get();
+			$user_id = $getquery['user_id'];
+			$basket = Basket::find()->where(['user_id'=>$user_id])->all();
+			$basket->delete();
+
+			$products_in_basket = Basket::find()->where(['user_id'=>$getquery['user_id']])->count();
+
+			Yii::$app->response->cookies->add(new \yii\web\Cookie([
+        			'name' => 'countbasket',
+        			'value' => $products_in_basket,
+    			]));
+			
+		}
 	}
 
 	public function actionBasket()

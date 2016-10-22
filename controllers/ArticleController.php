@@ -69,6 +69,8 @@ class ArticleController extends Controller
         ];
     }
 
+    public $layout = 'admin';
+
     public $user_id;
 
     public function getUserId(){
@@ -262,5 +264,16 @@ class ArticleController extends Controller
         // удаляем начальные и конечные '-'
         $str = trim($str, "-");
         return $str;
+    }
+
+    public function getArticle($url)
+    {
+
+        //$url = Yii::$app()->request->requestUri;
+        $url = substr($url, 6);
+        //echo $url;
+        $article = Articles::find()->where(['alias'=>$url])->one();
+        return $article;
+
     }
 }

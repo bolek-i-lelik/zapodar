@@ -59,7 +59,8 @@ $config = [
             'news' => 'site/news',
             'partner' => 'site/partner',
             'reg' => 'site/reg',
-            
+            'basket' => 'basket/basket',
+            'newparol' => 'site/newparol',
             ],
         ],
         
