@@ -16,6 +16,7 @@ use \yii\db\ActiveRecord;
 class RegForm extends ActiveRecord
 {
     public $password2;
+    public $verifyCode;
 
     public static function tableName(){
         return 'user';
@@ -35,6 +36,7 @@ class RegForm extends ActiveRecord
             ['username', 'validateUsername'],
             ['e_mail', 'email'],
             ['password', 'validatePassword'],
+            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -81,7 +83,7 @@ class RegForm extends ActiveRecord
             'password' => 'Пароль',
             'podpiska' => 'Согласен получать материалы информационного характера на свою электронную почту',
             'password2' => 'Повторите пароль',
-            
+            'verifyCode' => 'Введите символы',
         ];
     }
 }

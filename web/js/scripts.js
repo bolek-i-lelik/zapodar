@@ -91,3 +91,19 @@ function deleteall(user_id){
 	});
 
 }
+
+    function show_buy_text(obj) {
+    	obj.innerHTML = "<b>Подробнее</b>";
+    	obj.style = "background-color: #064727; color:#AACF9D;"
+    }
+    function show_buy_text_end(obj) {
+    //var ss = document.getElementById(obj.id);
+    //var nameNew = ss.name;
+    	obj.innerHTML = "<b>" + obj.name + "</b>";
+    	obj.style = "background-color: #FFFFFF;"
+    }
+
+        function f_zoom(srcPic) {
+        img = document.getElementById("mainPic");
+        img.src = srcPic;
+    }

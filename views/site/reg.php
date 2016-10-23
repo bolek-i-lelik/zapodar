@@ -6,6 +6,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\captcha\Captcha;
 
 $this->title = 'Регистрация';
 $this->params['breadcrumbs'][] = $this->title;
@@ -46,8 +47,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'adress') ?>
 
-        <?= $form->field($model, 'username') ?>
-
         <?= $form->field($model, 'password')->passwordInput() ?>
 
         <?= $form->field($model, 'password2')->passwordInput() ?>
@@ -55,6 +54,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'podpiska')->checkbox([
             'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
         ]) ?>
+
+        <?= $form->field($model, 'verifyCode')->widget(Captcha::className()) ?>
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">

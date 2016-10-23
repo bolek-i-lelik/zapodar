@@ -15,23 +15,34 @@ $fotos = explode(",", $product->picture);
 ?>
 <div class="product">
     <div class="row">
-    	<div class="col-lg-7">
-    		<img src="/img/products/<?= $fotos[0] ?>" height="50" alt="" class="img-thumbnail"><br/><br/>
-    		<center>
-    		<?php if(isset($fotos[1])):?>
-    			<?php foreach ($fotos as $key => $value): ?>
-    				<?php if($key>0 && $value != ''): ?>
-    					<img src="/img/products/<?= $value ?>" alt="" height="50">
-    				<?php endif;?>	
-    			<?php endforeach ?>
-    		<?php endif;?>
-    		</center>
+        <div class="col-lg-1">
+            <center>
+                <?php if(isset($fotos[1])):?>
+                            <img src="/img/products/<?= $fotos[0] ?>" alt="" height="50" onclick = "f_zoom(src);"><br><br>
+                    <?php foreach ($fotos as $key => $value): ?>
+                        <?php if($key>0 && $value != ''): ?>
+                            <img src="/img/products/<?= $value ?>" alt="" height="50" onclick = "f_zoom(src);"><br><br>
+                        <?php endif;?>  
+                    <?php endforeach ?>
+                <?php endif;?>
+                </center>
+        </div>
+    	<div class="col-lg-6">
+            <div class="mainPic">
+    		  <img id="mainPic" style="max-height: 600px;" src="/img/products/<?= $fotos[0] ?>" height="50" alt="" class="img-thumbnail"><br/><br/>
+            </div>
+            <div>
+        		
+            </div>
     	</div>
     	<div class="col-lg-5">
     		<p><?= $product->vendorcode ?></p>
                 
-    		<h1><?= Html::encode($this->title) ?></h1>
+    		<p class="zapodarTitle"><?= Html::encode($this->title) ?></p>
     		<p><?= $product->price?> рублей</p>
+                <p class="row">
+                    <?= $product->description ?>
+                </p>
             <?php if($guest == FALSE):?>
                 <?php if($onbasket == FALSE):?>
                     <div id="basket">
@@ -45,9 +56,7 @@ $fotos = explode(",", $product->picture);
             <?php endif;?>
     	</div>
     </div>
-    <div class="row">
-    	<?= $product->description ?>
-    </div>
+
     <div id="korzina"></div>
 </div>
 

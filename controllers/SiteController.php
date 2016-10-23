@@ -21,6 +21,7 @@ use app\controllers\ArticleController;
 use yii\helpers\Url;
 use app\models\VostparolForm;
 use app\models\Vastparol;
+use app\models\VpForm;
 
 
 class SiteController extends Controller
@@ -206,16 +207,23 @@ class SiteController extends Controller
         if($model->load(Yii::$app->request->post())){
             $model->password = md5($model->password);
             $model->password2 = md5($model->password2);
+            $model->username = $model->e_mail;
             if($model->save()){
                 Yii::$app->session->setFlash('success', 'Данные приняты');
                 Yii::$app->session->setFlash('error', '');
-                return $this->refresh();
+                return $this->redirect('/login');
             }else{
                 Yii::$app->session->setFlash('error', 'Ошибка');
             }
         }
         
-        return $this->render('reg', compact('model'));
+        return $this->render('reg', [
+            'model'=>$model,
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+            ]);
     }
 
     public function actionCatalog()
@@ -313,12 +321,16 @@ class SiteController extends Controller
 
             //var_dump($model); exit();
             
-            $secret_key = random_int(100, 999);
-            $secret_key = md5((string)$secret_key);
+            $secret_key = md5($model->username);
 
             $email = $model->username;
 
             $user = User::find()->where(['username'=>$email])->one();
+
+            $vastparol = Vastparol::find()->where(['username'=>$email])->one();
+            if(!empty($vastparol->id)){
+                $vastparol->delete();
+            }
 
             if(isset($user)){
                 $vastparol = new Vastparol();
@@ -334,7 +346,6 @@ class SiteController extends Controller
                     ->send();
                 
                 Yii::$app->session->setFlash('success', 'Перейдите пожалуйста на вашу почту и следуйте инструкциям в письме.');
-                Yii::$app->session->setFlash('error', '');
                 return $this->refresh();
             }else{
                 Yii::$app->session->setFlash('error', 'Пользователь с таким email не найден');
@@ -344,4 +355,38 @@ class SiteController extends Controller
         
         return $this->render('newparol', compact('model'));
     }
+
+    public function actionVp()
+    {
+        $model = new VpForm();
+
+        if($model->load(Yii::$app->request->post())){
+
+            $get = Yii::$app->request->get();
+            $secret_key = $get['secret_key'];
+
+            $vastparol = Vastparol::find()->where(['secret_key' => $secret_key])->one();
+
+            $time_ostatok = time() - $vastparol['date_valid_secret_key'];
+
+            if($time_ostatok > 0){
+                $password = md5($model->password);
+                $password2 = md5($model->password2);
+                if($password2 == $password){
+                    
+                    $user = User::find()->where(['e_mail'=>$vastparol['username']])->one();
+                    $user->password = $password;
+                    $user->save();
+                    return $this->redirect('/login');
+                }
+            }else{
+                return $this->redirect('newparol', ['error'=>'Время истекло, повторите попытку']);
+            }
+        }
+        return $this->render('vp', ['model' => $model]);
+
+    }
+
+    
+
 }

@@ -24,6 +24,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <link href="https://fonts.googleapis.com/css?family=Marck+Script|Rubik" rel="stylesheet"> 
 </head>
 <body>
 
@@ -133,10 +134,10 @@ AppAsset::register($this);
                 	</div>
             	</li> 
             	<li id="j_carthost" class="hb-but hb-but-cart hb-but-main">
-            		<a class="hb-but-action hb-but-hover" id="cart" href="/basket">
+            		<a class="hb-but-action hb-but-hover" id="cart" href="/howtobuy">
             			<span id="kzn" class="badge pull-right" style="background:#AACF9D;"><?= Yii::$app->request->cookies['countbasket'] ?></span>
                 		<span class="hb-but-wrap">
-                    		<img class="hb-but-icon" src="<?= Url::toRoute('/img/bug.png', true)?>" alt="Корзина">
+                    		<img class="hb-but-icon" src="http://buhcomfort.ru/img/bug.png" alt="Корзина">
                     		<span class="hb-but-text" style="color:#AACF9D;"><b>Корзина</b></span>
                 		</span>
             		</a>
@@ -147,41 +148,48 @@ AppAsset::register($this);
                     	</div>
                 	</div>
             	</li>
- 
-                
-            	<li class="hb-but hb-but-login hb-but-main">
-                	<input id="hb-but-login" class="j_hcb j_off" type="checkbox">
-                	<label for="hb-but-login">
-                    	<span class="hb-but-wrap">
-                        <?php if(Yii::$app->user->isGuest):?>
-                        <a href="<?= Url::toRoute('/login', true)?>">
-                        	<img class="hb-but-icon" src="<?= Url::toRoute('/img/enter.png', true)?>" ><span class="hb-but-text" style="color:#AACF9D;"><b>Вход/Регистрация</b></span>
-                        </a>
-                        <?php else:?>
-                            <form class="navbar-form" action="/site/logout" method="post">
-                            <input type="hidden" name="_csrf" value="<?= Html::csrfMetaTags() ?>"><button type="submit" class="btn btn-link">Выйти</button></form>
-                        <?php endif;?>
-                    	</span>
-                	</label>
-                	
-                	
-            	</li> 
+ <!--           <li class="hb-but hb-but-login hb-but-main">
+                <input id="hb-but-login" class="j_hcb j_off" type="checkbox">
+                <label for="hb-but-login">
+                    <span class="hb-but-wrap">
+                        <a href="<?= Url::toRoute('/site/login', true)?>" class="bton btn-sm">Войти</a>
+                    </span>
+                </label>
+            </li> -->
+				<li class="hb-but hb-but-login hb-but-main">
+					<input id="hb-but-login" class="j_hcb j_off" type="checkbox">
+					<label for="hb-but-login">
+						<span class="hb-but-wrap">
+							<?php if(Yii::$app->user->isGuest):?>
+								<a href="<?= Url::toRoute('/login', true)?>">
+									<img class="hb-but-icon" src="<?= Url::toRoute('/img/enter.png', true)?>" >
+									<span class="hb-but-text" style="color:#AACF9D;"><b>Вход/Регистрация</b></span>
+								</a>
+							<?php else:?>
+								<form class="navbar-form" action="/site/logout" method="post">
+									<input type="hidden" name="_csrf" value="<?= Html::csrfMetaTags() ?>"><button type="submit" class="btn btn-link">Выйти</button>
+								</form>
+							<?php endif;?>
+						</span>
+					</label>
+
+				
+				</li>
         	</ul>
     	</div>
 	</div>
 </header>
-<div class="wrap">
+<div class="container">
     <!--<div class="container minStyle">-->
     <br>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <div class="container">
+
         <?= $content ?>
-        </div>
     <!--</div>-->
 </div>
-<br/>
+
 <footer class="footer footerStyle">
  <div class="row " style="background-color:#064727">
  	<center>

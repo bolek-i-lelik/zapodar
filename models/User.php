@@ -26,6 +26,8 @@ use Yii;
  * @property string $created_at
  * @property string $username
  * @property string $access_token
+ * @property string $secret_key
+ * @property string $date_valid_secret_key
  */
 class User extends \yii\db\ActiveRecord
 {

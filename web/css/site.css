@@ -126,7 +126,7 @@ a.text-warning:hover {
 }
 p {
     padding:10px 0;
-    max-width:800px;
+    /*max-width:800px;*/
     line-height:1.4em
 }
 .comment_wrap p {
@@ -5724,7 +5724,7 @@ input.hide_check {
 }
 @media (max-width:767px) {
     .header.search-main {
-        margin-bottom:220px
+        margin-bottom:0px
     }
     .corp_menu {
         display:none
@@ -9717,4 +9717,21 @@ color:#064727;
 {
 font: italic 20px Georgia;
 color:#064727;
+}
+.zapodarTitle 
+{
+    font-family: 'Marck Script', cursive; 
+    font-size: 30pt;
+}
+
+.zapodarCatalog
+{
+    font-family: 'Marck Script', cursive; 
+    font-size: 20pt;
+}
+
+.mainPic
+{
+    width: 600px;
+    height: 600px;
 }

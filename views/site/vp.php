@@ -7,30 +7,25 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = 'Восстановление пароля';
+$this->title = 'Новый пароль';
 $this->params['breadcrumbs'][] = $this->title;
 
 //var_dump($model);
 ?>
 
 <div class="site-login">
-    <?php if(isset($error)): ?>
-    <p class="bg-warning"><?= $error ?></p>
-    <?php endif;?>
+
+    
     <?php if(Yii::$app->session->hasflash('success')):?>
 
         <?= Yii::$app->session->getFlash('success')?>
-        
-    <?php endif;?>
-    <?php if(Yii::$app->session->hasflash('error')):?>
-
         <?= Yii::$app->session->getFlash('error')?>
 
     <?php endif;?>
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Пожалуйста введите e-mail:</p>
+    <p>Пожалуйста введите новый пароль:</p>
 
     <?php $form = ActiveForm::begin([
         'id' => 'reg-form',
@@ -41,11 +36,12 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-        <?= $form->field($model, 'username') ?>
+        <?= $form->field($model, 'password')->passwordInput() ?>
+        <?= $form->field($model, 'password2')->passwordInput() ?>
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Восстановить пароль', ['class' => 'btn btn-primary']) ?>
+                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
             </div>
         </div>
 
