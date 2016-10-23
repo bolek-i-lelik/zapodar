@@ -22,6 +22,7 @@ use yii\helpers\Url;
 use app\models\VostparolForm;
 use app\models\Vastparol;
 use app\models\VpForm;
+use app\models\Messages;
 
 
 class SiteController extends Controller
@@ -387,6 +388,31 @@ class SiteController extends Controller
 
     }
 
-    
+    public function actionMessage()
+    {
+        if(Yii::$app->request->isAjax ){
+            //получаем массив с данными
+            $getquery = Yii::$app->request->get();
+            //Вносим обращение в базу данных
+            $message = new Messages();
+            $message->name = htmlspecialchars((trim($getquery['name'])));
+            $message->phone = htmlspecialchars((trim($getquery['phone'])));
+            $message->email = htmlspecialchars((trim($getquery['email'])));
+            $message->text = htmlspecialchars((trim($getquery['text'])));
+            $message->save();
+            //Получаем почтовые ящики администраторов
+            $admins = User::find()->where(['category_id'=>1])->all();
+            //Отправляем письма администраторам
+            foreach ($admins as $admin) {
+                Yii::$app->mailer->compose()
+                    ->setTo($admin->e_mail)
+                    ->setSubject('Сообщение с сайта zapodar.com')
+                    ->setTextBody('Посетитель '.$getquery['name'].' оставил Вам сообщение: '.$getquery['text'].'. Телефон: '.$getquery['phone'].', email: '.$getquery['email'])
+                    ->send();
+            }
+
+            return 'Сообщение принято, мы с Вами обязательно свяжемся!';
+        }
+    }
 
 }

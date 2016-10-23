@@ -107,29 +107,29 @@ AppAsset::register($this);
                     	</span>
                 	</label> 
                 	<div id="j_feedbackBlock" class="hb-mod hb-mod-dark hb-mod-messages hb-mod-left">
-                    	<div class="hb-mod-wrap">
-                        	<form id="j_feedback_header" action="/contacts/feedback" class="-metrika-noform j_off" method="post">
-                            	<div class="h4_header">Отправка сообщения</div>
+                        <div class="hb-mod-wrap">
+                            <div id="resMessage"></div>
+                        	<div class="h4_header">Отправка сообщения</div>
                             	<input id="j_page_location" class="hidden" name="srcpage" value="" type="text">
                             	<ul class="form_hor">
                                 	<li>
-                                    	<input class="inp" name="adgj" required="" placeholder="ваше имя" value="" type="text">
+                                    	<input class="inp" name="adgj" required="" placeholder="ваше имя" value="" type="text" id="name">
                                     	<input class="hidden" name="message" value="" type="text">
                                 	</li>
                                 	<li>
-                                    	<input class="inp" required="" name="sfhk" placeholder="электронная почта" value="" type="text">
+                                    	<input class="inp" required="" name="sfhk" placeholder="электронная почта" value="" type="text" id="email">
                                     	<input style="display:none;" name="message1" value="" type="text">
                                 	</li>
                                 	<li>
-                                    	<input required="" class="inp" name="xvnm" placeholder="город" value="" type="text">
+                                    	<input required="" class="inp" name="xvnm" placeholder="телефон" value="" type="text" id="town">
                                     	<input style="display:none;" tabindex="-1" name="message2" value="" type="text">
                                 	</li>
                                 	<li>
-                                    	<textarea required="" class="txtr" name="wqretyiu" rows="10" maxlength="9000" placeholder="Текст сообщения"></textarea>
+                                    	<textarea required="" class="txtr" name="wqretyiu" rows="10" maxlength="9000" placeholder="Текст сообщения" id="text"></textarea>
                                 	</li>
                             	</ul>
-                            	<button class="bton" type="submit">Отправить сообщение</button>
-                        	</form>
+                            	<button class="bton" type="submit" onclick="sendMessage()">Отправить сообщение</button>
+                        	
                     	</div>
                 	</div>
             	</li> 

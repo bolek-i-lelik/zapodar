@@ -12,34 +12,46 @@ $this->title = 'Подарки';
 ?>
 <div class="site-index">
 <link href="https://fonts.googleapis.com/css?family=Marck+Script|Rubik" rel="stylesheet"> 
-    <div style="margin-left: 0; margin-right: 0; background-color: #fff; border-width: 1px; border-color: #ddd; border-radius: 4px 4px 0 0; box-shadow: none; width:650px;transform: translate(35%,0%);">
-
-        <div id="carousel" class="carousel slide">
-            <ol class="carousel-indicators">
-                <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel" data-slide-to="1"></li>
-                <li data-target="#carousel" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="item active">
-                    <img src="<?= Url::toRoute('/img/eje.jpg', true)?>" alt="First slide">
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="carousel" class="carousel slide">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel" data-slide-to="1"></li>
+                    <li data-target="#carousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <?php $count_slide = 0;?>
+                    <?php foreach($sliders as $slider):?>
+                        <?php if($count_slide==0):?>
+                            <div class="item active">
+                                <img src="<?= Url::toRoute('/img/slider/'.$slider->image, true)?>" alt="<?= $slider->description ?>">
+                                <div class="carousel-caption">
+                                    <?= $slider->description ?>
+                                </div>
+                            </div>
+                            <?php $count_slide = $count_slide + 1;?>
+                        <?php else:?>
+                            <div class="item">
+                                <img src="<?= Url::toRoute('/img/slider/'.$slider->image, true)?>" alt="<?= $slider->description ?>">
+                                <div class="carousel-caption">
+                                    <?= $slider->description ?>
+                                </div>
+                            </div>
+                        <?php endif;?>
+                    <?php endforeach;?>
+                    
                 </div>
-                <div class="item">
-                    <img src="<?= Url::toRoute('/img/pap.jpg', true)?>" alt="First slide">
-                </div>
-                <div class="item">
-                    <img src="<?= Url::toRoute('/img/nab.jpg', true)?>" alt="First slide">
-                </div>
+                <a class="left carousel-control" href="#carousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
             </div>
-            <a class="left carousel-control" href="#carousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a class="right carousel-control" href="#carousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
         </div>
-
     </div>
+    
     <div class="index">
         <center>
             <!--<div class="col-lg-2"></div>-->
@@ -52,7 +64,7 @@ $this->title = 'Подарки';
             <div class="col-lg-12 blockNews">
                     
                 <div class="body-content blockNews col-lg-12">
-                    <div class="borderNews col-lg-4"></div>
+                    <div class="col-lg-4"><br><hr></div>
                     <div class="col-lg-4">
                         <span>
                             <center>
@@ -60,7 +72,7 @@ $this->title = 'Подарки';
                             </center>
                         </span>
                     </div>
-                    <div class="borderNews col-lg-4"></div>
+                    <div class="col-lg-4"><br><hr></div>
                 </div>
                 <!--<div class="col-lg-2"></div>-->
                 <div class="articlesNews with_imagesNews col-lg-12">
@@ -102,7 +114,7 @@ $this->title = 'Подарки';
 
 </div>
 <div class="body-content blockNews col-lg-12">
-    <div class="borderNews col-lg-4"></div>
+    <div class="col-lg-4"><br><hr></div>
     <div class="col-lg-4">
         <span>
             <center>
@@ -110,7 +122,7 @@ $this->title = 'Подарки';
             </center>
         </span>
     </div>
-    <div class="borderNews col-lg-4"></div>
+    <div class="col-lg-4"><br><hr></div>
 </div>
 <div class="blockProd col-lg-12">
     <div class="col-lg-1"></div>

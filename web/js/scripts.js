@@ -92,18 +92,44 @@ function deleteall(user_id){
 
 }
 
-    function show_buy_text(obj) {
-    	obj.innerHTML = "<b>Подробнее</b>";
-    	obj.style = "background-color: #064727; color:#AACF9D;"
-    }
-    function show_buy_text_end(obj) {
-    //var ss = document.getElementById(obj.id);
-    //var nameNew = ss.name;
-    	obj.innerHTML = "<b>" + obj.name + "</b>";
-    	obj.style = "background-color: #FFFFFF;"
-    }
+function show_buy_text(obj) {
+   	obj.innerHTML = "<b>Подробнее</b>";
+   	obj.style = "background-color: #064727; color:#AACF9D;"
+}
 
-        function f_zoom(srcPic) {
-        img = document.getElementById("mainPic");
-        img.src = srcPic;
-    }
+function show_buy_text_end(obj) {
+	//var ss = document.getElementById(obj.id);
+    //var nameNew = ss.name;
+    obj.innerHTML = "<b>" + obj.name + "</b>";
+    obj.style = "background-color: #FFFFFF;"
+}
+
+function f_zoom(srcPic) {
+    img = document.getElementById("mainPic");
+    img.src = srcPic;
+}
+
+function sendMessage(){
+	var name = document.getElementById('name').value;
+	var email = document.getElementById('email').value;
+	var phone = document.getElementById('town').value;
+	var text = document.getElementById('text').value;
+	$.ajax({
+		url: '/message',
+		type: 'GET',
+		data: {
+			name: name,
+			email: email,
+			phone: phone,
+			text: text,
+		},
+		success: function(res){
+			console.log('Сообщение отправлено');
+			elm = document.getElementById('resMessage');
+			elm.innerHTML = res;
+		},
+		error: function(){
+			console.log('Сообщение не отправлено');
+		}
+	});
+}

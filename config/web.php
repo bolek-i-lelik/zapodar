@@ -62,6 +62,7 @@ $config = [
             'basket' => 'basket/basket',
             'newparol' => 'site/newparol',
             'vp/<secret_key>' => 'site/vp',
+            'message' => 'site/message',
             ],
         ],
         
