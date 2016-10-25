@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div><p></p></div>
                 <div><p></p></div>
                 <div class="prodImg">
-                    <center><img src="/img/avatar.png" height="80">
+                    <center><img src="/img/products/<?= $cat->picture ?>" height="80">
                     
                 </div>
                 <div><p></p></div>

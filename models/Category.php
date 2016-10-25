@@ -11,6 +11,7 @@ use Yii;
  * @property string $name
  * @property integer $parent
  * @property integer $pokaz
+ * @property integer $picture
  */
 class Category extends \yii\db\ActiveRecord
 {
@@ -46,6 +47,7 @@ class Category extends \yii\db\ActiveRecord
             'name' => 'Name',
             'parent' => 'Parent',
             'pokaz' => 'Pokaz',
+            'picture' => 'Изображение',
         ];
     }
 }

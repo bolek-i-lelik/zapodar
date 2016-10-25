@@ -284,6 +284,13 @@ class SiteController extends Controller
 
         $id = $request->get('id');
 
+        $cat_name = Category::find('name')->where(['id'=>$id])->one();
+
+        //формируем хлебные крошки
+        $bread = array();
+        $bread = $this->breadcrumbs($cat_name->parent, $bread);
+        $bread = array_reverse($bread);
+        
         $subcategory = Category::find()->where(['parent' => $id])->one();
 
         if($subcategory = Category::find()->where(['parent' => $id])->one()){
@@ -298,7 +305,7 @@ class SiteController extends Controller
 
             $count = Products::find()->where(['categoryid'=>$id])->count();
 
-            $results = new Pagination(['totalCount' => $count, 'pageSize' => 18]);
+            $results = new Pagination(['totalCount' => $count, 'pageSize' => 20]);
 
             $models = $query->offset($results->offset)
                 ->limit($results->limit)
@@ -310,8 +317,33 @@ class SiteController extends Controller
             'results' => $results,
             'tip' => $tip,
             'guest' => $guest,
+            'bread' => $bread,
+            'cat_name' => $cat_name,
         ]);
 
+    }
+
+    protected function breadcrumbs($id, $bread)
+    {
+        $cat_parent = Category::find()->where(['id'=>$id])->one();
+        $bread[] = $cat_parent;
+        if($cat_parent['parent']){
+            $cat_parent = Category::find()->where(['id'=>$cat_parent['parent']])->one();
+            $bread[] = $cat_parent;
+            if($cat_parent['parent']){
+                $cat_parent = Category::find()->where(['id'=>$cat_parent['parent']])->one();
+                $bread[] = $cat_parent;
+                if($cat_parent['parent']){
+                    $cat_parent = Category::find()->where(['id'=>$cat_parent['parent']])->one();
+                    $bread[] = $cat_parent;
+                    if($cat_parent['parent']){
+                        $cat_parent = Category::find()->where(['id'=>$cat_parent['parent']])->one();
+                        $bread[] = $cat_parent;
+                    }
+                }
+            }
+        }
+        return $bread;
     }
 
     public function actionNewparol()
@@ -395,10 +427,10 @@ class SiteController extends Controller
             $getquery = Yii::$app->request->get();
             //Вносим обращение в базу данных
             $message = new Messages();
-            $message->name = htmlspecialchars((trim($getquery['name'])));
-            $message->phone = htmlspecialchars((trim($getquery['phone'])));
-            $message->email = htmlspecialchars((trim($getquery['email'])));
-            $message->text = htmlspecialchars((trim($getquery['text'])));
+            $message->name = htmlspecialchars(trim($getquery['name']));
+            $message->phone = htmlspecialchars(trim($getquery['phone']));
+            $message->email = htmlspecialchars(trim($getquery['email']));
+            $message->text = htmlspecialchars(trim($getquery['text']));
             $message->save();
             //Получаем почтовые ящики администраторов
             $admins = User::find()->where(['category_id'=>1])->all();
@@ -412,6 +444,61 @@ class SiteController extends Controller
             }
 
             return 'Сообщение принято, мы с Вами обязательно свяжемся!';
+        }
+    }
+
+    public function actionSearch()
+    {
+        if(Yii::$app->request->get()){
+
+        $get = Yii::$app->request->get();
+        
+        $poisk = htmlspecialchars(trim($get['hash']));
+        $pricemin = htmlspecialchars(trim($get['1000value1']));
+        $pricemax = htmlspecialchars(trim($get['1000value2']));
+        $category = htmlspecialchars(trim($get['1001value1']));
+
+        if(!$category){
+
+            if(empty($pricemin)){$pricemin = 1;}
+            if(empty($pricemax)){$pricemax = 100000;}
+            $products = Products::find()->where(['>', 'price', $pricemin])->andWhere(['<', 'price', $pricemax])->andWhere(['like', 'description', $poisk]);
+
+            if(!empty($products)){
+                $products = Products::find()->where(['>', 'price', $pricemin])->andWhere(['<', 'price', $pricemax])->andWhere(['like', 'name', $poisk]);
+            }
+
+            $count = $products->count();
+
+            $results = new Pagination(['totalCount' => $count, 'pageSize' => 20]);
+
+            $models = $products->offset($results->offset)
+                ->limit($results->limit)
+                ->all();
+
+            $tip = 1;
+
+        }else{
+
+            $categories = Category::find()->where(['like', 'name', $category]);
+
+            $count = $categories->count();
+
+            $results = new Pagination(['totalCount' => $count, 'pageSize' => 20]);
+
+            $models = $categories->offset($results->offset)
+                ->limit($results->limit)
+                ->all();
+
+            $tip = 2;
+
+        }
+
+            return $this->render('search', [
+                'models' => $models,
+                'results' => $results,
+                'tip' => $tip,
+            ]);
         }
     }
 

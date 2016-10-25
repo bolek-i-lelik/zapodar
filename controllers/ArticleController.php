@@ -69,8 +69,6 @@ class ArticleController extends Controller
         ];
     }
 
-    public $layout = 'admin';
-
     public $user_id;
 
     public function getUserId(){
@@ -140,7 +138,9 @@ class ArticleController extends Controller
         $model = new Articles();
 
         if ($model->load(Yii::$app->request->post()) ) {
-            $model->alias = $this->str2url($model->name);
+            if(!$model->alias){
+                $model->alias = $this->str2url($model->name);
+            }
             //Проверяем есть ли публикации на главной
             if($model->ishome==1){
                 $home=Articles::find()->where(['ishome'=>1])->one();

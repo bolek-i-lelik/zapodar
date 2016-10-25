@@ -8,6 +8,16 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use yii\helpers\Url;
 
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => $article->description
+]);
+
+$this->registerMetaTag([
+    'name' => 'keywords',
+    'content' => $article->keywords
+]);
+
 $this->title = 'Подарки';
 ?>
 <div class="site-index">

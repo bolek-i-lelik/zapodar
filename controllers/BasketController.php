@@ -129,7 +129,7 @@ class BasketController extends \yii\web\Controller
 			
 			$getquery = Yii::$app->request->get();
 			$user_id = $getquery['user_id'];
-			$basket = Basket::find()->where(['user_id'=>$user_id])->all();
+			$basket = Basket::find()->where(['user_id'=>$user_id])->andWhere(['buy'=> 0])->all();
 			$basket->delete();
 
 			$products_in_basket = Basket::find()->where(['user_id'=>$getquery['user_id']])->count();

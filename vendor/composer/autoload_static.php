@@ -23,9 +23,20 @@ class ComposerStaticInite7bbc9e18f4d13c4675486b0c8f56260
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
         ),
+        'k' => 
+        array (
+            'kartik\\plugins\\dateformatter\\' => 29,
+            'kartik\\datecontrol\\' => 19,
+            'kartik\\date\\' => 12,
+            'kartik\\base\\' => 12,
+        ),
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
+        ),
+        'b' => 
+        array (
+            'bootui\\datetimepicker\\' => 22,
         ),
         'F' => 
         array (
@@ -66,9 +77,29 @@ class ComposerStaticInite7bbc9e18f4d13c4675486b0c8f56260
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
         ),
+        'kartik\\plugins\\dateformatter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/php-date-formatter',
+        ),
+        'kartik\\datecontrol\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-datecontrol',
+        ),
+        'kartik\\date\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-datepicker',
+        ),
+        'kartik\\base\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base',
+        ),
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
+        ),
+        'bootui\\datetimepicker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/3ch3r46/bootui-datetimepicker',
         ),
         'Faker\\' => 
         array (
@@ -77,6 +108,13 @@ class ComposerStaticInite7bbc9e18f4d13c4675486b0c8f56260
     );
 
     public static $prefixesPsr0 = array (
+        'P' => 
+        array (
+            'PHPExcel' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpoffice/phpexcel/Classes',
+            ),
+        ),
         'H' => 
         array (
             'HTMLPurifier' => 

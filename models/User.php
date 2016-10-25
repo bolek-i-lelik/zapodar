@@ -14,7 +14,7 @@ use Yii;
  * @property string $father
  * @property string $foto
  * @property string $born
- * @property integer $sex
+ * @property string $sex
  * @property string $e_mail
  * @property string $tel
  * @property string $adress
@@ -45,13 +45,14 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'sex', 'reg_email', 'podpiska'], 'integer'],
-            [['familie', 'name', 'father', 'foto', 'born', 'sex', 'e_mail', 'tel', 'adress', 'info', 'password', 'username'], 'required'],
+            [['category_id', 'reg_email', 'podpiska'], 'integer'],
+            [['sex', 'password', 'username'], 'required'],
             [['created_at'], 'safe'],
-            /*[['familie', 'name', 'father', 'foto', 'born', 'e_mail'], 'string', 'max' => 100],*/
+            [['familie', 'name', 'father', 'foto', 'born', 'e_mail'], 'string', 'max' => 100],
+            [['sex'], 'string', 'max' => 15],
             [['tel'], 'string', 'max' => 11],
-            [['adress', 'info', 'username', 'secret_key', 'date_valid_secret_key'], 'string', 'max' => 255],
-            [['password', 'auth_key', 'access_token'], 'string', 'max' => 32],
+            [['adress', 'info', 'auth_key', 'username', 'secret_key', 'date_valid_secret_key'], 'string', 'max' => 255],
+            [['password', 'access_token'], 'string', 'max' => 32],
         ];
     }
 
@@ -62,26 +63,26 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'category_id' => 'Доступ',
-            'familie' => 'Фамилия',
-            'name' => 'Имя',
-            'father' => 'Отчество',
-            'foto' => 'Фото',
-            'born' => 'Дата рождения',
-            'sex' => 'Пол',
-            'e_mail' => 'EMail',
-            'tel' => 'Телефон',
-            'adress' => 'Адрес',
-            'info' => 'Информация',
-            'password' => 'Пароль',
+            'category_id' => 'Category ID',
+            'familie' => 'Familie',
+            'name' => 'Name',
+            'father' => 'Father',
+            'foto' => 'Foto',
+            'born' => 'Born',
+            'sex' => 'Sex',
+            'e_mail' => 'E Mail',
+            'tel' => 'Tel',
+            'adress' => 'Adress',
+            'info' => 'Info',
+            'password' => 'Password',
             'reg_email' => 'Reg Email',
-            'podpiska' => 'Подписка',
+            'podpiska' => 'Podpiska',
             'auth_key' => 'Auth Key',
-            'created_at' => 'Добавлен',
-            'username' => 'Логин',
+            'created_at' => 'Created At',
+            'username' => 'Username',
             'access_token' => 'Access Token',
-            'secret_key' => 'код восстановления пароля',
-            'date_valid_secret_key' => 'дата генерации кода восстановления пароля',
+            'secret_key' => 'Secret Key',
+            'date_valid_secret_key' => 'Date Valid Secret Key',
         ];
     }
 }

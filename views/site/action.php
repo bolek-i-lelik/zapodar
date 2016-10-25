@@ -4,6 +4,16 @@
 
 use yii\helpers\Html;
 
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => $article->description
+]);
+
+$this->registerMetaTag([
+    'name' => 'keywords',
+    'content' => $article->keywords
+]);
+
 $this->title = 'Акции';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -11,8 +21,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        Акции
+        <?= $article->text ?>
     </p>
-
-    <code><?= __FILE__ ?></code>
 </div>

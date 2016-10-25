@@ -7,19 +7,37 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use Yii;
 
-$this->title = 'имя категории';
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => $cat_name->name
+]);
+
+$this->registerMetaTag([
+    'name' => 'keywords',
+    'content' => $cat_name->name
+]);
+
+//var_dump($bread);exit();
+$this->title = $cat_name->name;
+$this->params['breadcrumbs'][] = ['label' => 'Каталог', 'url' => ['/catalog']];
+foreach ($bread as $value) {
+    if($value != NULL){
+     $this->params['breadcrumbs'][] = ['label' => $value['name'], 'url' => ['/category/'.$value['id']]];
+    }
+}
 $this->params['breadcrumbs'][] = $this->title;
 Yii::$app->language = 'ru';
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
     <div class="row">
+
     <?php if($tip == 1): ?>
         <?php foreach($results as $result):?>
-            <div class="col-lg-3">
+            <div class="progItem col-lg-3">
                 <div style="height: 350px;">
                 <br/>
-                <center><img src="/img/avatar.png" height="150">
+                <center><img src="/img/products/<?= $result->picture ?>" height="150">
                 <h3><?= Html::a($result->name, ['category/'.$result->id]) ?></h3></center>
                 </div>
             </div>
@@ -27,7 +45,7 @@ Yii::$app->language = 'ru';
     <?php endif;?>
     <?php if($tip == 2): ?>
         <?php foreach($models as $model):?>
-            <div class="col-lg-4">
+            <div class="progItem col-lg-3">
                 <div style="height: 350px;">
                 <br/>
                 <?php $foto = stristr($model->picture, ',', true);?>

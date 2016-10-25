@@ -13,6 +13,7 @@ use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 
 AppAsset::register($this);
+Yii::$app->language = 'ru';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -34,12 +35,14 @@ AppAsset::register($this);
             <i class="fa fa-phone" aria-hidden="true"></i>
                 (495) 737-90-22
         </span>
-        <a href="/site/about">   О нас   </a>   
+        <a href="/about">   О нас   </a>   
         <a href="/new/">   Новости   </a>   
-        <a href="/site/action">   Акции   </a>   
-        <a href="/site/partner">   Партнерам   </a>   
-        <a href="/site/contact">   Контакты   </a>   
-        
+        <a href="/action">   Акции   </a>   
+        <a href="/partner">   Партнерам   </a>   
+        <a href="/contact">   Контакты   </a>   
+        <?php if(!Yii::$app->user->isGuest):?>
+            <a href="/cabinet">   Личный кабинет   </a>
+        <?php endif;?>
     </div>
     <div class="hb">
         <div class="page-container">
@@ -68,7 +71,7 @@ AppAsset::register($this);
                             </span>
                         </label>
                         <div class="hb-mod hb-mod-full hb-mod-search">
-                            <form id="j_main_search_form" action="/site/search" method="post" class="form_light -metrika-noform j_off">
+                            <form id="j_main_search_form" action="/search" method="get" class="form_light -metrika-noform j_off">
                                 <div class="hb-mod-wrap" style="text-align: center" > 
                                     <button class="btn hb-mod-search-btn show j_off" id="j_search_submit">
                                         <img class="hb-but-icon" src="<?= Url::toRoute('/img/search.png', true)?>" alt="Найти">
@@ -134,28 +137,16 @@ AppAsset::register($this);
                 	</div>
             	</li> 
             	<li id="j_carthost" class="hb-but hb-but-cart hb-but-main">
-            		<a class="hb-but-action hb-but-hover" id="cart" href="/howtobuy">
+            		<a class="hb-but-action hb-but-hover" id="cart" href="<?= Url::toRoute('/basket', true)?>">
             			<span id="kzn" class="badge pull-right" style="background:#AACF9D;"><?= Yii::$app->request->cookies['countbasket'] ?></span>
                 		<span class="hb-but-wrap">
                     		<img class="hb-but-icon" src="http://buhcomfort.ru/img/bug.png" alt="Корзина">
                     		<span class="hb-but-text" style="color:#AACF9D;"><b>Корзина</b></span>
                 		</span>
             		</a>
-                	<div class="hb-mod hb-mod-dark hb-mod-info">
-                    	<div class="hb-mod-wrap">
-                        	<div class="h3_header">Условия оформления заказа</div>
-                        	<p></p>
-                    	</div>
-                	</div>
+                	
             	</li>
- <!--           <li class="hb-but hb-but-login hb-but-main">
-                <input id="hb-but-login" class="j_hcb j_off" type="checkbox">
-                <label for="hb-but-login">
-                    <span class="hb-but-wrap">
-                        <a href="<?= Url::toRoute('/site/login', true)?>" class="bton btn-sm">Войти</a>
-                    </span>
-                </label>
-            </li> -->
+ 
 				<li class="hb-but hb-but-login hb-but-main">
 					<input id="hb-but-login" class="j_hcb j_off" type="checkbox">
 					<label for="hb-but-login">
@@ -166,8 +157,11 @@ AppAsset::register($this);
 									<span class="hb-but-text" style="color:#AACF9D;"><b>Вход/Регистрация</b></span>
 								</a>
 							<?php else:?>
-								<form class="navbar-form" action="/site/logout" method="post">
-									<input type="hidden" name="_csrf" value="<?= Html::csrfMetaTags() ?>"><button type="submit" class="btn btn-link">Выйти</button>
+								<form class="navbar-form" action="logout" method="post">
+									<input type="hidden" name="_csrf" value="<?php echo Html::csrfMetaTags() ?>">
+                                    <button type="submit" class="btn btn-link">
+                                    Выйти<br/><br/>
+                                    </button>
 								</form>
 							<?php endif;?>
 						</span>

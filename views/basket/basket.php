@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
     					<a href="/product/<?= $products[$value->product_id]['alias'] ?>"><?= $products[$value->product_id]['name'] ?></a>
     				</td>
     				<td>
-    					<?= $products[$value->product_id]['price'] ?>
+    					<?= $products[$value->product_id]['price']*(1 - $products[$value->product_id]['sale']) ?>
     				</td>
     				<td>
                         <div id="countinbasket"><?= $value->count ?></div>
@@ -71,8 +71,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <button class="btn btn-danger" onclick="delFromBasket(<?= $value->id ?>,<?= Yii::$app->user->id ?>)">Удалить</button>
     				</td>
     				<td>
-    					<?= $products[$value->product_id]['price'] * $value->count ?>
-    					<?php $allprice = ($products[$value->product_id]['price'] * $value->count) + $allprice ;?>
+    					<?= $products[$value->product_id]['price']*(1 - $products[$value->product_id]['sale']) * $value->count ?>
+    					<?php $allprice = (($products[$value->product_id]['price'] *(1 - $products[$value->product_id]['sale'])* $value->count)) + $allprice ;?>
     				</td>
     			</tr>
     		<?php endforeach;?>

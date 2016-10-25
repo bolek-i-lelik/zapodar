@@ -21,6 +21,8 @@ use mihaildev\ckeditor\CKEditor;
 
     <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'text')->widget(CKEditor::className(),[
         'editorOptions' => [
             'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную   возможность не обязательно использовать

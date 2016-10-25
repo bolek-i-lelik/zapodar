@@ -437,4 +437,34 @@ class AdminController extends \yii\web\Controller
         return $str;
     }
 
+    public function actionCatfoto()
+    {
+
+        $cats = Category::find()->all();
+
+        foreach ($cats as $cat) {
+            if(empty($cat->picture)){
+                if(!Products::find()->where(['categoryid'=>$cat->id])){
+                    $cat_id = $this->catrecurs($cat->id);
+                }
+                else{$cat_id = $cat->id;}
+
+                $product = Products::find()->where(['categoryid'=>$cat_id])->one();
+                $cat->picture = stristr($product['picture'], ',', true);
+                $cat->save();
+                echo 'Сохранено<hr>'.$cat->picture;
+            }
+        }
+        exit();
+    }
+
+    protected function catrecurs($id)
+    {
+        $cats_id = Category::find()->where(['parent'=>$id])->one();
+        if(!Products::find()->where(['categoryid'=>$cats_id])){
+            $this->catrecurs($cats_id);
+        }
+        return $cats_id;
+    }
+
 }

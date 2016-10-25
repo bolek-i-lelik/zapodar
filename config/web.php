@@ -20,7 +20,7 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'app\models\UserIdentity',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -63,11 +63,13 @@ $config = [
             'newparol' => 'site/newparol',
             'vp/<secret_key>' => 'site/vp',
             'message' => 'site/message',
+            'search' => 'site/search',
             ],
         ],
         
     ],
     'params' => $params,
+    
 ];
 
 if (YII_ENV_DEV) {
