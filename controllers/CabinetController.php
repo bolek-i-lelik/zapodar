@@ -7,9 +7,34 @@ use app\models\VpForm;
 use app\models\User;
 use app\models\Products;
 use app\models\Basket;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 
 class CabinetController extends \yii\web\Controller
 {
+
+	public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index'],
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
+    }
 
 	public function actionIndex()
     {
@@ -36,7 +61,7 @@ class CabinetController extends \yii\web\Controller
 
     	if($model2->load(Yii::$app->request->post())){
     		$user = User::find()->where(['id'=>Yii::$app->user->id])->one();
-    		if(empty($user->sex)){
+    		if($user->sex==3){
     			$user->sex = $model2->sex;
     		}
     		if(empty($user->info)){

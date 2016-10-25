@@ -64,6 +64,7 @@ $config = [
             'vp/<secret_key>' => 'site/vp',
             'message' => 'site/message',
             'search' => 'site/search',
+            'logout' => 'site/logout',
             ],
         ],
         

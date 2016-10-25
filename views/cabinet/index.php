@@ -48,6 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	    			<?php if(!empty($user->born)): ?>
 	    				<b>Дата рождения:</b> <?= $user->born ?><br/>
 	    			<?php endif;?>
+	    			<?php if($user->sex != 3):?>
 	    				<b>Пол:</b> 
 	    				<?php if($user->sex == 0):?>
 	    					Мужской
@@ -55,6 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	    					Женский
 	    				<?php endif;?>
 	    				<br/>
+	    			<?php endif;?>
 	    			<?php if(!empty($user->e_mail)): ?>
 	    				<b>E-mail:</b> <?= $user->e_mail ?><br/>
 	    			<?php endif;?>
@@ -69,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	    			<?php endif;?>
 	  			</div>
 			</div>
-			<?php if(!isset($user->sex) || empty($user->info) || empty($user->born)):?>
+			<?php if(($user->sex == 3) || empty($user->info) || empty($user->born)):?>
 			<div class="panel panel-warning">
 	  			<div class="panel-heading">
 	  				Отсутствующая информация
@@ -85,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
         				],
     				]); ?>
 
-    					<?php if(!isset($user->sex)): ?>
+    					<?php if($user->sex==3): ?>
 	    					<?=$form->field($model2, 'sex')->dropdownList((['Мужской', 'Женский']), ['prompt'=>'Выберите из списка']);?>
 	    				<?php endif;?>
 	    				<?php if(empty($user->info)): ?>

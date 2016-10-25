@@ -14,7 +14,7 @@ use Yii;
  * @property string $father
  * @property string $foto
  * @property string $born
- * @property string $sex
+ * @property integer $sex
  * @property string $e_mail
  * @property string $tel
  * @property string $adress
@@ -45,11 +45,10 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'reg_email', 'podpiska'], 'integer'],
-            [['sex', 'password', 'username'], 'required'],
+            [['category_id', 'sex', 'reg_email', 'podpiska'], 'integer'],
+            [['password', 'username'], 'required'],
             [['created_at'], 'safe'],
             [['familie', 'name', 'father', 'foto', 'born', 'e_mail'], 'string', 'max' => 100],
-            [['sex'], 'string', 'max' => 15],
             [['tel'], 'string', 'max' => 11],
             [['adress', 'info', 'auth_key', 'username', 'secret_key', 'date_valid_secret_key'], 'string', 'max' => 255],
             [['password', 'access_token'], 'string', 'max' => 32],
