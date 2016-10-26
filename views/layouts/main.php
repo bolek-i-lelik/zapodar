@@ -138,10 +138,14 @@ Yii::$app->language = 'ru';
             	</li> 
             	<li id="j_carthost" class="hb-but hb-but-cart hb-but-main">
             		<a class="hb-but-action hb-but-hover" id="cart" href="<?= Url::toRoute('/basket', true)?>">
-            			<span id="kzn" class="badge pull-right" style="background:#AACF9D;"><?= Yii::$app->request->cookies['countbasket'] ?></span>
+            			<!--<span id="kzn" class="badge pull-right" style="background:#AACF9D;"><?= Yii::$app->request->cookies['countbasket'] ?></span>-->
                 		<span class="hb-but-wrap">
                     		<img class="hb-but-icon" src="http://buhcomfort.ru/img/bug.png" alt="Корзина">
-                    		<span class="hb-but-text" style="color:#AACF9D;"><b>Корзина</b></span>
+                            <?php if(Yii::$app->user->isGuest):?>
+                                <span class="hb-but-text" style="color:#AACF9D;"><b>Корзина </b></span>
+                            <?php else:?>
+                    		    <span class="hb-but-text" style="color:#AACF9D;"><b>Корзина </b><b><sup><?= Yii::$app->request->cookies['countbasket'] ?></sup></b></span>
+                            <?php endif;?>
                 		</span>
             		</a>
                 	
@@ -157,11 +161,10 @@ Yii::$app->language = 'ru';
 									<span class="hb-but-text" style="color:#AACF9D;"><b>Вход/Регистрация</b></span>
 								</a>
 							<?php else:?>
-								<form class="navbar-form" action="logout" method="post">
-									<input type="hidden" name="_csrf" value="<?php echo Html::csrfMetaTags() ?>">
-                                    <button type="submit" class="btn btn-link">
-                                    Выйти<br/><br/>
-                                    </button>
+
+								<form class="navbar-form" style="height: 50px;" action="/site/logout" method="post">
+                                <img class="hb-but-icon" style="vertical-align: super; "src="<?= Url::toRoute('/img/enter.png', true)?>" >
+									<input type="hidden" name="_csrf" value="<?= Html::csrfMetaTags() ?>"><button type="submit" style="vertical-align: super; color:#AACF9D;" class="btn btn-link"><b>Выйти<br><br></b></button>
 								</form>
 							<?php endif;?>
 						</span>
@@ -185,11 +188,12 @@ Yii::$app->language = 'ru';
 </div>
 
 <footer class="footer footerStyle">
- <div class="row " style="background-color:#064727">
+ <div class="footer-links " style="background-color:#064727">
  	<center>
- 		<div class="col-lg-9">
-      		<div class="col-lg-6">
-      			<center>
+ 		<div class="page-container grid">
+        
+      		<div class="col-2-12 footer-block">
+      			<!--<center>
 
                 	<a href="/">
                     	<span class="hb-but-wrap" style="vertical-align: middle; display: inline-block;">
@@ -198,63 +202,56 @@ Yii::$app->language = 'ru';
                 	</a>
             	</center>
       		</div>
-      		<div class="col-lg-1">
+      		<div class="col-2-12 footer-block">-->
                 <a href="/site/catalog">
-                    <span class="hb-but-wrap">
-                        <span class="hb-but-text" style="color:#AACF9D;"><b>Каталог</b></span>
-                    </span>
+                    <p class="footer-header" style="color:#AACF9D;">
+                        <b>Каталог</b>
+                    </p>
                 </a> 
       		</div>
-      		<div class="col-lg-1"> 
+      		<div class="col-2-12 footer-block"> 
                 <a href="/site/about">
-                    <span class="hb-but-wrap">
-                        <span class="hb-but-text" style="color:#AACF9D;"><b>О нас</b></span>
-                    </span>
+                    <p class="footer-header" style="color:#AACF9D;">
+                        <b>О нас</b>
+                    </p>
                 </a> 
       		</div>
-      		<div class="col-lg-1"> 
+      		<div class="col-2-12 footer-block"> 
                 <a href="/new/">
-                    <span class="hb-but-wrap">
-                        <span class="hb-but-text" style="color:#AACF9D;"><b>Новости</b></span>
-                    </span>
+                    <p class="footer-header" style="color:#AACF9D;"><b>Новости</b>
+                    </p>
                 </a> 
       		</div>
-      		<div class="col-lg-1"> 
+      		<div class="col-2-12 footer-block"> 
                 <a href="/site/action">
-                    <span class="hb-but-wrap">
-                        <span class="hb-but-text" style="color:#AACF9D;"><b>Акции</b></span>
-                    </span>
+                    <p class="footer-header" style="color:#AACF9D;"><b>Акции</b></p>
                 </a> 
       		</div>
-      		<div class="col-lg-1">
+      		<div class="col-2-12 footer-block">
                 <a href="/site/partner">
-                    <span class="hb-but-wrap">
-                        <span class="hb-but-text" style="color:#AACF9D;"><b>Партнерам</b></span>
-                    </span>
+                    <p class="footer-header" style="color:#AACF9D;"><b>Партнерам</b></p>
                 </a> 
       		</div>   
-      		<div class="col-lg-1">  
+      		<div class="col-xs-1">  
                 <a href="/site/contact">
-                    <span class="hb-but-wrap">
-                        <span class="hb-but-text" style="color:#AACF9D;"><b>Контакты</b></span>
-                    </span>
+                    <p class="footer-header" style="color:#AACF9D;"><b>Контакты</b></p>
                 </a> 
-      		</div>     
+      		
+            </div>  
       	</div>
     </center>
-    <div class="col-lg-12">
-		<div class="corp_menu logrus-ajax-load" data-type="header-anonymous-menu">
-			<span class="phone hint hint_right" data-hint="Наш контактный телефон" style="color: #153928;">
-				<i aria-hidden="true"></i>
-				(495) 737-90-22
+
+    <div class="wrapper">
+    <center>
+			<span >
+				(495) 737-90-22     |
 			</span>
-			<span class="phone hint hint_right" style ="width: 500px;">
-				<p>107023, Москва, ул. Большая Семеновская, 49. </p>
+			<span >     107023, Москва, ул. Большая Семеновская, 49.      |
 			</span>
 			<span>
-				Copyright &copy; DEKO Media, 2002 - 2016.
+				      Copyright &copy; DEKO Media, 2002 - 2016.     
 			</span>
-		</div> <br/>
+</center>
 	</div>
   </div>
 </footer>

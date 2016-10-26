@@ -22,8 +22,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'foto')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'born')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'sex')->textInput() ?>
 
     <?= $form->field($model, 'tel')->textInput(['maxlength' => true]) ?>
@@ -32,17 +30,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'info')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'reg_email')->textInput() ?>
-
-    <?= $form->field($model, 'podpiska')->textInput() ?>
-
     <?= $form->field($model, 'auth_key')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'access_token')->textInput(['maxlength' => true]) ?>
 

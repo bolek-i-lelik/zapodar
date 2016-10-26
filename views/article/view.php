@@ -26,7 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ]) ?>
                 </p>
-
+                <?php
+                    $model->text = '<div class="col-lg10">'.$model->text.'</div>';
+                ?>
                 <?= DetailView::widget([
                     'model' => $model,
                     'attributes' => [
@@ -37,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'keywords',
                         'alias',
                         'created_at',
-                        'text',
+                        'text:html',
                         'ishome',
                     ],
                 ]) ?>

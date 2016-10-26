@@ -23,8 +23,6 @@ use mihaildev\ckeditor\CKEditor;
 
     <?= $form->field($model, 'categoryid')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'picture')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'pickup')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'delivery')->textInput(['maxlength' => true]) ?>

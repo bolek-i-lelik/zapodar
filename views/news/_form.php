@@ -1,12 +1,15 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use mihaildev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\News */
 /* @var $form yii\widgets\ActiveForm */
+$request = Yii::$app->request;
+$id = $request->get('id');
 ?>
 
 <div class="news-form">
@@ -37,10 +40,6 @@ use mihaildev\ckeditor\CKEditor;
     
     <?= $form->field($model, 'created_at')->textInput() ?>
 
-    <?= $form->field($model, 'prosmotr')->textInput() ?>
-
-    <?= $form->field($model, 'prev_foto')->fileInput() ?>
-
     <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
@@ -48,5 +47,5 @@ use mihaildev\ckeditor\CKEditor;
     </div>
 
     <?php ActiveForm::end(); ?>
-
+    <a href="<?= Url::toRoute('/news/photo?id='.$id, true)?>"><button class="btn btn-success">Изменить фото</button></a>
 </div>

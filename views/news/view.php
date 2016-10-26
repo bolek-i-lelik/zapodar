@@ -23,10 +23,26 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
-    <?= $model->id ?>
-
-    <?= $model->id ?>
+    <?php 
+        $model->prev_foto = '<img src ="/img/news/'.$model->prev_foto.'" height="250">';
+        //if($model->pokaz == 1){$model->pokaz = 'Опубликовано';}else{$model->pokaz = 'не опубликовано';}
+    ?>
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'id',
+            'title',
+            'name',
+            'description',
+            'keywords',
+            'text:html',
+            'prev_text:html',
+            'created_at',
+            'prosmotr',
+            'prev_foto:html',
+            'alias',
+        ],
+    ]) ?>
 
 </div>
 </div>

@@ -32,46 +32,50 @@ Yii::$app->language = 'ru';
     <h1><?= Html::encode($this->title) ?></h1>
     <div class="row">
 
-    <?php if($tip == 1): ?>
-        <?php foreach($results as $result):?>
-            <div class="progItem col-lg-3">
-                <div style="height: 350px;">
-                <br/>
-                <center><img src="/img/products/<?= $result->picture ?>" height="150">
-                <h3><?= Html::a($result->name, ['category/'.$result->id]) ?></h3></center>
+        <?php if($tip == 1): ?>
+            <?php foreach($results as $result):?>
+                <div class="progItem col-lg-3">
+                    <div style="height: 350px;">
+                        <br/>
+                        <center><img src="/img/products/<?= $result->picture ?>" height="150"></center>
+                    </div>
+                    <div style="height: 350px;"><center><h3><?= Html::a($result->name, ['category/'.$result->id]) ?></h3></center>
+                    </div>
                 </div>
-            </div>
-        <?php endforeach;?>
-    <?php endif;?>
-    <?php if($tip == 2): ?>
-        <?php foreach($models as $model):?>
-            <div class="progItem col-lg-3">
-                <div style="height: 350px;">
-                <br/>
-                <?php $foto = stristr($model->picture, ',', true);?>
-                <?php $fotos = explode(",", $model->picture);?>
-                <?php if(!empty($fotos[0])):?>
-                <center><img src="/img/products/<?= $fotos[0] ?>" height="150">
-                <?php endif;?>
-                <?php if(empty($fotos[0])):?>
-                    <center><img src="/img/products/empty_thumb.jpg" height="100">
-                <?php endif;?>
-                <p><?= $model->name ?></p>
-                <p><?= $model->price ?> руб.</p>
-                <a href="<?= Url::toRoute('/product/'.$model->alias, true)?>"><button class="btn btn-success">подробнее</button></a></center>
-                
+            <?php endforeach;?>
+        <?php endif;?>
+        <?php if($tip == 2): ?>
+            <?php foreach($models as $model):?>
+                <div class="progItem col-lg-3">
+                    <div class = "col-lg-12" style="position:relative;">
+                        <br>
+                        <?php $foto = stristr($model->picture, ',', true);?>
+                        <?php $fotos = explode(",", $model->picture);?>
+                        <?php if(!empty($fotos[0])):?>
+                            <center><img src="/img/products/<?= $fotos[0] ?>" height="150"; width="200"></center>
+                        <?php endif;?>
+                        <?php if(empty($fotos[0])):?>
+                            <center><img src="/img/products/empty_thumb.jpg" height="150"></center>
+                        <?php endif;?>
+                    </div>
+                    <div class = "col-lg-12"><?= $model->name ?><br><br></div>
+                    <div class = "col-lg-12"><b><?= $model->price ?> руб.</b></div>
+                    <div class = "col-lg-12" style="position: absolute; bottom: 35px;"><a href="<?= Url::toRoute('/product/'.$model->alias, true)?>"><button class="btn btn-success" style="font-size: 16px;" >подробнее</button></a></center></div>
+                    
+                    
                 </div>
-            </div>
-        <?php endforeach;?>
-    <?php endif;?>
+            <?php endforeach;?>
+        <?php endif;?>
     </div>
     <center>
-<?php if($tip == 2): ?>    
-<?php echo LinkPager::widget([
-    'pagination' => $results,
-]);?>
-<?php endif;?>
-</center>
+        <?php if($tip == 2): ?>    
+            <?php echo LinkPager::widget([
+                'pagination' => $results,
+            ]);?>
+        <?php else: ?>
+            <div class = "col-lg-12" style="height:20px;"></div>
+        <?php endif;?>
+    </center>
 
 
 

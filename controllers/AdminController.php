@@ -13,7 +13,7 @@ use yii\web\UploadedFile;
 use app\models\Category;
 use app\models\Products;
 use app\models\UploadExcel;
-
+use app\models\Config;
 
 
 class AdminController extends \yii\web\Controller
@@ -256,6 +256,8 @@ class AdminController extends \yii\web\Controller
     {
         $model = new UploadExcel();
 
+        $config_new = Config::find()->one();
+
         if (Yii::$app->request->isPost) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if ($model->upload()) {
@@ -264,7 +266,10 @@ class AdminController extends \yii\web\Controller
             }
         }
 
-        return $this->render('upload', ['model' => $model]);
+        return $this->render('upload', [
+            'model' => $model,
+            'config_new' => $config_new,
+        ]);
     }
 
     public function actionUpdatedb()
@@ -304,6 +309,7 @@ class AdminController extends \yii\web\Controller
                     if (file_exists('img/products/'.$foto)) {
                         //echo "Файл в наличии";
                     } else {
+                        
                         //copy($photo,"img/products/".$foto);
                         //echo 'Файл не загружен<br>';
                     }

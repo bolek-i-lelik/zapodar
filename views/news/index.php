@@ -20,19 +20,46 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'title',
             'name',
-            'description',
-            'keywords',
+            //'description',
+            //'keywords',
             // 'text:ntext',
-             'prev_text',
-             'created_at',
+             'prev_text:html',
+            // 'created_at',
             // 'prosmotr',
-             'prev_foto',
+            [
+                /**
+                 * Название поля модели
+                 */
+                'attribute' => 'prev_foto',
+                /**
+                 * Формат вывода.
+                 * В этом случае мы отображает данные, как передали.
+                 * По умолчанию все данные прогоняются через Html::encode()
+                 */
+                'format' => 'raw',
+                
+                /**
+                 * Переопределяем отображение самих данных.
+                 * Вместо 1 или 0 выводим Yes или No соответственно.
+                 * Попутно оборачиваем результат в span с нужным классом
+                 */
+                'value' => function ($model, $key, $index, $column) {
+                    $active = $model->{$column->attribute};
+                    return '<img src="/img/news/'.$active.'" height="100">';
+                    ;
+                },
+                
+                    
+                
+            ],
+            // 'prev_foto',
             // 'alias',
 
             ['class' => 'yii\grid\ActionColumn'],

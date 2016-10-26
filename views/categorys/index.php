@@ -4,74 +4,34 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
+/* @var $searchModel app\models\CategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Пользователи';
+$this->title = 'Категории';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="row">
-<div class="col-lg-10 col-lg-offset-1">
-<div class="user-index">
+<div class="category-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Добавить пользователя', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить категорию', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
-        'filterModel' => $searchModel,
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
-            //'category_id',
-            [
-                /**
-                 * Название поля модели
-                 */
-                'attribute' => 'category_id',
-                /**
-                 * Формат вывода.
-                 * В этом случае мы отображает данные, как передали.
-                 * По умолчанию все данные прогоняются через Html::encode()
-                 */
-                'format' => 'raw',
-                /**
-                 * Переопределяем отображение фильтра.
-                 * Задаем выпадающий список с заданными значениями вместо поля для ввода
-                 */
-                'filter' => [
-                    0 => 'User',
-                    1 => 'Admin',
-                ],
-                /**
-                 * Переопределяем отображение самих данных.
-                 * Вместо 1 или 0 выводим Yes или No соответственно.
-                 * Попутно оборачиваем результат в span с нужным классом
-                 */
-                'value' => function ($model, $key, $index, $column) {
-                    $active = $model->{$column->attribute} === 1;
-                    return \yii\helpers\Html::tag(
-                        'span',
-                        $active ? 'Admin' : 'User',
-                        [
-                            'class' => 'label label-' . ($active ? 'success' : 'danger'),
-                        ]
-                    );
-                },
-            ],
-            'familie',
+            'id',
             'name',
-            //'father',
-            // 'foto',
-            // 'born',
-            //'sex',
+            'parent',
             [
                 /**
                  * Название поля модели
                  */
-                'attribute' => 'sex',
+                'attribute' => 'pokaz',
                 /**
                  * Формат вывода.
                  * В этом случае мы отображает данные, как передали.
@@ -83,8 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
                  * Задаем выпадающий список с заданными значениями вместо поля для ввода
                  */
                 'filter' => [
-                    0 => 'Мужчина',
-                    1 => 'Женщина',
+                    0 => 'No',
+                    1 => 'Yes',
                 ],
                 /**
                  * Переопределяем отображение самих данных.
@@ -95,28 +55,43 @@ $this->params['breadcrumbs'][] = $this->title;
                     $active = $model->{$column->attribute} === 1;
                     return \yii\helpers\Html::tag(
                         'span',
-                        $active ? 'Женщина' : 'Мужчина',
+                        $active ? 'Yes' : 'No',
                         [
                             'class' => 'label label-' . ($active ? 'success' : 'danger'),
                         ]
                     );
                 },
             ],
-            'e_mail',
-            'tel',
-            //'adress',
-            // 'info',
-            // 'password',
-            // 'reg_email:email',
-            // 'podpiska',
-            // 'auth_key',
-            //'created_at',
-            // 'username',
-            // 'access_token',
+            //'pokaz',
+            
+            [
+                /**
+                 * Название поля модели
+                 */
+                'attribute' => 'picture',
+                /**
+                 * Формат вывода.
+                 * В этом случае мы отображает данные, как передали.
+                 * По умолчанию все данные прогоняются через Html::encode()
+                 */
+                'format' => 'raw',
+                
+                /**
+                 * Переопределяем отображение самих данных.
+                 * Вместо 1 или 0 выводим Yes или No соответственно.
+                 * Попутно оборачиваем результат в span с нужным классом
+                 */
+                'value' => function ($model, $key, $index, $column) {
+                    $active = $model->{$column->attribute};
+                    return '<img src="/img/products/'.$active.'" height="100">';
+                    ;
+                },
+                
+                    
+                
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-</div>
-</div>
 </div>

@@ -3,19 +3,21 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\User;
-use yii\data\ActiveDataProvider;
+use app\models\Messages;
+use app\models\MessagesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use app\models\UserSearch;
+use app\controllers\DostupController;
+use app\models\User;
 
 /**
- * UserController implements the CRUD actions for User model.
+ * MessagesController implements the CRUD actions for Messages model.
  */
-class UserController extends Controller
+class MessagesController extends Controller
 {
+
     public $layout = 'admin';
     /**
      * @inheritdoc
@@ -23,7 +25,7 @@ class UserController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
+        'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['logout', 'index', 'view', 'create', 'update', 'delete'],
                 'rules' => [
@@ -68,33 +70,22 @@ class UserController extends Controller
         ];
     }
 
-    public $user_id;
-
-    public function getUserId(){
-        $user_id = Yii::$app->user->identity->id;
-        return $user_id;
-    }
-
-    public function userDostup($id){
-        $dostup = User::find('category_id')->where(['id'=>$id])->one();
-        if($dostup->category_id != 1){
-            return $this->redirect('site/index');
-        }
-    }
-
     /**
-     * Lists all User models.
+     * Lists all Messages models.
      * @return mixed
      */
     public function actionIndex()
     {
-
         //Получаем id юзера
-        $idu = $this->getUserId();
+        $idu = DostupController::getUserId();
         //Проверяем права на вход в админку
-        $this->userDostup($idu);
+        //DostupController::userDostup($id);
+        $dostup = User::find('category_id')->where(['id'=>$idu])->one();
+        if($dostup->category_id != 1){
+            return $this->redirect('/');
+        }
 
-        $searchModel = new UserSearch();
+        $searchModel = new MessagesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -104,7 +95,7 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a single User model.
+     * Displays a single Messages model.
      * @param integer $id
      * @return mixed
      */
@@ -112,9 +103,9 @@ class UserController extends Controller
     {
 
         //Получаем id юзера
-        $idu = $this->getUserId();
+        $idu = DostupController::getUserId();
         //Проверяем права на вход в админку
-        $this->userDostup($idu);
+        DostupController::userDostup($idu);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -122,7 +113,7 @@ class UserController extends Controller
     }
 
     /**
-     * Creates a new User model.
+     * Creates a new Messages model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
@@ -130,11 +121,11 @@ class UserController extends Controller
     {
 
         //Получаем id юзера
-        $idu = $this->getUserId();
+        $idu = DostupController::getUserId();
         //Проверяем права на вход в админку
-        $this->userDostup($idu);
+        DostupController::userDostup($idu);
 
-        $model = new User();
+        $model = new Messages();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -146,7 +137,7 @@ class UserController extends Controller
     }
 
     /**
-     * Updates an existing User model.
+     * Updates an existing Messages model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -155,9 +146,9 @@ class UserController extends Controller
     {
 
         //Получаем id юзера
-        $idu = $this->getUserId();
+        $idu = DostupController::getUserId();
         //Проверяем права на вход в админку
-        $this->userDostup($idu);
+        DostupController::userDostup($idu);
 
         $model = $this->findModel($id);
 
@@ -171,7 +162,7 @@ class UserController extends Controller
     }
 
     /**
-     * Deletes an existing User model.
+     * Deletes an existing Messages model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -180,9 +171,9 @@ class UserController extends Controller
     {
 
         //Получаем id юзера
-        $idu = $this->getUserId();
+        $idu = DostupController::getUserId();
         //Проверяем права на вход в админку
-        $this->userDostup($idu);
+        DostupController::userDostup($idu);
 
         $this->findModel($id)->delete();
 
@@ -190,22 +181,18 @@ class UserController extends Controller
     }
 
     /**
-     * Finds the User model based on its primary key value.
+     * Finds the Messages model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return User the loaded model
+     * @return Messages the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = User::findOne($id)) !== null) {
+        if (($model = Messages::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-
-    public function getCountUsers(){
-        $count_users = $this->find()->count();
     }
 }

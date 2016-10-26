@@ -24,7 +24,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+    <?php
+        $fotos = $model->picture;
+        $fotos = explode(",", $model->picture);
+        $fotosi = '';
+        foreach ($fotos as $foto) {
+            $fotosi .= '<img src="/img/products/'.$foto.'" width="550"><br/>';
+        }
+        $model->picture = $fotosi;
+    ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -33,11 +41,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'price',
             'currencyid',
             'categoryid',
-            'picture',
+            'picture:html',
             'pickup',
             'delivery',
             'name',
-            'description:ntext',
+            'description:html',
             'sales_notes',
             'group_id',
             'params',

@@ -6,6 +6,7 @@ a,abbr,acronym,address,applet,b,big,blockquote,body,caption,center,cite,code,dd,
     font-size:100%;
     background:0 0
 }
+
 ol,ul,ul li {
     list-style:none
 }
@@ -29,6 +30,7 @@ table {
 strong {
     font-weight:700
 }
+
 *,:after,:before {
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
@@ -66,7 +68,12 @@ P small {
     line-height:normal!important
 }
 a {
-    color:#AACF9D
+    color: #064727;
+}
+sup 
+{
+    color:#AACF9D; 
+    background: #000;
 }
 a.dashed {
     text-decoration:none;
@@ -5140,7 +5147,8 @@ input.hide_check {
     z-index:900;
     -webkit-transition:all .2s;
     -moz-transition:all .2s;
-    transition:all .2s
+    transition:all .2s;
+    color:#AACF9D;
 }
 .header .page-container {
     padding:0
@@ -5160,6 +5168,10 @@ input.hide_check {
     color:#fff;
     -webkit-font-smoothing:antialiased;
     text-transform:uppercase
+}
+footer .hb-but-text
+{
+    display: -moz-box;
 }
 .hb-items {
     position:relative;
@@ -5405,7 +5417,11 @@ input.hide_check {
     .hb-mod {
         width:100%
     }
+        .footer {
+        position:relative
+    }
 }
+
 .hb-but-cart .hb-but-wrap {
     text-align:left;
     white-space:nowrap
@@ -8677,7 +8693,7 @@ h1 .btn {
 }
 .footer-links {
     background:#38444a;
-    padding:40px 0 40px 0
+    padding:10px 0 10px 0
 }
 .footer-block li {
     padding-top:1px;
@@ -9673,6 +9689,17 @@ box-sizing: border-box;
 border-radius: 5px;
 box-shadow: 0 0 30px rgba(0,0,0,.2);
 min-height: 350px;
+max-height: 500px;
+font-size: 16px;
+}
+.progItemMain {
+border: 2px solid rgba(0,0,0, 0.1);
+box-sizing: border-box;
+border-radius: 5px;
+box-shadow: 0 0 30px rgba(0,0,0,.2);
+min-height: 350px;
+max-height: 500px;
+font-size: 15px;
 }
 .progItem .cach {
     position: absolute; bottom: 0;
@@ -9728,10 +9755,129 @@ color:#064727;
 {
     font-family: 'Marck Script', cursive; 
     font-size: 20pt;
+    
+}
+.zapodarCatalog a 
+{
+    color: #064727;
 }
 
 .mainPic
 {
     width: 600px;
-    height: 600px;
+    height: 500px;
+}
+
+.icon16 {
+    background-image: url(img/ico.png);
+    background-repeat: no-repeat;
+    background-size: auto;
+    width: 19px;
+    height: 19px;
+    margin: 0.1em 10px 0 0;
+}
+.icon16.stock-green {
+    background-position: -5px -114px;
+}
+* i.icon16 {
+    text-decoration: none !important;
+    vertical-align: top;
+    margin: 0.2em 0.25em 0 0;
+}
+i.icon16 {
+    background-repeat: no-repeat;
+    height: 28px;
+    width: 28px;
+    display: inline-block;
+    text-indent: -9999px;
+    text-decoration: none !important;
+    background-image: url("/img/img.png");
+    background-size: 260px 160px;
+}
+.stocks strong {
+    padding: 7px 20px 9px 10px;
+    display: inline-block;
+    font-weight: 700;
+
+font-size: 20pt;
+background-color: #eaf5ef;
+}
+
+.stocks {
+    margin: 20px 0;
+    font-size: 1em;
+    color: #4f4f4f;
+}
+.product_tabs {
+    margin-top: 40px;
+}
+.tabs_switcher {
+    position: relative;
+}
+.tabs_switcher a.active {
+    background-color: #ebebeb;
+    border-radius: 6px 6px 0 0;
+    color: #000;
+    box-shadow: 0 -2px 2px 1px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 15;
+}
+.tabs_switcher a {
+    font-size: 18px;
+    padding: 11px 22px 14px;
+    text-decoration: none;
+    display: inline-block;
+    color: #828282;
+}
+.tabs_switcher a.active span {
+    border-bottom: 0;
+}
+.tabs_switcher a span {
+    border-bottom: 1px dotted #828282;
+    display: block;
+}
+.tabs_switcher a {
+    font-size: 18px;
+    padding: 11px 22px 14px;
+    text-decoration: none;
+    display: inline-block;
+    color: #828282;
+}
+.tabs_switcher a span {
+    border-bottom: 1px dotted #828282;
+    display: block;
+}
+.tab_content {
+    position: relative;
+    top: -1px;
+}
+.tabs.active {
+    display: block;
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
+}
+.tabs {
+    padding: 25px 20px;
+    position: relative;
+    z-index: 10;
+    display: none;
+}
+table.features {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+table.features td.name {
+    min-width: 145px;
+    color: #777;
+    vertical-align: top;
+}
+table.features td {
+    padding: 8px 15px;
+    border: none;
+}
+.site-about
+{
+    min-height: 650px;
+}
+.site-contact{
+ min-height: 650px;   
 }

@@ -127,6 +127,14 @@ function sendMessage(){
 			console.log('Сообщение отправлено');
 			elm = document.getElementById('resMessage');
 			elm.innerHTML = res;
+			adgj = document.getElementById('name');
+			adgj.value = '';
+			sfhk = document.getElementById('email');
+			sfhk.value = '';
+			xvnm = document.getElementById('town');
+			xvnm.value = '';
+			wqretyiu = document.getElementById('text');
+			wqretyiu.value = '';
 		},
 		error: function(){
 			console.log('Сообщение не отправлено');

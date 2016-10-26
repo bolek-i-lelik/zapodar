@@ -65,6 +65,7 @@ $config = [
             'message' => 'site/message',
             'search' => 'site/search',
             'logout' => 'site/logout',
+            ''
             ],
         ],
         

@@ -67,7 +67,7 @@ $this->title = 'Подарки';
             <!--<div class="col-lg-2"></div>-->
             <div name ="article" class ="col-lg-12">
                 <center><p class="art zapodarTitle" ><?= $article['name'] ?></p></center>
-                <p class="artDescription"> <?= $article['description'] ?></p>
+                <p class="artDescription"> <?= $article['text'] ?></p>
 
             </div>
             <div class="col-lg-1"></div>
@@ -134,24 +134,27 @@ $this->title = 'Подарки';
     </div>
     <div class="col-lg-4"><br><hr></div>
 </div>
-<div class="blockProd col-lg-12">
+<div class="blockProd col-lg-12" >
     <div class="col-lg-1"></div>
     <?php foreach($products as $prod):?>
-        <div class="progItem col-lg-2">
+        <div class="progItemMain col-lg-2" style="font-syze: 14px;">
             <br/>
             <div class="prodImg">
                 <a href="/product/<?= $prod['alias'] ?>" target="_self">
-                    <img src="/img/product/<?= $prod['picture'] ?>" alt= "<?= $prod['name'] ?>">
+                    <img src="/img/products/<?= $prod['picture'] ?>" alt= "<?= $prod['name'] ?>">
                 </a>
             </div>
             <br/>
                 
             <div><?= $prod['name'] ?></div>
             <div><br></div>
-            <div class="cach">
-                <a href="/product/<?= $prod['alias'] ?>" id="<?= $prod['id'] ?>" name="<?= $prod['price']?> руб." onmouseover="show_buy_text(this);" onmouseleave="show_buy_text_end(this);">
+            <div><b><?= $prod['price']?> руб.</b></div>
+            <div><br></div>
+            <div style="position: absolute; bottom: 10px;">
+                <!--<a href="/product/<?= $prod['alias'] ?>" id="<?= $prod['id'] ?>" name="<?= $prod['price']?> руб." onmouseover="show_buy_text(this);" onmouseleave="show_buy_text_end(this);">
                     <b><?= $prod['price']?> руб.</b>
-                </a>
+                </a>-->
+                <a href="<?= Url::toRoute('/product/'.$prod['alias'], true)?>"><button class="btn btn-success" style="font-size: 16px;" >подробнее</button></a>
             </div>
         </div>
     <?php endforeach;?>

@@ -28,14 +28,6 @@ AdminAsset::register($this);
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
     </head>
     <body  class="skin-blue">
     <?php $this->beginBody() ?>
@@ -100,24 +92,24 @@ AdminAsset::register($this);
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="" style="margin-left: 25px; margin-bottom:5px;">
-                                <li><a href="<?= Url::toRoute('/news', true)?>"><i class="fa fa-angle-double-right"></i> Новости</a></li>
+                                <li><a href="<?= Url::toRoute('/news/index', true)?>"><i class="fa fa-angle-double-right"></i> Новости</a></li>
                                 <li><a href="<?= Url::toRoute('/article', true)?>"><i class="fa fa-angle-double-right"></i> Прочие</a></li>
                                 
                             </ul>
                         </li>
                         <li>
-                            <a href="<?= Url::toRoute('/category', true)?>">
+                            <a href="<?= Url::toRoute('/categorys', true)?>">
                                 <i class="fa fa-th"></i> <span>Категории</span>
                             </a>
                         </li>
-                        <li class="treeview">
+                        <li class="">
                             <a href="#">
                                 <i class="fa fa-bar-chart-o"></i>
                                 <span>Продукция</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i> Загрузить</a></li>
+                            <ul class="" style="margin-left: 25px; margin-bottom:5px;">
+                                <li><a href="<?= Url::toRoute('/admin/upload', true)?>"><i class="fa fa-angle-double-right"></i> Загрузить</a></li>
                                 <li><a href="<?= Url::toRoute('/products', true)?>"><i class="fa fa-angle-double-right"></i> Просмотреть</a></li>
                                 
                             </ul>
@@ -131,25 +123,11 @@ AdminAsset::register($this);
                             
                         </li>
                         <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-edit"></i> <span>Контакты</span>
-                                <i class="fa fa-angle-left pull-right"></i>
+                           <a href="<?= Url::toRoute('/slider', true)?>">
+                                <i class="fa fa-laptop"></i>
+                                <span>Слайдер</span>
+                                
                             </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/forms/general.html"><i class="fa fa-angle-double-right"></i> General Elements</a></li>
-                                <li><a href="pages/forms/advanced.html"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
-                                <li><a href="pages/forms/editors.html"><i class="fa fa-angle-double-right"></i> Editors</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-table"></i> <span>Обращения</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/tables/simple.html"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
-                                <li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Data tables</a></li>
-                            </ul>
                         </li>
                         <li>
                             <a href="pages/calendar.html">
@@ -159,25 +137,11 @@ AdminAsset::register($this);
                         </li>
                         <li>
                             <a href="pages/mailbox.html">
-                                <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                                <i class="fa fa-envelope"></i> <span>Обращения пользователей</span>
                                 
                             </a>
                         </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-folder"></i> <span>Examples</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/examples/invoice.html"><i class="fa fa-angle-double-right"></i> Invoice</a></li>
-                                <li><a href="pages/examples/login.html"><i class="fa fa-angle-double-right"></i> Login</a></li>
-                                <li><a href="pages/examples/register.html"><i class="fa fa-angle-double-right"></i> Register</a></li>
-                                <li><a href="pages/examples/lockscreen.html"><i class="fa fa-angle-double-right"></i> Lockscreen</a></li>
-                                <li><a href="pages/examples/404.html"><i class="fa fa-angle-double-right"></i> 404 Error</a></li>
-                                <li><a href="pages/examples/500.html"><i class="fa fa-angle-double-right"></i> 500 Error</a></li>
-                                <li><a href="pages/examples/blank.html"><i class="fa fa-angle-double-right"></i> Blank Page</a></li>
-                            </ul>
-                        </li>
+                        
                     </ul>
                 </section>
                 <!-- /.sidebar -->

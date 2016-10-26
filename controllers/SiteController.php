@@ -293,8 +293,8 @@ class SiteController extends Controller
         
         $subcategory = Category::find()->where(['parent' => $id])->one();
 
-        if($subcategory = Category::find()->where(['parent' => $id])->one()){
-            $results = Category::find()->where(['parent'=>$id])->all();
+        if($subcategory = Category::find()->where(['parent' => $id])->andWhere(['pokaz'=>1])->one()){
+            $results = Category::find()->where(['parent'=>$id])->andWhere(['pokaz'=>1])->all();
             $tip = 1;
             $models = 0;
         }

@@ -10,6 +10,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\controllers\DostupController;
 use yii\filters\AccessControl;
+use app\models\NewsSearch;
+use yii\web\UploadedFile;
+use app\models\UploadNewNewsFile;
 
 /**
  * NewsController implements the CRUD actions for News model.
@@ -79,12 +82,14 @@ class NewsController extends Controller
         //Проверяем права на вход в админку
         DostupController::userDostup($idu);
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => News::find(),
-        ]);
+        $searchModel = new NewsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 
@@ -184,5 +189,31 @@ class NewsController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionPhoto()
+    {
+        $request = Yii::$app->request;
+        $id = htmlspecialchars(trim($request->get('id')));
+
+        $new = News::find()->where(['id'=>$id])->one();
+        $picture = $new->prev_foto;
+
+        $model = new UploadNewNewsFile();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload()) {
+                $new->prev_foto = $model->imageFile->name;
+                $new->save();
+                return $this->redirect('/news/view?id='.$id);
+                
+            }
+        }        
+
+        return $this->render('photo',[
+            'model' => $model,
+            'picture' => $picture, 
+        ]);
     }
 }

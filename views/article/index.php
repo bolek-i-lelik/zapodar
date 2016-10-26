@@ -29,10 +29,44 @@ $this->params['breadcrumbs'][] = $this->title;
                         'title',
                         'description',
                         'keywords',
-                        'text',
+                        'text:html',
                         'alias',
-                        'created_at',
-                        'ishome',
+                        //'created_at',
+                        [
+                            /**
+                             * Название поля модели
+                             */
+                            'attribute' => 'ishome',
+                            /**
+                             * Формат вывода.
+                             * В этом случае мы отображает данные, как передали.
+                             * По умолчанию все данные прогоняются через Html::encode()
+                             */
+                            'format' => 'raw',
+                            /**
+                             * Переопределяем отображение фильтра.
+                             * Задаем выпадающий список с заданными значениями вместо поля для ввода
+                             */
+                            'filter' => [
+                                0 => 'No',
+                                1 => 'Yes',
+                            ],
+                            /**
+                             * Переопределяем отображение самих данных.
+                             * Вместо 1 или 0 выводим Yes или No соответственно.
+                             * Попутно оборачиваем результат в span с нужным классом
+                             */
+                            'value' => function ($model, $key, $index, $column) {
+                                $active = $model->{$column->attribute} === 1;
+                                return \yii\helpers\Html::tag(
+                                    'span',
+                                    $active ? 'Yes' : 'No',
+                                    [
+                                        'class' => 'label label-' . ($active ? 'success' : 'danger'),
+                                    ]
+                                );
+                            },
+                        ],
                         ['class' => 'yii\grid\ActionColumn'],
                     ],
                 ]); ?>
