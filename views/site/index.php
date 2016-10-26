@@ -67,7 +67,7 @@ $this->title = 'Подарки';
             <!--<div class="col-lg-2"></div>-->
             <div name ="article" class ="col-lg-12">
                 <center><p class="art zapodarTitle" ><?= $article['name'] ?></p></center>
-                <p class="artDescription"> <?= $article['text'] ?></p>
+                <p class="artDescription"> <?= $article['description'] ?></p>
 
             </div>
             <div class="col-lg-1"></div>
@@ -135,7 +135,7 @@ $this->title = 'Подарки';
     <div class="col-lg-4"><br><hr></div>
 </div>
 <div class="blockProd col-lg-12" >
-    <div class="col-lg-1"></div>
+    
     <?php foreach($products as $prod):?>
         <div class="progItemMain col-lg-2" style="font-syze: 14px;">
             <br/>
@@ -159,7 +159,7 @@ $this->title = 'Подарки';
         </div>
     <?php endforeach;?>
 
-    <div class="col-lg-1"></div>
+    
 </div>
 <!--</div>-->
 

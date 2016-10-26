@@ -9691,6 +9691,7 @@ box-shadow: 0 0 30px rgba(0,0,0,.2);
 min-height: 350px;
 max-height: 500px;
 font-size: 16px;
+
 }
 .progItemMain {
 border: 2px solid rgba(0,0,0, 0.1);
@@ -9700,6 +9701,7 @@ box-shadow: 0 0 30px rgba(0,0,0,.2);
 min-height: 350px;
 max-height: 500px;
 font-size: 15px;
+margin: 18px;
 }
 .progItem .cach {
     position: absolute; bottom: 0;
@@ -9880,4 +9882,14 @@ table.features td {
 }
 .site-contact{
  min-height: 650px;   
+}
+
+.stecTov
+{
+    font-size: 15px;
+width: 18%;
+padding: 15px;
+display: -moz-deck;
+position: static;
+margin: 10px;
 }

@@ -32,21 +32,22 @@ $fotos = explode(",", $product->picture);
 
     	<div class="col-lg-7">
             <div class="mainPic">
-            <center>
-    		  <img id="mainPic" style="max-height: 450px;" src="/img/products/<?= $fotos[0] ?>" height="50" alt="" class="img-thumbnail">
-              </center>
-            <br/>
+            	<center>
+    		  		<img id="mainPic" style="max-height: 450px;" src="/img/products/<?= $fotos[0] ?>" height="50" alt="" class="img-thumbnail">
+              	</center>
+            	<br>
         		<center>
-                 <?php if(count($fotos)>2):?>   
-            		<?php if(isset($fotos[1])):?>
-                        <img src="/img/products/<?= $fotos[0] ?>" alt="" height="50" onclick = "f_zoom(src);">
-            			<?php foreach ($fotos as $key => $value): ?>
-            				<?php if($key>0 && $value != ''): ?>
-            					<img src="/img/products/<?= $value ?>" alt="" height="50" onclick = "f_zoom(src);">
-            				<?php endif;?>	
-            			<?php endforeach ?>
-            		<?php endif;?>
-                <?php endif?>
+        			<p><?php count($fotos) ?></p>
+                 	<?php if(count($fotos)>2):?>   
+            			<?php if(isset($fotos[1])):?>
+                        	<img src="/img/products/<?= $fotos[0] ?>" alt="" height="50" onclick = "f_zoom(src);">
+            					<?php foreach ($fotos as $key => $value): ?>
+            						<?php if($key>0 && $value != ''): ?>
+            							<img src="/img/products/<?= $value ?>" alt="" height="50" onclick = "f_zoom(src);">
+            						<?php endif;?>	
+            					<?php endforeach ?>
+            			<?php endif;?>
+                	<?php endif?>
         		</center>
             </div>
             
@@ -86,71 +87,111 @@ $fotos = explode(",", $product->picture);
             
     	</div>
     </div>
-                <div class="row">
+    <div class="row">
                     
-                    <div class="product_tabs">
-                        <div class="tabs_switcher">
-                            <a  id="a_tab1" class="active" href="#tab1" onclick="clic_tabs_switcher(this);"><span>Описание</span></a>
-                            <a id="a_tab2" class="" href="#tab2" onclick="clic_tabs_switcher(this);"><span>Характеристики</span></a>
-                        </div>
+    	<div class="product_tabs">
+        	<div class="tabs_switcher">
+            	<a  id="a_tab1" class="active" href="#tab1" onclick="clic_tabs_switcher(this);"><span>Описание</span></a>
+            	<a id="a_tab2" class="" href="#tab2" onclick="clic_tabs_switcher(this);"><span>Характеристики</span></a>
+            </div>
 
-                        <div class="tab_content" style="font-size: 16px;">
-                            <div id="tab1" class="tabs active">
-                                <?= $product->description?>
-                            </div>
+            <div class="tab_content" style="font-size: 16px;">
+            	<div id="tab1" class="tabs active">
+                	<?= $product->description?>
+                </div>
 
-                            <div id="tab2" class="tabs ">
-                                <?php $paramArr = explode("|", $product->params); ?>
-                                    <?php foreach($paramArr as $prm): ?>
-                                        <?php if ($prm != ",," and $prm !=""): ?>
-                                            <?php $prm = explode("," , $prm); ?>
-                                            <?php $prmText = "<b>".$prm[0]."</b>".": ".$prm[1]." ".$prm[2]."<br>" ?>
-                                        <?php endif ?>
-                                    <?php endforeach ?>
-                                <?php if(isset($prmText)){ echo $prmText;} ?>
-                            </div>
+                <div id="tab2" class="tabs ">
+                	<?php $paramArr = explode("|", $product->params); ?>
+                    	<?php foreach($paramArr as $prm): ?>
+                        	<?php if ($prm != ",," and $prm !=""): ?>
+                            	<?php $prm = explode("," , $prm); ?>
+                                <?php $prmText = "<b>".$prm[0]."</b>".": ".$prm[1]." ".$prm[2]."<br>" ?>
+                            <?php endif ?>
+                        <?php endforeach ?>
+                        <?php if(isset($prmText)){ echo $prmText;} ?>
+                </div>
 
-                        </div>
-                    </div>
+            </div>
+        </div>
                     
-                </div><br><br>
-                <div class="body-content blockNews col-lg-12">
-                    <div class="col-lg-4"><br><hr></div>
-                    <div class="col-lg-4">
-                        <span>
-                            <center>
-                                <p class="zapodarTitle">Популярные товары:</p>
-                            </center>
-                        </span>
-                    </div>
-                    <div class="col-lg-4"><br><hr></div>
-                </div>
-                <div class="blockProd col-lg-12" >
-                    <?php foreach($products as $prod):?>
-                        <div class="progItemMain col-lg-2" style="font-syze: 14px;">
-                            <br/>
-                            <div class="prodImg">
-                                <a href="/product/<?= $prod['alias'] ?>" target="_self">
-                                    <img src="/img/products/<?= $prod['picture'] ?>" alt= "<?= $prod['name'] ?>">
-                                </a>
-                            </div>
-                            <br/>
-                                
-                            <div><?= $prod['name'] ?></div>
-                            <div><br></div>
-                            <div><b><?= $prod['price']?> руб.</b></div>
-                            <div><br></div>
-                            <div style="position: absolute; bottom: 10px;">
-                                
-                                <a href="<?= Url::toRoute('/product/'.$prod['alias'], true)?>"><button class="btn btn-success" style="font-size: 16px;" >подробнее</button></a>
-                            </div>
-                        </div>
-                    <?php endforeach;?>
+    </div><br><br>
+    <div class="row">
+	    <!--<div class="body-content blockNews col-lg-12">
+	    	<div class="col-lg-4"><br><hr></div>
+	        <div class="col-lg-4">
+	        	<span>
+	            	<center>
+	                	<p class="zapodarTitle">Популярные товары:</p>
+	                </center>
+	            </span>
+	        </div>
+	        <div class="col-lg-4"><br><hr></div>
+	    </div>
+	    <div class="col-lg-12" >
+	    	<?php foreach($products as $prod):?>
+	        	<div class="progItemMain stecTov col-lg-1-5" style="font-syze: 14px;">
+	            	<br>
+	                <div class="prodImg">
+	                	<a href="/product/<?= $prod['alias'] ?>" target="_self">
+	                    	<img src="/img/products/<?= $prod['picture'] ?>" alt= "<?= $prod['name'] ?>">
+	                    </a>
+	                </div>
+	                <br>
+	                                
+	                <div><?= $prod['name'] ?></div>
+	                <div><br></div>
+	                <div><b><?= $prod['price']?> руб.</b></div>
+	                <div><br></div>
+	                <div style="bottom: 25px; position: absolute;">
+	                                
+	                	<a href="<?= Url::toRoute('/product/'.$prod['alias'], true)?>"><button class="btn btn-success" style="font-size: 16px;" >подробнее</button></a>
+	                </div>
+	            </div>
+	        <?php endforeach;?>
 
-                    <div class="col-lg-1"></div>
-                </div>
-                <div class="col-lg-12" ><br><br></div>
-    <div id="korzina"></div>
+	                    
+	    </div>
+	    <div class="col-lg-12" ><br><br></div>
+	    <div id="korzina"></div>-->
+	    <div class="body-content blockNews col-lg-12">
+		    <div class="col-lg-4"><br><hr></div>
+		    <div class="col-lg-4">
+		        <span>
+		            <center>
+		                <p class="zapodarTitle">Популярные товары:</p>
+		            </center>
+		        </span>
+		    </div>
+		    <div class="col-lg-4"><br><hr></div>
+		</div>
+		<div class="blockProd col-lg-12" >
+		    <!--<div class="col-lg-1"></div>-->
+		    <?php foreach($products as $prod):?>
+		        <div class="progItemMain col-lg-2" style="font-syze: 14px;">
+		            <br/>
+		            <div class="prodImg">
+		                <a href="/product/<?= $prod['alias'] ?>" target="_self">
+		                    <img src="/img/products/<?= $prod['picture'] ?>" alt= "<?= $prod['name'] ?>">
+		                </a>
+		            </div>
+		            <br/>
+		                
+		            <div><?= $prod['name'] ?></div>
+		            <div><br></div>
+		            <div><b><?= $prod['price']?> руб.</b></div>
+		            <div><br></div>
+		            <div style="position: absolute; bottom: 10px;">
+		                <!--<a href="/product/<?= $prod['alias'] ?>" id="<?= $prod['id'] ?>" name="<?= $prod['price']?> руб." onmouseover="show_buy_text(this);" onmouseleave="show_buy_text_end(this);">
+		                    <b><?= $prod['price']?> руб.</b>
+		                </a>-->
+		                <a href="<?= Url::toRoute('/product/'.$prod['alias'], true)?>"><button class="btn btn-success" style="font-size: 16px;" >подробнее</button></a>
+		            </div>
+		        </div>
+		    <?php endforeach;?>
+
+		    <!--<div class="col-lg-1"></div>-->
+		</div>
+	</div>
 </div>
 
 <script type="text/javascript">
