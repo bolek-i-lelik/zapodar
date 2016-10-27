@@ -4,6 +4,7 @@ use Yii;
 use app\models\Products;
 use app\models\Basket;
 use app\models\Category;
+
 class ProductController extends \yii\web\Controller
 {
     public function actionIndex()

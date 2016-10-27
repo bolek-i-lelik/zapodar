@@ -41,41 +41,8 @@ AdminAsset::register($this);
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-                <div class="navbar-right">
-                    <ul class="nav navbar-nav">
-                        
-                        <!-- User Account: style can be found in dropdown.less -->
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="glyphicon glyphicon-user"></i>
-                                <span>Jane Doe <i class="caret"></i></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- User image -->
-                                <li class="user-header bg-light-blue">
-                                    <img src="<?= Url::toRoute('/img/avatar3.png', true)?>" class="img-circle" alt="User Image" />
-                                    <p>
-                                        Jane Doe - Web Developer
-                                        <small>Member since Nov. 2012</small>
-                                    </p>
-                                </li>
-                                
-                                <li class="user-footer">
-                                    
-                                    <div class="pull-right">
-                                        <a href="site/logout" class="btn btn-default btn-flat">Выйти</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                
+                
             </nav>
         </header>
         <div class="wrapper">
@@ -136,12 +103,29 @@ AdminAsset::register($this);
                             </a>
                         </li>
                         <li>
-                            <a href="<?= Url::toRoute('/messages/index', true)?>">
-                                <i class="fa fa-envelope"></i> <span>Обращения пользователей</span>
+                            <a href="<?= Url::toRoute('/hlep/index', true)?>">
+                                <i class="fa fa-bar-chart-o"></i> <span>Вопрос-ответ</span>
                                 
                             </a>
                         </li>
-                        
+                        <li class="">
+                            <a href="#">
+                                <i class="fa fa-envelope"></i>
+                                <span>Обращения пользователей</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="" style="margin-left: 25px; margin-bottom:5px;">
+                                <li><a href="<?= Url::toRoute('/messages/index', true)?>"><i class="fa fa-angle-double-right"></i> Из шапки</a></li>
+                                <li><a href="<?= Url::toRoute('/question/index', true)?>"><i class="fa fa-angle-double-right"></i> Из корзины</a></li>
+                                
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="<?= Url::toRoute('/statistic/index', true)?>">
+                                <i class="fa fa-bar-chart-o"></i> <span>Счётчики статистики</span>
+                                
+                            </a>
+                        </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->

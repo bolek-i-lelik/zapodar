@@ -14,6 +14,7 @@ use app\models\Category;
 use app\models\Products;
 use app\models\UploadExcel;
 use app\models\Config;
+use app\models\Zakaz;
 
 
 class AdminController extends \yii\web\Controller
@@ -27,7 +28,7 @@ class AdminController extends \yii\web\Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'index', 'articles', 'uploadXML'],
+                'only' => ['logout', 'index', 'articles', 'uploadXML', 'catfoto', 'updatedb', 'upload', 'uploadproducts', 'uploadxmlfromnet', 'uploadxml'],
                 'rules' => [
                     [
                         'actions' => ['logout'],
@@ -49,6 +50,32 @@ class AdminController extends \yii\web\Controller
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+                    [
+                        'actions' => ['catfoto'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['updatedb'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['upload'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['uploadproducts'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['uploadxmlfromnet'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+
                 ],
             ],
             'verbs' => [
@@ -75,8 +102,15 @@ class AdminController extends \yii\web\Controller
 
     	$count_users = User::find()->count();
 
+        $count_buy = Zakaz::find()->where(['sost'=>1])->count();
+        $count_buy_in_work = Zakaz::find()->where(['sost'=>2])->count();
+        $count_buy_yes = Zakaz::find()->where(['sost'=>3])->count();
+
     	return $this->render('index',[
     		'count_users' => $count_users,
+            'count_buy' => $count_buy,
+            'count_buy_in_work' => $count_buy_in_work,
+            'count_buy_yes' => $count_buy_yes,
     	]);
     }
 
@@ -254,6 +288,11 @@ class AdminController extends \yii\web\Controller
 
     public function actionUpload()
     {
+        //Получаем id юзера
+        $id = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($id);
+
         $model = new UploadExcel();
 
         $config_new = Config::find()->one();
@@ -274,6 +313,11 @@ class AdminController extends \yii\web\Controller
 
     public function actionUpdatedb()
     {
+
+        //Получаем id юзера
+        $id = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($id);
 
         try
         {
@@ -448,6 +492,11 @@ class AdminController extends \yii\web\Controller
 
     public function actionCatfoto()
     {
+
+        //Получаем id юзера
+        $id = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($id);
 
         $cats = Category::find()->all();
 

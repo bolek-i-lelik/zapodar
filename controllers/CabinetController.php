@@ -81,7 +81,7 @@ class CabinetController extends \yii\web\Controller
 
     	}
 
-        $zakaz = Zakaz::find()->where(['user_id'=>Yii::$app->user->id])->all();
+        $zakaz = Zakaz::find()->where(['user_id'=>Yii::$app->user->id])->orderBy('date desc')->all();
 
         $zakaz_products = array();
 

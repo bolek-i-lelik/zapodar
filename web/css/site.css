@@ -72,8 +72,8 @@ a {
 }
 sup 
 {
-    color:#AACF9D; 
-    background: #000;
+    color: #FDE910;
+font-size: 14px;
 }
 a.dashed {
     text-decoration:none;
@@ -8669,7 +8669,8 @@ h1 .btn {
     overflow:hidden;
     color:#fff;
     position:relative;
-    z-index:1
+    z-index:1;
+    height: 90px;
 }
 .footer a {
     color:rgba(255,255,255,.6);
@@ -8693,7 +8694,8 @@ h1 .btn {
 }
 .footer-links {
     background:#38444a;
-    padding:10px 0 10px 0
+    padding:10px 0 10px 0;
+    height: 100%;
 }
 .footer-block li {
     padding-top:1px;
@@ -9892,4 +9894,15 @@ padding: 15px;
 display: -moz-deck;
 position: static;
 margin: 10px;
+}
+.site-search
+{
+    min-height: 650px;
+}
+.basket
+{
+    min-height: 650px;
+}
+.wrapper{
+    margin: 20px;
 }

@@ -8,6 +8,8 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use app\controllers\DostupController;
 
 /**
  * StatisticController implements the CRUD actions for Statistic model.
@@ -22,6 +24,43 @@ class StatisticController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['logout', 'index', 'view', 'create', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['create'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['update'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -37,6 +76,11 @@ class StatisticController extends Controller
      */
     public function actionIndex()
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $dataProvider = new ActiveDataProvider([
             'query' => Statistic::find(),
         ]);
@@ -53,6 +97,11 @@ class StatisticController extends Controller
      */
     public function actionView($id)
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -65,6 +114,11 @@ class StatisticController extends Controller
      */
     public function actionCreate()
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $model = new Statistic();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -84,6 +138,11 @@ class StatisticController extends Controller
      */
     public function actionUpdate($id)
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -103,6 +162,11 @@ class StatisticController extends Controller
      */
     public function actionDelete($id)
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

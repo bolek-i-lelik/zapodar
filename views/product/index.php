@@ -102,15 +102,21 @@ $fotos = explode(",", $product->picture);
 
                 <div id="tab2" class="tabs ">
                 	<?php $paramArr = explode("|", $product->params); ?>
+                    <?php $prmText ='';?>
                     	<?php foreach($paramArr as $prm): ?>
                         	<?php if ($prm != ",," and $prm !=""): ?>
                             	<?php $prm = explode("," , $prm); ?>
-                                <?php $prmText = "<b>".$prm[0]."</b>".": ".$prm[1]." ".$prm[2]."<br>" ?>
-                            <?php endif ?>
-                        <?php endforeach ?>
-                        <?php if(isset($prmText)){ echo $prmText;} ?>
-                </div>
+                                <?php if(isset($prm[0])){$prm0 = $prm[0];} ?>
+                                <?php if(isset($prm[1])){$prm1 = $prm[1];} ?>
+                                <?php if(isset($prm[2])){$prm2 = $prm[2];} ?>
+                                <?php $prmText .= "<b>".$prm0."</b>".": ".$prm1." ".$prm2."<br>" ?>
 
+                            <?php endif ?>
+                            
+                        <?php endforeach ?>
+                    <?php if(isset($prmText)){ echo $prmText;} ?>
+                        
+                </div>
             </div>
         </div>
                     

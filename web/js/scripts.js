@@ -190,6 +190,7 @@ function newzakaz(id){
 			
 		},
 		success: function(res){
+			alert('Заказ не может быть размещён по причине пустой корзины.');
 			console.log('Заказ отправлен');
 			window.location.reload();
 		},

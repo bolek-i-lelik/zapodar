@@ -58,7 +58,7 @@ class BasketController extends \yii\web\Controller
 			$basket->save();
 
 			//считаем кол-во товара в корзине на этого юзера
-			$products_in_basket = Basket::find()->where(['user_id'=>$postquery['user_id']])->andWhere(['buy'=>NULL])->count();
+			$products_in_basket = Basket::find()->where(['user_id'=>$postquery['user_id']])->andWhere(['buy'=>'NULL'])->count();
 			
 
 			if (!isset(Yii::$app->request->cookies['countbasket'])) {
@@ -91,7 +91,8 @@ class BasketController extends \yii\web\Controller
 			$basket = Basket::find()->where(['id'=>$id])->one();
 			$basket->delete();
 
-			$products_in_basket = Basket::find()->where(['user_id'=>$getquery['user']])->count();
+			$products_in_basket = Basket::find()->where(['user_id'=>$getquery['user']])
+			->andWhere(['buy'=> NULL])->count();
 
 			Yii::$app->response->cookies->add(new \yii\web\Cookie([
         			'name' => 'countbasket',
@@ -135,13 +136,13 @@ class BasketController extends \yii\web\Controller
 			$getquery = Yii::$app->request->get();
 			$user_id = $getquery['user_id'];
 
-			$basket_count = Basket::find()->where(['user_id'=>$user_id])->andWhere(['buy'=> NULL])->count();
+			$basket_count = Basket::find()->where(['user_id'=>$user_id])->andWhere(['buy'=> 0])->count();
 			for($i=1; $i<=$basket_count; $i++){
-				$basket = Basket::find()->where(['user_id'=>$user_id])->andWhere(['buy'=> NULL])->one();
+				$basket = Basket::find()->where(['user_id'=>$user_id])->andWhere(['buy'=> 0])->one();
 				$basket->delete();
 			}
 
-			$products_in_basket = Basket::find()->where(['user_id'=>$getquery['user_id']])->count();
+			$products_in_basket = Basket::find()->where(['user_id'=>$getquery['user_id']])->andWhere(['buy'=> 0])->count();
 
 			Yii::$app->response->cookies->add(new \yii\web\Cookie([
         			'name' => 'countbasket',
@@ -195,7 +196,7 @@ class BasketController extends \yii\web\Controller
 		$zakaz = Articles::find()->where(['alias'=>'zakaz'])->one();
 		$texts['zakaz'] = $zakaz;
 
-		$in_basket = Basket::find()->where(['user_id'=>$user_id, 'buy'=>NULL])->all();
+		$in_basket = Basket::find()->where(['user_id'=>$user_id, 'buy'=>0])->all();
 
 		$products = array();
 
@@ -226,12 +227,17 @@ class BasketController extends \yii\web\Controller
 			$getquery = Yii::$app->request->get();
 			$user_id = $getquery['user_id'];
 			
+			$product_in_basket = Basket::find()->where(['user_id'=>$user_id])->andWhere(['buy'=>0])->all();
+
+			if($product_in_basket){
 			$zakaz = new Zakaz();
 			$zakaz->user_id = $user_id;
 			$zakaz->sost = 1;
 			$zakaz->save();
+			//echo 'ok';
+			//exit();
+			}
 
-			$product_in_basket = Basket::find()->where(['user_id'=>$user_id])->andWhere(['buy'=>NULL])->all();
 			foreach ($product_in_basket as $value) {
 				$prod = Basket::find()->where(['id'=>$value->id])->one();
 				$prod->zakaz_id = $zakaz->id;
@@ -260,6 +266,11 @@ class BasketController extends \yii\web\Controller
         			'name' => 'countbasket',
         			'value' => 0,
     			]));
+
+			if($product_in_basket){
+				return $this->redirect('/cabinet');	
+			}
+			
 			
 		}
 

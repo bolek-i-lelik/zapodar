@@ -49,17 +49,17 @@ class Questionadmin extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'familie' => 'Familie',
-            'name' => 'Name',
-            'father' => 'Father',
+            'id' => 'Идентификатор',
+            'familie' => 'Фамилия',
+            'name' => 'Имя',
+            'father' => 'Отчество',
             'email' => 'Email',
-            'adress' => 'Adress',
-            'company' => 'Company',
-            'dolgnost' => 'Dolgnost',
-            'text' => 'Text',
-            'date' => 'Date',
-            'sost' => 'Sost',
+            'adress' => 'Адрес',
+            'company' => 'Название организации',
+            'dolgnost' => 'Должность/Специальность',
+            'text' => 'Текст',
+            'date' => 'Дата и время',
+            'sost' => 'Состояние',
         ];
     }
 }

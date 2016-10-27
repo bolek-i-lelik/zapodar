@@ -9,6 +9,8 @@ use app\models\Questionadmin;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use app\controllers\DostupController;
 
 /**
  * QuestionController implements the CRUD actions for Question model.
@@ -23,6 +25,43 @@ class QuestionController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['logout', 'index', 'view', 'create', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['create'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['update'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -38,6 +77,11 @@ class QuestionController extends Controller
      */
     public function actionIndex()
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $searchModel = new QuestionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -54,6 +98,11 @@ class QuestionController extends Controller
      */
     public function actionView($id)
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -66,6 +115,11 @@ class QuestionController extends Controller
      */
     public function actionCreate()
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $model = new Questionadmin();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -85,6 +139,11 @@ class QuestionController extends Controller
      */
     public function actionUpdate($id)
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
@@ -109,6 +168,11 @@ class QuestionController extends Controller
      */
     public function actionDelete($id)
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

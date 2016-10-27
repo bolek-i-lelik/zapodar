@@ -28,7 +28,7 @@ class NewsController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'index', 'view', 'create', 'update', 'delete'],
+                'only' => ['logout', 'index', 'view', 'create', 'update', 'delete', 'photo'],
                 'rules' => [
                     [
                         'actions' => ['logout'],
@@ -57,6 +57,11 @@ class NewsController extends Controller
                     ],
                     [
                         'actions' => ['delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['photo'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -193,6 +198,12 @@ class NewsController extends Controller
 
     public function actionPhoto()
     {
+
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+        
         $request = Yii::$app->request;
         $id = htmlspecialchars(trim($request->get('id')));
 

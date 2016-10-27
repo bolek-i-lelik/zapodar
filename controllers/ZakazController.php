@@ -8,9 +8,11 @@ use app\models\ZakazSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use app\models\Basket;
 use app\models\User;
 use app\models\Products;
+use app\controllers\DostupController;
 
 /**
  * ZakazController implements the CRUD actions for Zakaz model.
@@ -25,6 +27,43 @@ class ZakazController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['logout', 'index', 'view', 'create', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['create'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['update'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -40,6 +79,11 @@ class ZakazController extends Controller
      */
     public function actionIndex()
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $searchModel = new ZakazSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -56,6 +100,11 @@ class ZakazController extends Controller
      */
     public function actionView($id)
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $zakaz = Zakaz::find()->where(['id'=>$id])->one();
 
         $user = User::find()->where(['id'=>$zakaz->user_id])->one();
@@ -86,6 +135,11 @@ class ZakazController extends Controller
      */
     public function actionCreate()
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $model = new Zakaz();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -105,6 +159,11 @@ class ZakazController extends Controller
      */
     public function actionUpdate($id)
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
@@ -128,6 +187,11 @@ class ZakazController extends Controller
      */
     public function actionDelete($id)
     {
+        //Получаем id юзера
+        $idu = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($idu);
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

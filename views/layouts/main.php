@@ -141,13 +141,16 @@ Yii::$app->language = 'ru';
             	</li> 
             	<li id="j_carthost" class="hb-but hb-but-cart hb-but-main">
             		<a class="hb-but-action hb-but-hover" id="cart" href="<?= Url::toRoute('/basket', true)?>">
-            			<!--<span id="kzn" class="badge pull-right" style="background:#AACF9D;"><?= Yii::$app->request->cookies['countbasket'] ?></span>-->
+            			
                 		<span class="hb-but-wrap">
                     		<img class="hb-but-icon" src="http://buhcomfort.ru/img/bug.png" alt="Корзина">
                             <?php if(Yii::$app->user->isGuest):?>
                                 <span class="hb-but-text" style="color:#AACF9D;"><b>Корзина </b></span>
                             <?php else:?>
-                    		    <span class="hb-but-text" style="color:#AACF9D;"><b>Корзина </b><b><sup><?= Yii::$app->request->cookies['countbasket'] ?></sup></b></span>
+                    		    <span class="hb-but-text" style="color:#AACF9D;"><b>Корзина </b><b>
+                                    <div style="height: 20px; width: 20px; margin-top: -30px; margin-left: -20px; background-color: rgb(207, 157, 195); border-radius: 10px;">
+                                    <p style="height: 20px; width: 20px; font-size: 12px; padding: 0px; color: rgb(0, 0, 0); text-align: center;"><?= Yii::$app->request->cookies['countbasket'] ?></p></div>
+                                    </b></span>
                             <?php endif;?>
                 		</span>
             		</a>
@@ -164,10 +167,10 @@ Yii::$app->language = 'ru';
 									<span class="hb-but-text" style="color:#AACF9D;"><b>Вход/Регистрация</b></span>
 								</a>
 							<?php else:?>
-
+                                
 								<form class="navbar-form" style="height: 50px;" action="/site/logout" method="post">
-                                <img class="hb-but-icon" style="vertical-align: super; "src="<?= Url::toRoute('/img/enter.png', true)?>" >
-									<input type="hidden" name="_csrf" value="<?= Html::csrfMetaTags() ?>"><button type="submit" style="vertical-align: super; color:#AACF9D;" class="btn btn-link"><b>Выйти<br><br></b></button>
+                                    
+									<input type="hidden" name="_csrf" value="<?= Html::csrfMetaTags() ?><button type="submit" style="margin-top: 10px; vertical-align: baseline; color:#AACF9D;" class="btn btn-link"><b>Выйти<br><br></b></button>
 								</form>
 							<?php endif;?>
 						</span>
@@ -191,51 +194,43 @@ Yii::$app->language = 'ru';
 </div>
 
 <footer class="footer footerStyle">
+
  <div class="footer-links " style="background-color:#064727">
  	<center>
  		<div class="page-container grid">
         
-      		<div class="col-2-12 footer-block">
-      			<!--<center>
-
-                	<a href="/">
-                    	<span class="hb-but-wrap" style="vertical-align: middle; display: inline-block;">
-                        	<p style="color:#AACF9D; vertical-align: middle; display: inline-block; font: 28px 'Open Sans',Arial,sans-serif">"DECO Media"</p>
-                    	</span>
-                	</a>
-            	</center>
-      		</div>
-      		<div class="col-2-12 footer-block">-->
+      		<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs ">
+      			
                 <a href="/site/catalog">
                     <p class="footer-header" style="color:#AACF9D;">
                         <b>Каталог</b>
                     </p>
                 </a> 
       		</div>
-      		<div class="col-2-12 footer-block"> 
+      		<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs"> 
                 <a href="/site/about">
                     <p class="footer-header" style="color:#AACF9D;">
                         <b>О нас</b>
                     </p>
                 </a> 
       		</div>
-      		<div class="col-2-12 footer-block"> 
+      		<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs"> 
                 <a href="/new/">
                     <p class="footer-header" style="color:#AACF9D;"><b>Новости</b>
                     </p>
                 </a> 
       		</div>
-      		<div class="col-2-12 footer-block"> 
+      		<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs"> 
                 <a href="/site/action">
                     <p class="footer-header" style="color:#AACF9D;"><b>Акции</b></p>
                 </a> 
       		</div>
-      		<div class="col-2-12 footer-block">
+      		<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
                 <a href="/site/partner">
                     <p class="footer-header" style="color:#AACF9D;"><b>Партнерам</b></p>
                 </a> 
       		</div>   
-      		<div class="col-xs-1">  
+      		<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">  
                 <a href="/site/contact">
                     <p class="footer-header" style="color:#AACF9D;"><b>Контакты</b></p>
                 </a> 
@@ -243,6 +238,49 @@ Yii::$app->language = 'ru';
             </div>  
       	</div>
     </center>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 visible-xs">
+                <a href="/site/catalog">
+                    <p class="footer-header" style="color:#AACF9D;">
+                        <b>Каталог</b>
+                    </p>
+                </a> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 visible-xs">
+                <a href="/site/about">
+                    <p class="footer-header" style="color:#AACF9D;">
+                        <b>О нас</b>
+                    </p>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 visible-xs">
+                <a href="/new/">
+                    <p class="footer-header" style="color:#AACF9D;"><b>Новости</b>
+                    </p>
+                </a> 
+            </div>
+            <div class="col-xs-12 visible-xs">
+                <a href="/site/action">
+                    <p class="footer-header" style="color:#AACF9D;"><b>Акции</b></p>
+                </a>
+            </div>
+            <div class="col-xs-12 visible-xs">
+                <a href="/site/partner">
+                    <p class="footer-header" style="color:#AACF9D;"><b>Партнерам</b></p>
+                </a>
+            </div>
+            <div class="col-xs-12 visible-xs">
+                <a href="/site/contact">
+                    <p class="footer-header" style="color:#AACF9D;"><b>Контакты</b></p>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <div class="wrapper">
     <center>

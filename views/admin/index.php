@@ -1,4 +1,10 @@
 
+<?php
+
+use yii\helpers\Url;
+
+?>
+
 
                 
 
@@ -9,17 +15,17 @@
                             <div class="small-box bg-aqua">
                                 <div class="inner">
                                     <h3>
-                                        150
+                                        <?= $count_buy ?>
                                     </h3>
                                     <p>
-                                        New Orders
+                                        Новых заказов
                                     </p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
+                                <a href="<?= Url::toRoute('/zakaz/index', true)?>" class="small-box-footer">
+                                    Просмотреть <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div><!-- ./col -->
@@ -28,17 +34,17 @@
                             <div class="small-box bg-green">
                                 <div class="inner">
                                     <h3>
-                                        53<sup style="font-size: 20px">%</sup>
+                                        <?= $count_buy_yes ?>
                                     </h3>
                                     <p>
-                                        Bounce Rate
+                                        Выполнено заказов
                                     </p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-stats-bars"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
+                                <a href="<?= Url::toRoute('/zakaz/index', true)?>" class="small-box-footer">
+                                    Подробнее <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div><!-- ./col -->
@@ -56,8 +62,8 @@
                                 <div class="icon">
                                     <i class="ion ion-person-add"></i>
                                 </div>
-                                <a href="user" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
+                                <a href="<?= Url::toRoute('/user', true)?>" class="small-box-footer">
+                                    подробнее <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div><!-- ./col -->
@@ -66,17 +72,17 @@
                             <div class="small-box bg-red">
                                 <div class="inner">
                                     <h3>
-                                        65
+                                        <?= $count_buy_in_work ?>
                                     </h3>
                                     <p>
-                                        Unique Visitors
+                                        Заказы в работе
                                     </p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-pie-graph"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
+                                <a href="<?= Url::toRoute('/zakaz/index', true)?>" class="small-box-footer">
+                                    Подробнее <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div><!-- ./col -->
