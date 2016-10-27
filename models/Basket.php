@@ -14,6 +14,7 @@ use Yii;
  * @property integer $buy
  * @property string $date
  * @property string $sost
+ * @property integer $zakaz_id
  */
 class Basket extends \yii\db\ActiveRecord
 {
@@ -31,7 +32,7 @@ class Basket extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'product_id', 'count', 'buy'], 'integer'],
+            [['user_id', 'product_id', 'count', 'buy', 'zakaz_id'], 'integer'],
             [['date'], 'safe'],
             [['sost'], 'string', 'max' => 255],
         ];
@@ -50,6 +51,7 @@ class Basket extends \yii\db\ActiveRecord
             'buy' => 'Buy',
             'date' => 'Date',
             'sost' => 'Sost',
+            'zakaz_id' => 'Zakaz ID',
         ];
     }
 }

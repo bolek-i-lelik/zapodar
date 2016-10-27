@@ -163,55 +163,70 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="row">
     	<div class="col-lg-12">
-    		<div class="panel panel-primary">
-	  			<div class="panel-heading">
-	  				История покупок
-	  			</div>
-	  			<div class="panel-body">
-	  				<?php if(!empty($history_of_buy)):?>
-	  				<div class="table-responsive">
-		  				<table class="table table-striped">
-	  	  					<tr>
-	  	  						<td>
-	  	  							Наименование
-	  	  						</td>
-	  	  						<td>
-	  	  							Изображение
-	  	  						</td>
-	  	  						<td>
-	  	  							Количество
-	  	  						</td>
-	  	  						<td>
-	  	  							Дата
-	  	  						</td>
-	  	  					</tr>
-	  	  					<?php foreach ($history_of_buy as $buy):?>
-		  	  					<tr>	
-		  	  						<td>
-		  	  							<a href="<?= Url::toRoute('/product/'.$buy['alias'], true)?>"><?= $buy['name'] ?></a>
-		  	  						</td>
-		  	  						<td>
-		  	  							<img src="<?= Url::toRoute('/img/products/'.$buy['picture'], true)?>" height="100">
-		  	  						</td>
-		  	  						<td>
-		  	  							<?= $buy['count'] ?>
-		  	  						</td>
-		  	  						<td>
-		  	  							<?= $buy['date'] ?>
-		  	  						</td>
-		  	  					</tr>
-	  	  					<?php endforeach;?>
-		  				</table>
-		  			</div>
-		  			<?php else:?>
-		  				<div class="alert alert-success">
-		  					<center><p>Покупок не совершалось</p></center>
-		  				</div>
-		  			<?php endif;?>
-	  			</div>
-	  		</div>
+    		<div class="panel-group" id="accordion">
+    			<?php foreach ($zakazen as $zakaz):?>
+    				<div class="panel panel-success">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				              	<a data-toggle="collapse" data-parent="#accordion" href="#collapse<?= $zakaz->id ?>">
+				                	<?= $zakaz->date ?>
+				              	</a>
+				            </h4>
+				    	</div>
+				    	<div id="collapse<?= $zakaz->id ?>" class="panel-collapse collapse">
+				      		<div class="panel-body">
+				        		<?php $products = $zakaz_products[$zakaz->id] ?>
+				        		<div class="row">
+						    		<div class="col-lg-12">
+						    			<div class="panel panel-primary">
+							  				<div class="panel-heading">
+							  					Состав покупки от <?= $zakaz->date ?>
+							  				</div>
+							  				<div class="panel-body">
+							  					<div class="table-responsive">
+								  					<table class="table table-striped">
+							  	  						<tr>
+							  	  							<td>
+							  	  								Наименование
+							  	  							</td>
+							  	  							<td>
+							  	  								Изображение
+							  	  							</td>
+							  	  							<td>
+							  	  								Количество
+							  	  							</td>
+							  	  							<td>
+							  	  								Дата
+							  	  							</td>
+							  	  						</tr>
+							  	  						<?php foreach ($products as $buy):?>
+							  	  						<tr>	
+								  	  						<td>
+								  	  							<a href="<?= Url::toRoute('/product/'.$buy['alias'], true)?>"><?= $buy['name'] ?></a>
+								  	  						</td>
+								  	  						<td>
+								  	  							<img src="<?= Url::toRoute('/img/products/'.$buy['picture'], true)?>" height="100">
+								  	  						</td>
+								  	  						<td>
+								  	  							<?= $buy['count'] ?>
+								  	  						</td>
+								  	  						<td>
+								  	  							<?= $buy['date'] ?>
+								  	  						</td>
+								  	  					</tr>
+								  	  					<?php endforeach;?>
+								  					</table>
+								  				</div>
+								  			</div>
+							  			</div>
+						    		</div>
+					    		</div>
+				      		</div>
+				    	</div>
+				  	</div>
+				<?php endforeach;?>
+			</div>
     	</div>
     </div>
-
     
 </div>

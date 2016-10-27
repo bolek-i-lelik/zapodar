@@ -209,6 +209,7 @@ class SiteController extends Controller
             $model->password = md5($model->password);
             $model->password2 = md5($model->password2);
             $model->username = $model->e_mail;
+            $model->auth_key = md5(md5($model->password));
             if($model->save()){
                 Yii::$app->session->setFlash('success', 'Данные приняты');
                 Yii::$app->session->setFlash('error', '');

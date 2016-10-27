@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
     <?php
-        if($model->category_id == 0){$model->category->id = 'User';}else{$model->category_id = 'Admin';}
+        if($model->category_id == 0){$model->category_id = 'User';}else{$model->category_id = 'Admin';}
         if($model->sex == 0){$model->sex = 'мужчина';}
         if($model->sex == 1){$model->sex = 'женщина';}
         if($model->sex == 3){$model->sex = '';}

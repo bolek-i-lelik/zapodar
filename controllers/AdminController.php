@@ -309,7 +309,10 @@ class AdminController extends \yii\web\Controller
                     if (file_exists('img/products/'.$foto)) {
                         //echo "Файл в наличии";
                     } else {
-                        
+                        $config_foto = Config::find()->one();
+                        if($config_foto->upoloadfoto == 1){
+                            copy($photo,"img/products/".$foto);
+                        }
                         //copy($photo,"img/products/".$foto);
                         //echo 'Файл не загружен<br>';
                     }
@@ -471,6 +474,28 @@ class AdminController extends \yii\web\Controller
             $this->catrecurs($cats_id);
         }
         return $cats_id;
+    }
+
+    public function actionUpuploadfoto()
+    {
+        if(Yii::$app->request->isAjax ){
+
+            $getquery = Yii::$app->request->get();
+            $config_new = Config::find()->one();
+            $config_new->upoloadfoto = $getquery['upoloadfoto'];
+            $config_new->save();
+        }
+    }
+
+    public function actionDownuploadfoto()
+    {
+        if(Yii::$app->request->isAjax ){
+
+            $getquery = Yii::$app->request->get();
+            $config_new = Config::find()->one();
+            $config_new->upoloadfoto = $getquery['upoloadfoto'];
+            $config_new->save();
+        }
     }
 
 }

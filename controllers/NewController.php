@@ -37,6 +37,9 @@ class NewController extends \yii\web\Controller
 
         $new = News::find()->where(['alias' => $alias])->one();
 
+        $new->prosmotr = $new->prosmotr + 1;
+        $new->save();
+
         return $this->render('onenew',[
         	'new' => $new,
         ]);

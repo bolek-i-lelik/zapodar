@@ -9,8 +9,11 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use yii\helpers\Url;
+use app\models\Statistic;
 
 use yii\bootstrap\ActiveForm;
+
+$stat = Statistic::find()->where(['pokaz'=>1])->all();
 
 AppAsset::register($this);
 Yii::$app->language = 'ru';
@@ -252,6 +255,9 @@ Yii::$app->language = 'ru';
 				      Copyright &copy; DEKO Media, 2002 - 2016.     
 			</span>
 </center>
+<?php foreach($stat as $st): ?>
+    <?= $st->text ?>
+<?php endforeach;?>
 	</div>
   </div>
 </footer>

@@ -130,13 +130,13 @@ AdminAsset::register($this);
                             </a>
                         </li>
                         <li>
-                            <a href="pages/calendar.html">
-                                <i class="fa fa-calendar"></i> <span>Заявки</span>
+                            <a href="<?= Url::toRoute('/zakaz/index', true)?>">
+                                <i class="fa fa-calendar"></i> <span>Заказы</span>
                                 
                             </a>
                         </li>
                         <li>
-                            <a href="pages/mailbox.html">
+                            <a href="<?= Url::toRoute('/messages/index', true)?>">
                                 <i class="fa fa-envelope"></i> <span>Обращения пользователей</span>
                                 
                             </a>

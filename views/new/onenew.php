@@ -7,8 +7,16 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
 $this->title = $new->title;
-//$this->description = $new->description;
-//$this->keywords = $new->keywords;
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => $new->description
+]);
+
+$this->registerMetaTag([
+    'name' => 'keywords',
+    'content' => $new->keywords
+]);
+$this->params['breadcrumbs'][] = ['label' => 'Новости', 'url' => ['/new']];
 $this->params['breadcrumbs'][] = $new->name;
 Yii::$app->language = 'ru';
 ?>

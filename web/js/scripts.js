@@ -141,3 +141,61 @@ function sendMessage(){
 		}
 	});
 }
+
+function upUploadFoto(){
+	$.ajax({
+		url: '/admin/upuploadfoto',
+		type: 'GET',
+		data: {
+			upoloadfoto: 1,
+			
+		},
+		success: function(){
+			console.log('Изменено');
+			window.location.reload();
+		},
+		error: function(){
+			console.log('Корзина не очищена');
+		}
+	});
+
+}
+
+function downUploadFoto(){
+	$.ajax({
+		url: '/admin/downuploadfoto',
+		type: 'GET',
+		data: {
+			upoloadfoto: 0,
+			
+		},
+		success: function(){
+			console.log('Изменено');
+			window.location.reload();
+		},
+		error: function(){
+			console.log('Корзина не очищена');
+		}
+	});
+
+}
+
+function newzakaz(id){
+	alert('Вы действительно хотите совершить заказ? Для продолжения нажмите "ОК"')
+	$.ajax({
+		url: '/basket/newzakaz',
+		type: 'GET',
+		data: {
+			user_id: id,
+			
+		},
+		success: function(res){
+			console.log('Заказ отправлен');
+			window.location.reload();
+		},
+		error: function(){
+			console.log('заказ не отправлен');
+		}
+	});
+
+}
