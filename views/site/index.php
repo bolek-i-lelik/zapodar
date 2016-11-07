@@ -87,7 +87,7 @@ $this->title = 'Подарки';
                 <!--<div class="col-lg-2"></div>-->
                 <div class="articlesNews with_imagesNews col-lg-12">
                     <?php foreach ($news as $new):?>
-                        <div class="itemNews col-lg-4">
+                        <div class="itemNews col-lg-4 col-md-4 col-sm-4 col-xs-10">
                             <center>
                                 <a href="/new/<?= $new->alias ?>" rel="nofollow">
                                     <span class="imageNews"><img src="/img/news/<?= $new->prev_foto ?>" alt=""></span>
@@ -137,7 +137,7 @@ $this->title = 'Подарки';
 <div class="blockProd col-lg-12" >
     
     <?php foreach($products as $prod):?>
-        <div class="progItemMain col-lg-2" style="font-syze: 14px;">
+        <div class="progItemMain col-lg-2 col-md-3 col-sm-4 col-xs-11" style="font-syze: 14px;">
             <br/>
             <div class="prodImg">
                 <a href="/product/<?= $prod['alias'] ?>" target="_self">

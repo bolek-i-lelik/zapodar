@@ -30,7 +30,7 @@ $fotos = explode(",", $product->picture);
 <div class="product">
     <div class="row">
 
-    	<div class="col-lg-7">
+    	<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
             <div class="mainPic">
             	<center>
     		  		<img id="mainPic" style="max-height: 450px;" src="/img/products/<?= $fotos[0] ?>" height="50" alt="" class="img-thumbnail">
@@ -52,7 +52,7 @@ $fotos = explode(",", $product->picture);
             </div>
             
     	</div>
-    	<div class="col-lg-5">
+    	<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
     		<p class="zapodarTitle"><?= Html::encode($this->title) ?></p>
             <p>Артикул: <?= $product->vendorcode ?></p>
             <?php if($product->nalichie=="+"): ?>
@@ -173,7 +173,7 @@ $fotos = explode(",", $product->picture);
 		<div class="blockProd col-lg-12" >
 		    <!--<div class="col-lg-1"></div>-->
 		    <?php foreach($products as $prod):?>
-		        <div class="progItemMain col-lg-2" style="font-syze: 14px;">
+		        <div class="progItemMain col-lg-2 col-md-3 col-sm-4 col-xs-11" style="font-syze: 14px;">
 		            <br/>
 		            <div class="prodImg">
 		                <a href="/product/<?= $prod['alias'] ?>" target="_self">

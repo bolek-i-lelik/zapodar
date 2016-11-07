@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="row">
         
         <?php foreach($category as $cat):?>
-            <div class="progItem col-lg-3">
+            <div class="progItem col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div><p></p></div>
                 <div><p></p></div>
                 <div class="prodImg">

@@ -34,7 +34,7 @@ Yii::$app->language = 'ru';
 
         <?php if($tip == 1): ?>
             <?php foreach($results as $result):?>
-                <div class="progItem col-lg-3">
+                <div class="progItem col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div style="height: 350px;">
                         <br/>
                         <center><img src="/img/products/<?= $result->picture ?>" height="150"></center>
@@ -46,7 +46,7 @@ Yii::$app->language = 'ru';
         <?php endif;?>
         <?php if($tip == 2): ?>
             <?php foreach($models as $model):?>
-                <div class="progItem col-lg-3">
+                <div class="progItem col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div class = "col-lg-12" style="position:relative;">
                         <br>
                         <?php $foto = stristr($model->picture, ',', true);?>

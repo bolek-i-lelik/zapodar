@@ -170,7 +170,7 @@ Yii::$app->language = 'ru';
                                 
 								<form class="navbar-form" style="height: 50px;" action="/site/logout" method="post">
                                     
-									<input type="hidden" name="_csrf" value="<?= Html::csrfMetaTags() ?><button type="submit" style="margin-top: 10px; vertical-align: baseline; color:#AACF9D;" class="btn btn-link"><b>Выйти<br><br></b></button>
+									<input type="hidden" name="_csrf" value="<?= Html::csrfMetaTags() ?><button type="submit" style="color:#AACF9D;" class="btn btn-link"><b>Выйти<br><br></b></button>
 								</form>
 							<?php endif;?>
 						</span>
