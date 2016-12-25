@@ -2,17 +2,131 @@ Options +FollowSymLinks
 IndexIgnore */*
 RewriteEngine on
 
-RewriteCond %{REQUEST_URI} !^/(web)
-RewriteRule ^assets/(.*)$ /web/assets/$1 [L]
-RewriteRule ^css/(.*)$ web/css/$1 [L]
-RewriteRule ^fonts/(.*)$ web/fonts/$1 [L]
-RewriteRule ^js/(.*)$ web/js/$1 [L]
-RewriteRule ^img/(.*)$ web/img/$1 [L]
-RewriteRule ^uploads/(.*)$ web/uploads/$1 [L]
-RewriteRule (.*) /web/$1
+Redirect 301 /new1-1001.htm http://www.za-podar.com/product/p183337475-papka-tonkaya-na-molnii-verh-s-karmanom
+Redirect 301 /new1-1002.htm http://www.za-podar.com/product/p185734243-papka-tonkaya-na-molnii-verh-cel-nyy
+Redirect 301 /new1-1003.htm http://www.za-podar.com/product/p185744794-papka-dlya-konferentsij
+Redirect 301 /new1-1004.htm http://www.za-podar.com/product/p185744796-papka-magnitnoj-zastezhke
+Redirect 301 /new1-1005V.htm http://www.za-podar.com/product/p185744797-papka-klapanom-vincent
+Redirect 301 /new1-1006V.htm http://www.za-podar.com/product/p185744798-konferents-papka-vincent
+Redirect 301 /new1-1007.htm http://www.za-podar.com/product/p185744859-konferents-papka-kozhzamenitel
+Redirect 301 /new1-1008.htm http://www.za-podar.com/product/p185744800-papka-molnii-megapolis
+Redirect 301 /new1-1009.htm http://www.za-podar.com/product/p185744801-papka-klapanom-megapolis
+Redirect 301 /new1-1010.htm http://www.za-podar.com/product/p185744874-konferents-papka-megapolis
+Redirect 301 /new1-1011.htm http://www.za-podar.com/product/p185744879-konferents-papka-kozhzamenitel
+Redirect 301 /new1-1101.htm http://www.za-podar.com/product/p185744889-papka-tolstaya-molnii
+Redirect 301 /new1-1102.htm http://www.za-podar.com/product/p185744894-papka-tolstaya-molnii
+Redirect 301 /new1-1104.htm http://www.za-podar.com/product/p185744807-papka-tolstaya-mini
+Redirect 301 /new1-1105.htm http://www.za-podar.com/product/p185744889-papka-tolstaya-molnii
+Redirect 301 /new1-1201.htm http://www.za-podar.com/product/p185744909-papka-adresnaya-malaya
+Redirect 301 /new1-1202.htm http://www.za-podar.com/product/p185744919-papka-adresnaya-bolshaya
+Redirect 301 /new1-1203.htm http://www.za-podar.com/product/p185744812-papka-adresnaya-malaya
+Redirect 301 /new1-1204.htm http://www.za-podar.com/product/p185744813-papka-adresnaya-bolshaya
+Redirect 301 /new1-1205.htm http://www.za-podar.com/product/p185744934-papka-koltsevym-zazhimom
+Redirect 301 /new1-1301.htm http://www.za-podar.com/product/p185744816-ezhednevnik-portfolio-semnoj
+Redirect 301 /new1-1304.htm http://www.za-podar.com/product/p185744945-ezhednevnik-portfolio-semnoj
+Redirect 301 /new1-1302V.htm http://www.za-podar.com/product/p185744822-oblozhka-ezhednevnika-150210
+Redirect 301 /new1-1305.htm http://www.za-podar.com/product/p185744823-oblozhka-ezhednevnika-200270
+Redirect 301 /new1-1309.htm http://www.za-podar.com/product/p185745010-oblozhka-ezhednevnika-kozhzamenitel
+Redirect 301 /new1-1306V.htm http://www.za-podar.com/product/p185744849-papka-klapanom-vincent
+Redirect 301 /new1-1307.htm http://www.za-podar.com/product/p185745029-oblozhka-ezhednevnika-zavyazkami
+Redirect 301 /new1-1308.htm http://www.za-podar.com/product/p185745038-oblozhka-ezhednevnika-megapolis
+Redirect 301 /new1-1310.htm http://www.za-podar.com/product/p185745047-ezhednevnik-portfolio-megapolis
+Redirect 301 /new1-1311.htm http://www.za-podar.com/product/p185745055-oblozhka-ezhednevnika-karmanom
+Redirect 301 /new1-1312.htm http://www.za-podar.com/product/p185744830-oblozhka-ezhednevnika-der
+Redirect 301 /new1-1313.htm http://www.za-podar.com/product/p185745076-superoblozhka-ezhednevnika-kozhzamenitel
+Redirect 301 /new1-1314.htm http://www.za-podar.com/product/p185745085-oblozhka-ezhednevnika-portfolio
+Redirect 301 /new1-1315.htm http://www.za-podar.com/product/p185745093-oblozhka-ezhednevnika-manzhetoj
+Redirect 301 /new1-1316.htm http://www.za-podar.com/product/p185745331-oblozhka-ezhednevnika-klapanom
+Redirect 301 /new1-1317.htm http://www.za-podar.com/product/p185745076-superoblozhka-ezhednevnika-kozhzamenitel
+Redirect 301 /new1-1320.htm http://www.za-podar.com/product/p185745341-oblozhka-ezhednevnika-kombinirovannaya
+Redirect 301 /new1-1321.htm http://www.za-podar.com/product/p185745346-oblozhka-ezhednevnika-kombinirovannaya
+Redirect 301 /new1-1330.htm http://www.za-podar.com/product/p185745351-oblozhka-ezhednevnika-otstrochkoj
+Redirect 301 /new1-1331.htm http://www.za-podar.com/product/p185745356-oblozhka-ezhednevnika-otstrochkoj
+Redirect 301 /new1-1340.htm http://www.za-podar.com/product/p185745361-oblozhka-ezhednevnika-relefnaya
+Redirect 301 /new1-1401.htm http://www.za-podar.com/product/p185745366-organajzer-kozhzamenitel-lyuks
+Redirect 301 /new1-1402.htm http://www.za-podar.com/product/p185745371-kozhanyj-organajzer-treugolnym
+Redirect 301 /new1-1403V.htm http://www.za-podar.com/product/p185745366-organajzer-kozhzamenitel-lyuks
+Redirect 301 /new1-1404.htm http://www.za-podar.com/product/p185745381-organajzer-megapolis-kozhzamenitel
+Redirect 301 /new1-1405.htm http://www.za-podar.com/product/p185745386-organajzer-malyj-kozhzamenitel
+Redirect 301 /new1-1406.htm http://www.za-podar.com/product/p185745391-organajzer-kapuchino-kozhzamenitel
+Redirect 301 /new1-1601.htm http://www.za-podar.com/product/p185745396-ezhenedelnik-semidnevka-zhest
+Redirect 301 /new1-1602.htm http://www.za-podar.com/product/p185745401-ezhenedelnik-semidnevka-myagk
+Redirect 301 /new1-1603V.htm http://www.za-podar.com/product/p185745406-planing-vincent-kozhzamenitel
+Redirect 301 /new1-1604.htm http://www.za-podar.com/product/p185745411-ezhenedelnik-megapolis-kozhzamenitel
+Redirect 301 /new1-1701.htm http://www.za-podar.com/product/p185745416-udostoverenie-korochki-bez
+Redirect 301 /new1-1702.htm http://www.za-podar.com/product/p185745421-udostoverenie-zhestkoe-bez
+Redirect 301 /new1-1703.htm http://www.za-podar.com/product/p185745308-superoblozhka-udostovereniya-art
+Redirect 301 /new1-1801.htm http://www.za-podar.com/product/p185745441-klyasser-koltsevym-zazhimom
+Redirect 301 /new1-1802.htm http://www.za-podar.com/product/p185745446-klyasser-nastolnyj-vizitok
+Redirect 301 /new1-1803.htm http://www.za-podar.com/product/p185745461-klyasser-karmannyj-vizitok
+Redirect 301 /new1-1805.htm http://www.za-podar.com/product/p185745466-chehol-pod-imennye
+Redirect 301 /new1-1806.htm http://www.za-podar.com/product/p185745476-chehol-pod-imennye
+Redirect 301 /new1-1807.htm http://www.za-podar.com/product/p185745319-chehol-dlya-kreditnyh
+Redirect 301 /new1-1808V.htm http://www.za-podar.com/product/p193080031-vizitnitsa-brelokom-serebristyj
+Redirect 301 /new1-1809.htm http://www.za-podar.com/product/p185745491-klyasser-karmannyj-hlyastikom
+Redirect 301 /new1-1810.htm http://www.za-podar.com/product/p185745496-klyasser-vizitok-kozhzamenitel
+Redirect 301 /new1-1811.htm http://www.za-podar.com/product/p185745441-klyasser-koltsevym-zazhimom
+Redirect 301 /new1-1812.htm http://www.za-podar.com/product/p185745481-chehol-dlya-kreditnyh
+Redirect 301 /new1-1813.htm http://www.za-podar.com/product/p185745511-chehol-kozhanyj-pod
+Redirect 301 /new1-1814.htm http://www.za-podar.com/product/p185745516-klyasser-nastolnyj-200
+Redirect 301 /new1-1818.htm http://www.za-podar.com/product/p185745526-klyasser-karmannyj-vizitki
+Redirect 301 /new1-2001.htm http://www.za-podar.com/product/p185745834-portfel-zhestkij-kozhzamenitel
+Redirect 301 /new1-2002M.htm http://www.za-podar.com/product/p185745844-portfel-city-kozhzamenitel
+Redirect 301 /new1-2003.htm http://www.za-podar.com/product/p185745849-portfel-uzkij-kozhzamenitel
+Redirect 301 /new1-2003M.htm http://www.za-podar.com/product/p185745854-portfel-uzkij-vneshnie
+Redirect 301 /new1-2004.htm http://www.za-podar.com/product/p185745859-planshet-portfel-vysokij
+Redirect 301 /new1-2005M.htm http://www.za-podar.com/product/p185745864-portfel-zhenskij-city
+Redirect 301 /new1-2006V.htm http://www.za-podar.com/product/p185745869-portfel-vincent-muzhskoj
+Redirect 301 /new1-2007V.htm http://www.za-podar.com/product/p185745874-portfel-uzkij-vincent
+Redirect 301 /new1-2050.htm http://www.za-podar.com/product/p185745879-barsetka-kozhzamenitel-lyuks
+Redirect 301 /new1-2051V.htm http://www.za-podar.com/product/p185745804-barsetka-nico
+Redirect 301 /new1-2101.htm http://www.za-podar.com/product/p185745999-oblozhka-dlya-pasporta
+Redirect 301 /new1-2102.htm http://www.za-podar.com/product/p185745899-oblozhka-portmone-dlya
+Redirect 301 /new1-2103.htm http://www.za-podar.com/product/p185745904-bumazhnik-kozhzamenitel-lyuks
+Redirect 301 /new1-2103M.htm http://www.za-podar.com/product/p185745909-bumazhnik-city-kozhzamenitel
+Redirect 301 /new1-2104.htm http://www.za-podar.com/product/p185745914-chehol-dve-kreditnye
+Redirect 301 /new1-2105.htm http://www.za-podar.com/product/p185745919-portmone-kozhzamenitel-lyuks
+Redirect 301 /new1-2106.htm http://www.za-podar.com/product/p185745924-oblozhka-dlya-pasporta
+Redirect 301 /new1-2108.htm http://www.za-podar.com/product/p185745934-bumazhnik-karmanom-molnii
+Redirect 301 /new1-2110V.htm http://www.za-podar.com/product/p185745939-portmone-vincent-kozhzamenitel
+Redirect 301 /new1-2111V.htm http://www.za-podar.com/product/p185745944-bumazhnik-vincent-kozhzamenitel
+Redirect 301 /new1-2112.htm http://www.za-podar.com/product/p185745949-bumazhnik-molnii-kozhzamenitel
+Redirect 301 /new1-2113.htm http://www.za-podar.com/product/p185745954-portmone-maloe-kozhzamenitel
+Redirect 301 /new1-2116.htm http://www.za-podar.com/product/p185745959-portmone-megapolis-kozhzamenitel
+Redirect 301 /new1-2117.htm http://www.za-podar.com/product/p185745919-portmone-kozhzamenitel-lyuks
+Redirect 301 /new1-2118.htm http://www.za-podar.com/product/p185745969-portmone-zazhimom-dlya
+Redirect 301 /new1-2119.htm http://www.za-podar.com/product/p185745974-chehol-dlya-propuska
+Redirect 301 /new1-2121.htm http://www.za-podar.com/product/p185745979-kupyuroderzhatel-magitnyj-kozhzamenitel
+Redirect 301 /new1-2122.htm http://www.za-podar.com/product/p185745984-bumazhnik-dlya-aviabiletov
+Redirect 301 /new1-2124.htm http://www.za-podar.com/product/p185745989-bumazhnik-dorozhnyj-kozhzamenitel
+Redirect 301 /new1-2125.htm http://www.za-podar.com/product/p185745919-portmone-kozhzamenitel-lyuks
+Redirect 301 /new1-2126.htm http://www.za-podar.com/product/p185745999-oblozhka-dlya-pasporta
+Redirect 301 /new1-2127.htm http://www.za-podar.com/product/p185746004-klyasser-dlya-kreditnyh
+Redirect 301 /new1-2501.htm http://www.za-podar.com/product/p185746009-papka-menyu-odnostor
+Redirect 301 /new1-2502.htm http://www.za-podar.com/product/p185746014-papka-menyu-dvustor
+Redirect 301 /new1-2503.htm http://www.za-podar.com/product/p185746019-karta-vin-kozhzamenitel
+Redirect 301 /new1-2504.htm http://www.za-podar.com/product/p185746024-papka-menyu-malaya
+Redirect 301 /new1-2505.htm http://www.za-podar.com/product/p185746029-papka-menyu-koltsevym
+Redirect 301 /new1-2601.htm http://www.za-podar.com/product/p185746034-papka-dlya-schetov
+Redirect 301 /new1-2602.htm http://www.za-podar.com/product/p185746333-papka-dlya-schetov
+Redirect 301 /new1-2603.htm http://www.za-podar.com/product/p185746338-papka-dlya-schetov
+Redirect 301 /new1-3310.htm http://www.za-podar.com/product/185746343-nabor-kartochnyj-kozhzamenitel
+Redirect 301 /new1-3311.htm http://www.za-podar.com/product/p185746348-nabor-kartochnyj-kozhzamenitel
+Redirect 301 /new1-3312.htm http://www.za-podar.com/product/p185746353-nabor-kartochnyj-kapuchino
+
+#RewriteCond %{REQUEST_URI} !^/(web)
+#RewriteRule ^assets/(.*)$ /web/assets/$1 [L]
+#RewriteRule ^css/(.*)$ web/css/$1 [L]
+#RewriteRule ^fonts/(.*)$ web/fonts/$1 [L]
+#RewriteRule ^js/(.*)$ web/js/$1 [L]
+#RewriteRule ^img/(.*)$ web/img/$1 [L]
+#RewriteRule ^uploads/(.*)$ web/uploads/$1 [L]
+#RewriteRule ^phpMyAdmin/(.*)$ web/phpMyAdmin/$1 [L]
+#RewriteRule (.*) /web/$1
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /web/index.php
 
 php_value upload_max_filesize 30M
+php_value post_max_size 10M

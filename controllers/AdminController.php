@@ -15,6 +15,9 @@ use app\models\Products;
 use app\models\UploadExcel;
 use app\models\Config;
 use app\models\Zakaz;
+use app\models\Users;
+use app\models\Newsold;
+use app\models\News;
 
 
 class AdminController extends \yii\web\Controller
@@ -311,6 +314,79 @@ class AdminController extends \yii\web\Controller
         ]);
     }
 
+    public function actionUpdatecategories(){
+        //Получаем id юзера
+        $id = DostupController::getUserId();
+        //Проверяем права на вход в админку
+        DostupController::userDostup($id);
+
+        try
+        {
+            $inputFileType = \PHPExcel_IOFactory::identify('uploads/categoryes.xls');
+            $objReader = \PHPExcel_IOFactory::createReader($inputFileType);
+            $objPHPExcel = $objReader->load('uploads/categoryes.xls');
+        }catch(Exception $e)
+        {
+            die('Error');
+        }      
+
+        $sheet = $objPHPExcel->getSheet(0);
+        $highestRow = $sheet->getHighestRow();
+        $highestColumn = $sheet->getHighestColumn();
+        $highestColumn = 'BA';
+
+        $np = 0;
+        $up = 0;
+        for( $row = 1; $row <= $highestRow; $row++)
+        {
+            $rowData = $sheet->rangeToArray('A'.$row .':'.$highestColumn.$row,NULL,TRUE,FALSE);
+
+            foreach($rowData as $value ){
+
+                $count = count($value);
+                echo 'name'.$value[1].'<br>';
+                echo 'parent'.$value[3].'<br>';
+                echo 'id'.$value[0].'<br>';
+                echo '<hr>';
+                
+                //проверяем есть ли такой продукт в базе
+                $category = Category::find()->where(['id'=>$value[0]])->one();
+
+                    //var_dump($product);
+
+                    if($category['id']){
+                        $category->name = $value[1];
+                        $category->parent = $value[3];
+                        $category->id = $value[0];
+                        //echo 'продукт '.$value[19].' обновлён';
+                        //echo $a;
+                        $up++;
+                    }else{
+                        $category = new Category();
+                        $category->name = $value[2];
+                        $category->parent = $value[4];
+                        $category->id = $value[1];
+                        $category->save();
+                        //echo 'продукт '.$value[19].' создан';
+                        //echo $a;
+                        $np++;
+                    }
+
+            
+            }
+            //var_dump($rowData);exit();
+            //echo '<hr>';
+        }
+
+        
+       
+        return $this->render('updatecategory',[
+            'up' => $up,
+            'np' => $np,
+            'highestRow' => $highestRow,
+        ]);          
+    }
+
     public function actionUpdatedb()
     {
 
@@ -336,26 +412,54 @@ class AdminController extends \yii\web\Controller
 
         $np = 0;
         $up = 0;
+        $cnt = 0;
         for( $row = 1; $row <= $highestRow; $row++)
         {
             $rowData = $sheet->rangeToArray('A'.$row .':'.$highestColumn.$row,NULL,TRUE,FALSE);
 
             foreach($rowData as $value ){
 
-                
+                $cnt ++;
 
                 //разбираем фотографии и загружаем в папку с фотками если их нет
                 $fotos = '';
-
-                $photos = explode(", ", $value[11]);
+                //$str=strpos($value[11], ",");
+                //$photo=substr($value[11], 0, $str);
+                $photos = explode(",", $value[11]);
                 foreach ($photos as $photo) {
+                    $photo = trim($photo);
                     $foto = substr($photo, 25);
+                    if($foto[0] == 'p'){
+                        $foto = substr($photo, 31);
+                    }
+                    if($foto[0] == 'o'){
+                        $foto = substr($photo, 40);
+                    }
+                    if($foto[0] == 'a'){
+                        $foto = substr($photo, 30);
+                    }
+                    
                     if (file_exists('img/products/'.$foto)) {
-                        //echo "Файл в наличии";
+                        //echo $cnt." Файл в наличии</br>";
                     } else {
                         $config_foto = Config::find()->one();
                         if($config_foto->upoloadfoto == 1){
-                            copy($photo,"img/products/".$foto);
+                            $Headers = @get_headers($photo);
+                            //var_dump($Headers);exit();
+                                // проверяем ли ответ от сервера с кодом 200 - ОК
+                                //if(preg_match("|200|", $Headers[0])) { // - немного дольше :)
+                                if(preg_match("|200|", $Headers[0]))  {
+                                    echo 'OK<br>';
+                                    copy($photo,"img/products/".$foto);
+                                } else {
+                                echo 'Fail<img src="'.$photo.'" width="15px"><br>';
+                                }
+
+
+
+                           
+                            
+                            
                         }
                         //copy($photo,"img/products/".$foto);
                         //echo 'Файл не загружен<br>';
@@ -377,7 +481,7 @@ class AdminController extends \yii\web\Controller
 
                 $alias = $this->str2url($value[1]);
                 //echo $alias; exit();
-
+                if($value[0]){
                 //проверяем есть ли такой продукт в базе
                 $product = Products::find()->where(['productsid'=>$value[19]])->one();
 
@@ -433,14 +537,14 @@ class AdminController extends \yii\web\Controller
                         //echo $a;
                         $np++;
                     }
-
-            }
+                }
             
+            }
             //var_dump($rowData);exit();
             //echo '<hr>';
         }
 
-        
+        exit();
        
         return $this->render('updatedb',[
             'up' => $up,
@@ -545,6 +649,39 @@ class AdminController extends \yii\web\Controller
             $config_new->upoloadfoto = $getquery['upoloadfoto'];
             $config_new->save();
         }
+    }
+
+    public function actionImport()
+    {
+
+        $users = Users::find()->all();
+        $newsold = Newsold::find()->all();
+
+        /*foreach ($users as $userold) {
+            $user = new User();
+            $user->category_id = 0;
+            $user->name = $userold->name;
+            $user->e_mail = $userold->mail;
+            $user->tel = $userold->tel;
+            $user->adress = $userold->addr;
+            $user->password = md5('123456');
+            $user->auth_key = md5($user->password);
+            $user->username = $user->e_mail;
+            $user->save();
+        }*/
+
+        foreach ($newsold as $newold) {
+            $new = new News();
+            $new->title = 'Новость';
+            $new->name = 'Новость';
+            $new->description = $newold->news_small_rus;
+            $new->keywords = $newold->news_small_rus;
+            $new->text = $newold->news_full_rus;
+            $new->prev_text = $newold->news_small_rus;
+            $new->alias = $this->str2url($newold->news_small_rus);
+            $new->save();
+        }
+
     }
 
 }

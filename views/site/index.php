@@ -67,7 +67,7 @@ $this->title = 'Подарки';
             <!--<div class="col-lg-2"></div>-->
             <div name ="article" class ="col-lg-12">
                 <center><p class="art zapodarTitle" ><?= $article['name'] ?></p></center>
-                <p class="artDescription"> <?= $article['description'] ?></p>
+                <p class="artDescription"> <?= $article['text'] ?></p>
 
             </div>
             <div class="col-lg-1"></div>
@@ -141,7 +141,11 @@ $this->title = 'Подарки';
             <br/>
             <div class="prodImg">
                 <a href="/product/<?= $prod['alias'] ?>" target="_self">
-                    <img src="/img/products/<?= $prod['picture'] ?>" alt= "<?= $prod['name'] ?>">
+                    <?php if (file_exists('img/products/'.$prod['picture'])):?>                     
+                        <img src="/img/products/<?= $prod['picture'] ?>" alt= "<?= $prod['name'] ?>">
+                    <?php else: ?>
+                        <img src="/img/products/empty_thumb.jpg" alt= "<?= $prod['name'] ?>">
+                    <?php endif;?>
                 </a>
             </div>
             <br/>

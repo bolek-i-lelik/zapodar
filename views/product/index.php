@@ -33,17 +33,28 @@ $fotos = explode(",", $product->picture);
     	<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
             <div class="mainPic">
             	<center>
-    		  		<img id="mainPic" style="max-height: 450px;" src="/img/products/<?= $fotos[0] ?>" height="50" alt="" class="img-thumbnail">
+                    <?php if (file_exists('img/products/'.$fotos[0])):?> 
+                        <img id="mainPic" style="max-height: 450px;" src="/img/products/<?= $fotos[0] ?>" height="50" alt="" class="img-thumbnail">   
+                    <?php else: ?>
+                        <img id="mainPic" style="max-height: 450px;" src="/img/products/empty_thumb.jpg" alt= "" height="50" alt="" class="img-thumbnail">
+                    <?php endif;?>
+    		  		
               	</center>
             	<br>
         		<center>
         			<p><?php count($fotos) ?></p>
-                 	<?php if(count($fotos)>2):?>   
+                 	<?php if(count($fotos)>1):?>   
             			<?php if(isset($fotos[1])):?>
-                        	<img src="/img/products/<?= $fotos[0] ?>" alt="" height="50" onclick = "f_zoom(src);">
-            					<?php foreach ($fotos as $key => $value): ?>
+                            <?php if (file_exists('img/products/'.$fotos[0])):?> 
+                                <img src="/img/products/<?= $fotos[0] ?>" alt="" height="50" onclick = "f_zoom(src);">
+                            <?php else: ?>
+                                <img src="/img/products/empty_thumb.jpg" alt= "" height="50" onclick = "f_zoom(src);">
+                            <?php endif;?>
+                        		<?php foreach ($fotos as $key => $value): ?>
             						<?php if($key>0 && $value != ''): ?>
-            							<img src="/img/products/<?= $value ?>" alt="" height="50" onclick = "f_zoom(src);">
+            					        <?php if (file_exists('img/products/'.$value)):?>
+                                            <img src="/img/products/<?= $value ?>" alt="" height="50" onclick = "f_zoom(src);">
+                                        <?php endif;?>
             						<?php endif;?>	
             					<?php endforeach ?>
             			<?php endif;?>
@@ -177,7 +188,15 @@ $fotos = explode(",", $product->picture);
 		            <br/>
 		            <div class="prodImg">
 		                <a href="/product/<?= $prod['alias'] ?>" target="_self">
-		                    <img src="/img/products/<?= $prod['picture'] ?>" alt= "<?= $prod['name'] ?>">
+                            <?php if($prod['picture']):?>
+    		                    <?php if (file_exists('img/products/'.$prod['picture'])):?>   
+                                    <img src="/img/products/<?= $prod['picture'] ?>" alt= "<?= $prod['name'] ?>">
+                                <?php else: ?>
+                                    <img src="/img/products/empty_thumb.jpg" alt= "<?= $prod['name'] ?>">
+                                <?php endif;?>
+                            <?php else:?>
+                                <img src="/img/products/empty_thumb.jpg" alt= "<?= $prod['name'] ?>">
+                            <?php endif;?>
 		                </a>
 		            </div>
 		            <br/>
@@ -187,9 +206,7 @@ $fotos = explode(",", $product->picture);
 		            <div><b><?= $prod['price']?> руб.</b></div>
 		            <div><br></div>
 		            <div style="position: absolute; bottom: 10px;">
-		                <!--<a href="/product/<?= $prod['alias'] ?>" id="<?= $prod['id'] ?>" name="<?= $prod['price']?> руб." onmouseover="show_buy_text(this);" onmouseleave="show_buy_text_end(this);">
-		                    <b><?= $prod['price']?> руб.</b>
-		                </a>-->
+		               
 		                <a href="<?= Url::toRoute('/product/'.$prod['alias'], true)?>"><button class="btn btn-success" style="font-size: 16px;" >подробнее</button></a>
 		            </div>
 		        </div>

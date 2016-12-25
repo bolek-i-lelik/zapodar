@@ -53,7 +53,7 @@ Yii::$app->language = 'ru';
                 <li class="hb-but hb-but-logo hb-but-main"> 
                     <a href="/">
                         <span class="hb-but-wrap" style = "vertical-align: middle; display: inline-block;">
-                            <p style="color:#AACF9D; vertical-align: middle; display: inline-block; font: 28px 'Open Sans',Arial,sans-serif">"DECO Media"</p>
+                            <p style="color:#AACF9D; vertical-align: middle; display: inline-block; font: 28px 'Open Sans',Arial,sans-serif">"ДЕКО Медиа"</p>
                         </span>
                     </a>
                 </li>
@@ -65,6 +65,7 @@ Yii::$app->language = 'ru';
                         </span>
                     </a> 
                 </li>
+
                 <li class="hb-but hb-but-search hb-but-main"> 
                     <input id="hb-but-search" class="j_search_cb j_hcb j_main_page j_off" type="checkbox" > 
                         <label class="hb-but-action j_off" for="hb-but-search" id="j_search_toggler" onclick="searchBTN();">
@@ -95,6 +96,17 @@ Yii::$app->language = 'ru';
                                             </div>
                                             <div class="col-4-12 j_do"> 
                                                 <input class="j_filterInput2 inp j_off" maxlength="6" value="" name="1000value2" placeholder="цена до" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="grid">
+                                            <div class="col-4-12"> 
+                                                <input class="j_filterInput2 inp j_off" maxlength="25" value="" name="material" placeholder="материал" type="text">
+                                            </div>
+                                            <div class="col-4-12 j_ot"> 
+                                                <input class="j_filterInput2 inp j_off" maxlength="25" value="" name="color" placeholder="цвет" type="text">
+                                            </div>
+                                            <div class="col-4-12 j_do"> 
+                                                <input class="j_filterInput2 inp j_off" maxlength="50" value="" name="hashtag" placeholder="хэштег" type="text">
                                             </div>
                                         </div>
                                 </div>
@@ -188,11 +200,11 @@ Yii::$app->language = 'ru';
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-
+    
         <?= $content ?>
+
     <!--</div>-->
 </div>
-
 <footer class="footer footerStyle">
 
  <div class="footer-links " style="background-color:#064727">
@@ -304,7 +316,7 @@ Yii::$app->language = 'ru';
 	{
 		var chec = document.getElementById("hb-but-search");
 		var slo = document.getElementById("j_header");
-		if(chec.checked == false){slo.style = "margin-bottom:140px;"}
+		if(chec.checked == false){slo.style = "margin-bottom:0px;"}
 			else{slo.style = "margin-bottom:0px;"}
 		
 	}

@@ -14,15 +14,17 @@ Yii::$app->language = 'ru';
 	<?php foreach($models as $model):?>
         <div class="col-lg-10 col-lg-offset-1">
         	<div class="row">
-        		<div class="col-lg-5">
+        		<!--<div class="col-lg-5">
+                    <?php if($model->prev_foto):?>
         			<img src="/img/news/<?= $model->prev_foto ?>">
+                    <?php endif;?>
         		</div>
-        		<div class="col-lg-7">
-        			<p><?= $model->name ?></p>
+        		<div class="col-lg-7">-->
+        			<!--<p><?= $model->name ?></p>-->
         			<p><?= $model->prev_text ?></p>
-        			<p>Добавлено: <?= $model->created_at ?></p>
-        			<a href="/new/<?=$model->alias?>"><button class="btn btn-success">подробнее</button></a>
-        		</div>
+        			<p>Добавлено: <?= $model->created_at ?>
+        			<a href="/new/<?=$model->alias?>"><button class="btn btn-success">подробнее</button></a></p>
+        		<!--</div>-->
         	</div>
         	<hr>
         </div>

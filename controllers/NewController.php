@@ -11,11 +11,13 @@ class NewController extends \yii\web\Controller
     public function actionIndex()
     {
 
-    	$query = News::find('alias', 'prev_text', 'prev_foto', 'created_at', 'name')->orderBy('created_at DESC');
+        $query = News::find()->orderBy('created_at DESC');
         
         $count = News::find()->count();
 
-        $results = new Pagination(['totalCount' => $count, 'pageSize' => 10]);
+        $results = new Pagination(['totalCount' => $count, 'pageSize' => $count]);
+
+        $results->pageSizeParam = false;
 
         $models = $query->offset($results->offset)
             ->limit($results->limit)
@@ -37,8 +39,8 @@ class NewController extends \yii\web\Controller
 
         $new = News::find()->where(['alias' => $alias])->one();
 
-        $new->prosmotr = $new->prosmotr + 1;
-        $new->save();
+        //$new->prosmotr = $new->prosmotr + 1;
+        //$new->save();
 
         return $this->render('onenew',[
         	'new' => $new,
@@ -48,7 +50,7 @@ class NewController extends \yii\web\Controller
 
     public function populationNews()
     {
-    	$news = News::find('alias', 'prev_text', 'prev_foto', 'created_at', 'name')->orderBy('created_at desc')->limit(3)->all();
+    	$news = News::find('alias', 'prev_text', 'prev_foto', 'created_at', 'name')->orderBy('created_at asc')->limit(3)->all();
 
     	return $news;
     }

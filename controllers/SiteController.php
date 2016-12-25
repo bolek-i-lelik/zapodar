@@ -458,6 +458,9 @@ class SiteController extends Controller
         $pricemin = htmlspecialchars(trim($get['1000value1']));
         $pricemax = htmlspecialchars(trim($get['1000value2']));
         $category = htmlspecialchars(trim($get['1001value1']));
+        $material = htmlspecialchars(trim($get['material']));
+        $color = htmlspecialchars(trim($get['color']));
+        $hashtag = htmlspecialchars(trim($get['hashtag']));
 
         if(!$category){
 
@@ -466,7 +469,18 @@ class SiteController extends Controller
             $products = Products::find()->where(['>', 'price', $pricemin])->andWhere(['<', 'price', $pricemax])->andWhere(['like', 'description', $poisk]);
 
             if(!empty($products)){
-                $products = Products::find()->where(['>', 'price', $pricemin])->andWhere(['<', 'price', $pricemax])->andWhere(['like', 'name', $poisk]);
+                if(empty($material) && empty($color)){
+                    $products = Products::find()->where(['>', 'price', $pricemin])->andWhere(['<', 'price', $pricemax])->andWhere(['like', 'name', $poisk]);
+                }
+                if(!empty($material) && empty($color)){
+                    $products = Products::find()->where(['>', 'price', $pricemin])->andWhere(['<', 'price', $pricemax])->andWhere(['like', 'name', $poisk])->andWhere(['like', 'params', $material]);
+                }
+                if(!empty($color) && empty($material)){
+                    $products = Products::find()->where(['>', 'price', $pricemin])->andWhere(['<', 'price', $pricemax])->andWhere(['like', 'name', $poisk])->andWhere(['like', 'params', $color]);
+                }
+                if(!empty($color) && !empty($material)){
+                    $products = Products::find()->where(['>', 'price', $pricemin])->andWhere(['<', 'price', $pricemax])->andWhere(['like', 'name', $poisk])->andWhere(['like', 'params', $material])->andWhere(['like', 'params', $color]);
+                }
             }
 
             $count = $products->count();

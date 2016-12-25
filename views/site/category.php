@@ -52,7 +52,14 @@ Yii::$app->language = 'ru';
                         <?php $foto = stristr($model->picture, ',', true);?>
                         <?php $fotos = explode(",", $model->picture);?>
                         <?php if(!empty($fotos[0])):?>
-                            <center><img src="/img/products/<?= $fotos[0] ?>" height="150"; width="200"></center>
+                            <center>
+                                <?php if (file_exists('img/products/'.$fotos[0])):?>
+                                    <img src="/img/products/<?= $fotos[0] ?>" alt= "<?= $model->name ?>" height="150"; width="200">
+                                <?php else: ?>
+                                    <img src="/img/products/empty_thumb.jpg" alt= "<?= $model->name ?>">
+                                <?php endif;?>
+                                
+                            </center>
                         <?php endif;?>
                         <?php if(empty($fotos[0])):?>
                             <center><img src="/img/products/empty_thumb.jpg" height="150"></center>
