@@ -11,14 +11,40 @@ class ParserController extends \yii\web\Controller
     {
          // создаем экземпляр класса
         $client = new Client();
+        //Работа с сайтом Oasis
         // отправляем запрос к странице Яндекса
-        $res = $client->request('GET', 'http://www.yandex.ru');
+        $res = $client->request('GET', 'http://www.oasiscatalog.com/production/dishes?per-page=404');
         // получаем данные между открывающим и закрывающим тегами body
         $body = $res->getBody();
         // подключаем phpQuery
         $document = \phpQuery::newDocumentHTML($body);
         // получаем список новостей
-        $news = $document->find(".b-news-list"); 
+        $news = $document->find(".tovar-item"); 
+        $links = $news->find("a");
+        $product_links = array();
+        foreach ($links as $value) {
+            $product_links[] = $value->getAttribute('href');
+        }
+        $product_links = array_unique($product_links);
+        foreach ($product_links as $value) {
+            $str = substr($value, 0, 5);
+            if($str !== '/item'){
+                $product_links = array_flip($product_links); //Меняем местами ключи и значения
+                unset ($product_links[$value]) ; //Удаляем элемент массива
+                $product_links = array_flip($product_links); //Меняем местами ключи и значения
+            }
+        }
+        foreach ($product_links as $value) {
+            $site = $client->request('GET', 'http://www.oasiscatalog.com'.$value);
+            $body = $site->getBody();
+            $document = \phpQuery::newDocumentHTML($body);
+            $info = $document->find(".breadbox");
+            $name = $info->find("h1");
+            $name = (String)$name
+            ;
+            echo $name;exit();
+        }
+        //var_dump($product_links);exit();
         // выполняем проход циклом по списку
         /*foreach ($news as $elem) {
             //pq аналог $ в jQuery
@@ -33,7 +59,29 @@ class ParserController extends \yii\web\Controller
              $pq->find('li.b-news-list__item:last')->addClass('my_last_class');
         }*/
         // вывод списка новостей яндекса с главной страницы в представление
-        return $this->render('yandex', ['news' => $news]);
+        return $this->render('yandex', [
+            'links' => $links,
+            'news' => $news,
+            'body' => $body,
+            'link' => $link,
+        ]);
     }
     
 }
+
+/* Вот доступы на сайты поставщиков откуда мы брали данные:
+
+http://api2.gifts.ru/
+имя пользователя - 25109_xmlexport 
+пароль  - NEdToHF3 
+но здесь есть ограничения по IP-адресу
+
+http://happygifts.ru/
+hg7703799862
+mediadeko
+[17:20:48] Сергей: http://www.oasiscatalog.com/
+info@za-podar.com
+110S4v7H
+[17:23:57] Сергей: есть ещё практически не обновляемый http://norgispress.ru/calculator/ 
+его цены уже год как не менялись. Там просто по прайсу всё вручную было занесено
+http://vip.oasiscatalog.com/

@@ -1,1 +1,1 @@
-<?= $news ?>
+<?= var_dump($link) ?>
