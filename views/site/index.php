@@ -152,7 +152,15 @@ $this->title = 'Подарки';
                 
             <div><?= $prod['name'] ?></div>
             <div><br></div>
-            <div><b><?= $prod['price']?> руб.</b></div>
+            <?php
+                $pos = strpos($prod['price'], '.');
+                if($pos){
+                    $price = substr($prod['price'], 0, $pos+3);
+                }else{
+                    $price = $prod['price'];
+                }
+            ?>
+            <div><b><?= $price?> руб.</b></div>
             <div><br></div>
             <div style="position: absolute; bottom: 10px;">
                 <!--<a href="/product/<?= $prod['alias'] ?>" id="<?= $prod['id'] ?>" name="<?= $prod['price']?> руб." onmouseover="show_buy_text(this);" onmouseleave="show_buy_text_end(this);">

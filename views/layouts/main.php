@@ -34,6 +34,7 @@ Yii::$app->language = 'ru';
 
 <header id="j_header" class="header static search-main j_main_page">
     <div class="corp_menu logrus-ajax-load" data-type="header-anonymous-menu">
+        <img src="/img/logo.jpg" height="35px"> ДЕКО-Медиа
         <span class="phone hint hint_right" data-hint="Наш контактный телефон" style = "color: #153928;">
             <i class="fa fa-phone" aria-hidden="true"></i>
                 (495) 737-90-22
@@ -53,7 +54,9 @@ Yii::$app->language = 'ru';
                 <li class="hb-but hb-but-logo hb-but-main"> 
                     <a href="/">
                         <span class="hb-but-wrap" style = "vertical-align: middle; display: inline-block;">
-                            <p style="color:#AACF9D; vertical-align: middle; display: inline-block; font: 28px 'Open Sans',Arial,sans-serif">"ДЕКО Медиа"</p>
+                            <p style="color:#AACF9D; vertical-align: middle; display: inline-block; font: 28px 'Open Sans',Arial,sans-serif">
+                                za-podar.com
+                            </p>
                         </span>
                     </a>
                 </li>
@@ -106,7 +109,7 @@ Yii::$app->language = 'ru';
                                                 <input class="j_filterInput2 inp j_off" maxlength="25" value="" name="color" placeholder="цвет" type="text">
                                             </div>
                                             <div class="col-4-12 j_do"> 
-                                                <input class="j_filterInput2 inp j_off" maxlength="50" value="" name="hashtag" placeholder="хэштег" type="text">
+                                                <input class="j_filterInput2 inp j_off" maxlength="50" value="" name="articul" placeholder="артикул" type="text">
                                             </div>
                                         </div>
                                 </div>
@@ -155,7 +158,7 @@ Yii::$app->language = 'ru';
             		<a class="hb-but-action hb-but-hover" id="cart" href="<?= Url::toRoute('/basket', true)?>">
             			
                 		<span class="hb-but-wrap">
-                    		<img class="hb-but-icon" src="http://buhcomfort.ru/img/bug.png" alt="Корзина">
+                    		<img class="hb-but-icon" src="/img/bug.png" alt="Корзина">
                             <?php if(Yii::$app->user->isGuest):?>
                                 <span class="hb-but-text" style="color:#AACF9D;"><b>Корзина </b></span>
                             <?php else:?>

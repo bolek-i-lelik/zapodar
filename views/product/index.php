@@ -71,7 +71,18 @@ $fotos = explode(",", $product->picture);
             <?php else: ?>
                 <div class="stocks"><strong class="stock-high"><i class="icon16 stock-green" style="background-position: -94.5px -118px;"></i>Нет в наличии</strong> </div>
             <?php endif;?>
-    		<p style="font-size: 30pt;"><?= $product->price?> &#8381;</p>
+    		<p style="font-size: 30pt;">
+            <?php
+                $pos = strpos($product->price, '.');
+                if($pos){
+                $price = substr($product->price, 0, $pos+3);
+                }else{
+                    $price = $product->price;
+                }
+            ?>
+
+
+            <?= $price ?> &#8381;</p>
             <?php if($guest == FALSE):?>
                 <?php if($onbasket == FALSE):?>
                     <div id="basket">
@@ -203,7 +214,15 @@ $fotos = explode(",", $product->picture);
 		                
 		            <div><?= $prod['name'] ?></div>
 		            <div><br></div>
-		            <div><b><?= $prod['price']?> руб.</b></div>
+                    <?php
+                        $pos = strpos($prod['price'], '.');
+                        if($pos){
+                        $price = substr($prod['price'], 0, $pos+3);
+                        }else{
+                            $price = $prod['price'];
+                        }
+                    ?>
+		            <div><b><?= $price?> руб.</b></div>
 		            <div><br></div>
 		            <div style="position: absolute; bottom: 10px;">
 		               

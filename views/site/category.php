@@ -66,7 +66,15 @@ Yii::$app->language = 'ru';
                         <?php endif;?>
                     </div>
                     <div class = "col-lg-12"><?= $model->name ?><br><br></div>
-                    <div class = "col-lg-12"><b><?= $model->price ?> руб.</b></div>
+                    <?php
+                        $pos = strpos($model->price, '.');
+                        if($pos){
+                        $price = substr($model->price, 0, $pos+3);
+                        }else{
+                            $price = $model->price;
+                        }
+                    ?>
+                    <div class = "col-lg-12"><b><?= $price ?> руб.</b></div>
                     <div class = "col-lg-12" style="position: absolute; bottom: 35px;"><a href="<?= Url::toRoute('/product/'.$model->alias, true)?>"><button class="btn btn-success" style="font-size: 16px;" >подробнее</button></a></center></div>
                     
                     
