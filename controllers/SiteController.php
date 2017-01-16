@@ -301,7 +301,7 @@ class SiteController extends Controller
         }
         else
         {
-            $query = Products::find('alias', 'picture', 'name', 'price')->where(['categoryid'=>$id]);
+            $query = Products::find('alias', 'picture', 'name', 'price', 'articul')->where(['categoryid'=>$id]);
             $tip = 2;
 
             $count = Products::find()->where(['categoryid'=>$id])->count();

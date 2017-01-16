@@ -54,18 +54,19 @@ Yii::$app->language = 'ru';
                         <?php if(!empty($fotos[0])):?>
                             <center>
                                 <?php if (file_exists('img/products/'.$fotos[0])):?>
-                                    <img src="/img/products/<?= $fotos[0] ?>" alt= "<?= $model->name ?>" height="150"; width="200">
+                                    <a href="<?= Url::toRoute('/product/'.$model->alias, true)?>"><img src="/img/products/<?= $fotos[0] ?>" alt= "<?= $model->name ?>" height="150"; width="200"></a>
                                 <?php else: ?>
-                                    <img src="/img/products/empty_thumb.jpg" alt= "<?= $model->name ?>">
+                                    <a href="<?= Url::toRoute('/product/'.$model->alias, true)?>"><img src="/img/products/empty_thumb.jpg" alt= "<?= $model->name ?>"></a>
                                 <?php endif;?>
                                 
                             </center>
                         <?php endif;?>
                         <?php if(empty($fotos[0])):?>
-                            <center><img src="/img/products/empty_thumb.jpg" height="150"></center>
+                            <center><a href="<?= Url::toRoute('/product/'.$model->alias, true)?>"><img src="/img/products/empty_thumb.jpg" height="150"></a></center>
                         <?php endif;?>
                     </div>
-                    <div class = "col-lg-12"><?= $model->name ?><br><br></div>
+                    <?php $name = substr($model->name, 0, 80);  ?>
+                    <div class = "col-lg-12"><?= $name ?><br><br></div>
                     <?php
                         $pos = strpos($model->price, '.');
                         if($pos){
@@ -74,8 +75,16 @@ Yii::$app->language = 'ru';
                             $price = $model->price;
                         }
                     ?>
-                    <div class = "col-lg-12"><b><?= $price ?> руб.</b></div>
-                    <div class = "col-lg-12" style="position: absolute; bottom: 35px;"><a href="<?= Url::toRoute('/product/'.$model->alias, true)?>"><button class="btn btn-success" style="font-size: 16px;" >подробнее</button></a></center></div>
+                    <div class = "col-lg-12" style="position: absolute; bottom: 35px;">
+                        <br/>
+                        Артикул: <?= $model->vendorcode ?><br/>
+                        <b><?= $price ?> руб.</b>
+                        <br /><br/>
+                    
+                        <a href="<?= Url::toRoute('/product/'.$model->alias, true)?>">
+                            <button class="btn btn-success" style="font-size: 16px;" >подробнее</button>
+                        </a>
+                    </div>
                     
                     
                 </div>
