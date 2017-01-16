@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div><p></p></div>
                 <div><p></p></div>
                 <div class="prodImg">
-                    <center><img src="/img/products/<?= $cat->picture ?>" height="80">
+                    <center><a href="/category/<?= $cat->id ?>"><img src="/img/products/<?= $cat->picture ?>" height="80"></a>
                     </center>
                 </div>
                 <div><p></p></div>

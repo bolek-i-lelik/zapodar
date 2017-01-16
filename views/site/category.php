@@ -37,7 +37,7 @@ Yii::$app->language = 'ru';
                 <div class="progItem col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div style="height: 350px;">
                         <br/>
-                        <center><img src="/img/products/<?= $result->picture ?>" height="150"></center>
+                        <center><a href="/category/<?= $result->id ?>"><img src="/img/products/<?= $result->picture ?>" height="150"></a></center>
                     </div>
                     <div style="height: 350px;"><center><h3><?= Html::a($result->name, ['category/'.$result->id]) ?></h3></center>
                     </div>
