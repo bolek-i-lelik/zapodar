@@ -42,8 +42,9 @@ class ParserController extends \yii\web\Controller
             $name = $info->find("h1");
             $name = (String)$name
             ;
-            echo $name;exit();
+            echo strip_tags($name).'<br/>';
         }
+        exit();
         //var_dump($product_links);exit();
         // выполняем проход циклом по списку
         /*foreach ($news as $elem) {

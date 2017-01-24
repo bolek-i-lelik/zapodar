@@ -68,9 +68,64 @@ $this->title = 'Подарки';
             <div name ="article" class ="col-lg-12">
                 <center><p class="art zapodarTitle" ><?= $article['name'] ?></p></center>
                 <p class="artDescription"> <?= $article['text'] ?></p>
-
+                <hr/>
             </div>
-            <div class="col-lg-1"></div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <a href="/search?hash=&filterid=1001&1001minvalue=0&1001maxvalue=99999&1001value1=&filterid=1000&1000minvalue=0&1000maxvalue=999999&1000value1=&1000value2=&material=кожа&color=&articul=">
+                        <img src="/img/kozha.jpg">
+                    </a>
+                </div>
+                <div class="col-lg-3">
+                    <a href="/category/12182968">
+                        <img src="/img/pod-upac.jpg">
+                    </a>
+                </div>
+                <div class="col-lg-3">
+                    <a href="/search?hash=&filterid=1000&1001minvalue=0&1001maxvalue=99999&1001value1=&1000minvalue=0&1000maxvalue=999999&1000value1=&1000value2=&material=дерево&color=&articul=&page=14">
+                        <img src="/img/iz-dereva.jpg">
+                    </a>
+                </div>
+                <div class="col-lg-3">
+                    <a href="/site/catalog">
+                        <img src="/img/suv-i-pod.jpg">
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <center>
+                        <br/>
+                        <a href="/search?hash=&filterid=1001&1001minvalue=0&1001maxvalue=99999&1001value1=&filterid=1000&1000minvalue=0&1000maxvalue=999999&1000value1=&1000value2=&material=кожа&color=&articul=">
+                            <b>Изделия из кожи</b>
+                        </a>
+                    </center>
+                </div>
+                <div class="col-lg-3">
+                    <center>
+                        <br/>
+                        <a href="/category/12182968">
+                            <b>Подарочная упаковка</b>
+                        </a>
+                    </center>
+                </div>
+                <div class="col-lg-3">
+                    <center>
+                        <br/>
+                        <a href="/search?hash=&filterid=1000&1001minvalue=0&1001maxvalue=99999&1001value1=&1000minvalue=0&1000maxvalue=999999&1000value1=&1000value2=&material=дерево&color=&articul=&page=14">
+                            <b>Изделия из дерева</b>
+                        </a>
+                    </center>
+                </div>
+                <div class="col-lg-3">
+                    <center>
+                        <br/>
+                        <a href="/site/catalog">
+                            <b>Сувениры и подарки</b>
+                        </a>
+                    </center>
+                </div>
+            </div>
             <div class="col-lg-12 blockNews">
                     
                 <div class="body-content blockNews col-lg-12">
@@ -89,9 +144,9 @@ $this->title = 'Подарки';
                     <?php foreach ($news as $new):?>
                         <div class="itemNews col-lg-4 col-md-4 col-sm-4 col-xs-10">
                             <center>
-                                <a href="/new/<?= $new->alias ?>" rel="nofollow">
+                                <!--<a href="/new/<?= $new->alias ?>" rel="nofollow">
                                     <span class="imageNews"><img src="/img/news/<?= $new->prev_foto ?>" alt=""></span>
-                                </a>
+                                </a>-->
                                 <a href="/new/<?= $new->alias ?>">
                                     <span class="titleNews zapodarTitle" style="font-size: 20pt;"><?= $new->name ?></span>
                                 </a>

@@ -103,6 +103,16 @@ class AdminController extends \yii\web\Controller
             return $this->redirect('/');
         }
 
+        $count_products = Products::find()->count();
+        $time_now = time();
+        $time_yestarday = $time_now - 86400;
+        //$products_updated = Products::find()->where(['<', 'created_at', $time_yestarday])->all();
+        //$count_updated_products = 0;
+        //foreach ($products_updated as $value) {
+        //    $count_updated_products += 1;
+        //}
+        //$procent_updated_products = $count_updated_products/($count_products/100);
+
     	$count_users = User::find()->count();
 
         $count_buy = Zakaz::find()->where(['sost'=>1])->count();
@@ -114,6 +124,7 @@ class AdminController extends \yii\web\Controller
             'count_buy' => $count_buy,
             'count_buy_in_work' => $count_buy_in_work,
             'count_buy_yes' => $count_buy_yes,
+            //'procent_updated_products' => $procent_updated_products,
     	]);
     }
 

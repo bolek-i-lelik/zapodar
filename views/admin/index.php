@@ -72,10 +72,10 @@ use yii\helpers\Url;
                             <div class="small-box bg-red">
                                 <div class="inner">
                                     <h3>
-                                        <?= $count_buy_in_work ?>
+                                        <?= $count_users//procent_updated_products ?> %
                                     </h3>
                                     <p>
-                                        Заказы в работе
+                                        Продуктов обновлено
                                     </p>
                                 </div>
                                 <div class="icon">
