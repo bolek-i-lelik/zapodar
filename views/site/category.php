@@ -30,6 +30,22 @@ Yii::$app->language = 'ru';
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
+    <hr/>
+    <div class="row">
+        <div class="col-lg-5">
+            <center>
+                <img src="/img/banner_gallery_pack.jpg">
+            </center>
+        </div>
+        <div class="col-lg-7">
+            <center>
+                <br/><br/><br/>
+                <p>Вы можете выбрать любую понравившуюся Вам упаковку в нашей галерее. Мы с радостью подготовим похожую, в соответствии с Вашими пожеланиями.</p>
+                <a href="/site/gallery" class="btn btn-success" type="button">Перейти в галерею</a>
+            </center>
+        </div>
+    </div>    
+    <hr/>
     <div class="row">
 
         <?php if($tip == 1): ?>

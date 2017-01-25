@@ -1,10 +1,8 @@
 /*!
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2017
- * @version 1.3.4
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2015
+ * @version 1.3.3
  *
  * Date formatter utility library that allows formatting date/time variables or Date objects using PHP DateTime format.
- * This library is a standalone javascript library and does not depend on other libraries or plugins like jQuery.
- * 
  * @see http://php.net/manual/en/function.date.php
  *
  * For more JQuery plugins visit http://plugins.krajee.com
@@ -14,16 +12,15 @@ var DateFormatter;
 (function () {
     "use strict";
 
-    var _compare, _lpad, _extend, _indexOf, defaultSettings, DAY, HOUR;
+    var _compare, _lpad, _extend, defaultSettings, DAY, HOUR;
     DAY = 1000 * 60 * 60 * 24;
     HOUR = 3600;
 
     _compare = function (str1, str2) {
         return typeof(str1) === 'string' && typeof(str2) === 'string' && str1.toLowerCase() === str2.toLowerCase();
     };
-    _lpad = function (value, length, chr) {
-        var val = value.toString();
-        chr = chr || '0';
+    _lpad = function (value, length, char) {
+        var chr = char || '0', val = value.toString();
         return val.length < length ? _lpad(chr + val, length) : val;
     };
     _extend = function (out) {
@@ -45,14 +42,6 @@ var DateFormatter;
             }
         }
         return out;
-    };
-    _indexOf = function (val, arr) {
-        for (var i = 0; i < arr.length; i++) {
-            if (arr[i].toLowerCase() === val.toLowerCase()) {
-                return i;
-            }
-        }
-        return -1;
     };
     defaultSettings = {
         dateSettings: {
@@ -88,35 +77,25 @@ var DateFormatter;
 
     DateFormatter.prototype = {
         constructor: DateFormatter,
-        getMonth: function (val) {
-            var self = this, i;
-            i = _indexOf(val, self.dateSettings.monthsShort) + 1;
-            if (i === 0) {
-                i = _indexOf(val, self.dateSettings.months) + 1;
-            }
-            return i;
-        },
         parseDate: function (vDate, vFormat) {
             var self = this, vFormatParts, vDateParts, i, vDateFlag = false, vTimeFlag = false, vDatePart, iDatePart,
                 vSettings = self.dateSettings, vMonth, vMeriIndex, vMeriOffset, len, mer,
                 out = {date: null, year: null, month: null, day: null, hour: 0, min: 0, sec: 0};
             if (!vDate) {
-                return null;
+                return undefined;
             }
             if (vDate instanceof Date) {
                 return vDate;
+            }
+            if (typeof vDate === 'number') {
+                return new Date(vDate);
             }
             if (vFormat === 'U') {
                 i = parseInt(vDate);
                 return i ? new Date(i * 1000) : vDate;
             }
-            switch (typeof vDate) {
-                case 'number':
-                    return new Date(vDate);
-                case 'string':
-                    break;
-                default:
-                    return null;
+            if (typeof vDate !== 'string') {
+                return '';
             }
             vFormatParts = vFormat.match(self.validParts);
             if (!vFormatParts || vFormatParts.length === 0) {
@@ -129,11 +108,11 @@ var DateFormatter;
                 switch (vFormatParts[i]) {
                     case 'y':
                     case 'Y':
-                        if (iDatePart) {
-                            len = vDatePart.length;
-                            out.year = len === 2 ? parseInt((iDatePart < 70 ? '20' : '19') + vDatePart) : iDatePart;
-                        } else {
-                            return null;
+                        len = vDatePart.length;
+                        if (len === 2) {
+                            out.year = parseInt((iDatePart < 70 ? '20' : '19') + vDatePart);
+                        } else if (len === 4) {
+                            out.year = iDatePart;
                         }
                         vDateFlag = true;
                         break;
@@ -141,18 +120,18 @@ var DateFormatter;
                     case 'n':
                     case 'M':
                     case 'F':
-                        if (isNaN(iDatePart)) {
-                            vMonth = self.getMonth(vDatePart);
-                            if (vMonth > 0) {
-                                out.month = vMonth;
-                            } else {
-                                return null;
+                        if (isNaN(vDatePart)) {
+                            vMonth = vSettings.monthsShort.indexOf(vDatePart);
+                            if (vMonth > -1) {
+                                out.month = vMonth + 1;
+                            }
+                            vMonth = vSettings.months.indexOf(vDatePart);
+                            if (vMonth > -1) {
+                                out.month = vMonth + 1;
                             }
                         } else {
                             if (iDatePart >= 1 && iDatePart <= 12) {
                                 out.month = iDatePart;
-                            } else {
-                                return null;
                             }
                         }
                         vDateFlag = true;
@@ -161,8 +140,6 @@ var DateFormatter;
                     case 'j':
                         if (iDatePart >= 1 && iDatePart <= 31) {
                             out.day = iDatePart;
-                        } else {
-                            return null;
                         }
                         vDateFlag = true;
                         break;
@@ -171,22 +148,16 @@ var DateFormatter;
                         vMeriIndex = (vFormatParts.indexOf('a') > -1) ? vFormatParts.indexOf('a') :
                             (vFormatParts.indexOf('A') > -1) ? vFormatParts.indexOf('A') : -1;
                         mer = vDateParts[vMeriIndex];
-                        if (vMeriIndex !== -1) {
+                        if (vMeriIndex > -1) {
                             vMeriOffset = _compare(mer, vSettings.meridiem[0]) ? 0 :
                                 (_compare(mer, vSettings.meridiem[1]) ? 12 : -1);
-                            if (iDatePart >= 1 && iDatePart <= 12 && vMeriOffset !== -1) {
-                                out.hour = iDatePart % 12 === 0 ? vMeriOffset : iDatePart + vMeriOffset;
-                            } else {
-                                if (iDatePart >= 0 && iDatePart <= 23) {
-                                    out.hour = iDatePart;
-                                }
-                            }
-                        } else {
-                            if (iDatePart >= 0 && iDatePart <= 23) {
+                            if (iDatePart >= 1 && iDatePart <= 12 && vMeriOffset > -1) {
+                                out.hour = iDatePart + vMeriOffset - 1;
+                            } else if (iDatePart >= 0 && iDatePart <= 23) {
                                 out.hour = iDatePart;
-                            } else {
-                                return null;
                             }
+                        } else if (iDatePart >= 0 && iDatePart <= 23) {
+                            out.hour = iDatePart;
                         }
                         vTimeFlag = true;
                         break;
@@ -194,24 +165,18 @@ var DateFormatter;
                     case 'H':
                         if (iDatePart >= 0 && iDatePart <= 23) {
                             out.hour = iDatePart;
-                        } else {
-                            return null;
                         }
                         vTimeFlag = true;
                         break;
                     case 'i':
                         if (iDatePart >= 0 && iDatePart <= 59) {
                             out.min = iDatePart;
-                        } else {
-                            return null;
                         }
                         vTimeFlag = true;
                         break;
                     case 's':
                         if (iDatePart >= 0 && iDatePart <= 59) {
                             out.sec = iDatePart;
-                        } else {
-                            return null;
                         }
                         vTimeFlag = true;
                         break;
@@ -221,7 +186,7 @@ var DateFormatter;
                 out.date = new Date(out.year, out.month - 1, out.day, out.hour, out.min, out.sec, 0);
             } else {
                 if (vTimeFlag !== true) {
-                    return null;
+                    return false;
                 }
                 out.date = new Date(0, 0, 0, out.hour, out.min, out.sec, 0);
             }
@@ -231,8 +196,8 @@ var DateFormatter;
             if (typeof vDateStr !== 'string') {
                 return vDateStr;
             }
-            var self = this, vParts = vDateStr.replace(self.separators, '\0').split('\0'), vPattern = /^[djmn]/g, len,
-                vFormatParts = vFormat.match(self.validParts), vDate = new Date(), vDigit = 0, vYear, i, n, iPart, iSec;
+            var self = this, vParts = vDateStr.replace(self.separators, '\0').split('\0'), vPattern = /^[djmn]/g,
+                vFormatParts = vFormat.match(self.validParts), vDate = new Date(), vDigit = 0, vYear, i, iPart, iSec;
 
             if (!vPattern.test(vFormatParts[0])) {
                 return vDateStr;
@@ -242,9 +207,6 @@ var DateFormatter;
                 vDigit = 2;
                 iPart = vParts[i];
                 iSec = parseInt(iPart.substr(0, 2));
-                if (isNaN(iSec)) {
-                    return null;
-                }
                 switch (i) {
                     case 0:
                         if (vFormatParts[0] === 'm' || vFormatParts[0] === 'n') {
@@ -262,13 +224,13 @@ var DateFormatter;
                         break;
                     case 2:
                         vYear = vDate.getFullYear();
-                        len = iPart.length;
-                        vDigit = len < 4 ? len : 4;
-                        vYear = parseInt(len < 4 ? vYear.toString().substr(0, 4 - len) + iPart : iPart.substr(0, 4));
-                        if (!vYear) {
-                            return null;
+                        if (iPart.length < 4) {
+                            vDate.setFullYear(parseInt(vYear.toString().substr(0, 4 - iPart.length) + iPart));
+                            vDigit = iPart.length;
+                        } else {
+                            vDate.setFullYear = parseInt(iPart.substr(0, 4));
+                            vDigit = 4;
                         }
-                        vDate.setFullYear(vYear);
                         break;
                     case 3:
                         vDate.setHours(iSec);
@@ -280,15 +242,14 @@ var DateFormatter;
                         vDate.setSeconds(iSec);
                         break;
                 }
-                n = iPart.substr(vDigit);
-                if (n.length > 0) {
-                    vParts.splice(i + 1, 0, n);
+                if (iPart.substr(vDigit).length > 0) {
+                    vParts.splice(i + 1, 0, iPart.substr(vDigit));
                 }
             }
             return vDate;
         },
         parseFormat: function (vChar, vDate) {
-            var self = this, vSettings = self.dateSettings, fmt, backslash = /\\?(.?)/gi, doFormat = function (t, s) {
+            var self = this, vSettings = self.dateSettings, fmt, backspace = /\\?(.?)/gi, doFormat = function (t, s) {
                 return fmt[t] ? fmt[t]() : s;
             };
             fmt = {
@@ -519,6 +480,14 @@ var DateFormatter;
                     return str || 'Coordinated Universal Time';
                 },
                 /**
+                 * Timezone abbreviation: `e.g. EST, MDT, ...`
+                 * @return {string}
+                 */
+                T: function () {
+                    var str = (String(vDate).match(self.tzParts) || [""]).pop().replace(self.tzClip, "");
+                    return str || 'UTC';
+                },
+                /**
                  * DST observed? `0 or 1`
                  * @return {number}
                  */
@@ -544,14 +513,6 @@ var DateFormatter;
                     return (O.substr(0, 3) + ':' + O.substr(3, 2));
                 },
                 /**
-                 * Timezone abbreviation: `e.g. EST, MDT, ...`
-                 * @return {string}
-                 */
-                T: function () {
-                    var str = (String(vDate).match(self.tzParts) || [""]).pop().replace(self.tzClip, "");
-                    return str || 'UTC';
-                },
-                /**
                  * Timezone offset in seconds: `-43200...50400`
                  * @return {number}
                  */
@@ -567,14 +528,14 @@ var DateFormatter;
                  * @return {string}
                  */
                 c: function () {
-                    return 'Y-m-d\\TH:i:sP'.replace(backslash, doFormat);
+                    return 'Y-m-d\\TH:i:sP'.replace(backspace, doFormat);
                 },
                 /**
                  * RFC 2822 date
                  * @return {string}
                  */
                 r: function () {
-                    return 'D, d M Y H:i:s O'.replace(backslash, doFormat);
+                    return 'D, d M Y H:i:s O'.replace(backspace, doFormat);
                 },
                 /**
                  * Seconds since UNIX epoch
@@ -587,27 +548,23 @@ var DateFormatter;
             return doFormat(vChar, vChar);
         },
         formatDate: function (vDate, vFormat) {
-            var self = this, i, n, len, str, vChar, vDateStr = '', BACKSLASH = '\\';
+            var self = this, i, n, len, str, vChar, vDateStr = '';
             if (typeof vDate === 'string') {
                 vDate = self.parseDate(vDate, vFormat);
-                if (!vDate) {
-                    return null;
+                if (vDate === false) {
+                    return false;
                 }
             }
             if (vDate instanceof Date) {
                 len = vFormat.length;
                 for (i = 0; i < len; i++) {
                     vChar = vFormat.charAt(i);
-                    if (vChar === 'S' || vChar === BACKSLASH) {
-                        continue;
-                    }
-                    if (i > 0 && vFormat.charAt(i - 1) === BACKSLASH) {
-                        vDateStr += vChar;
+                    if (vChar === 'S') {
                         continue;
                     }
                     str = self.parseFormat(vChar, vDate);
                     if (i !== (len - 1) && self.intParts.test(vChar) && vFormat.charAt(i + 1) === 'S') {
-                        n = parseInt(str) || 0;
+                        n = parseInt(str);
                         str += self.dateSettings.ordinal(n);
                     }
                     vDateStr += str;

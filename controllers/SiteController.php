@@ -76,7 +76,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-
         $news = NewController::populationNews();
 
         $count_all_products = Products::find()->count();
@@ -519,6 +518,18 @@ class SiteController extends Controller
                 'tip' => $tip,
             ]);
         }
+    }
+
+    public function actionGallery()
+    {
+        $dir    = './img/pack';
+        $files = scandir($dir);
+        unset($files[0]);
+        unset($files[1]);
+
+        return $this->render('gallery',[
+            'files' => $files
+        ]);
     }
 
 }

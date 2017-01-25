@@ -96,10 +96,28 @@ return array (
   'yiisoft/yii2-debug' => 
   array (
     'name' => 'yiisoft/yii2-debug',
-    'version' => '2.0.7.0',
+    'version' => '2.0.6.0',
     'alias' => 
     array (
       '@yii/debug' => $vendorDir . '/yiisoft/yii2-debug',
+    ),
+  ),
+  'onmotion/yii2-helpers' => 
+  array (
+    'name' => 'onmotion/yii2-helpers',
+    'version' => '1.0.3.0',
+    'alias' => 
+    array (
+      '@onmotion/helpers' => $vendorDir . '/onmotion/yii2-helpers',
+    ),
+  ),
+  'onmotion/yii2-gallery' => 
+  array (
+    'name' => 'onmotion/yii2-gallery',
+    'version' => '1.1.8.0',
+    'alias' => 
+    array (
+      '@onmotion/gallery' => $vendorDir . '/onmotion/yii2-gallery',
     ),
   ),
   'kartik-v/yii2-datecontrol' => 

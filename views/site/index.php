@@ -20,6 +20,7 @@ $this->registerMetaTag([
 
 $this->title = 'Подарки';
 ?>
+
 <div class="site-index">
 <link href="https://fonts.googleapis.com/css?family=Marck+Script|Rubik" rel="stylesheet"> 
     <div class="row">

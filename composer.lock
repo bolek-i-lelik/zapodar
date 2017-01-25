@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2758e7f59300d290f396c1a2554d2754",
-    "content-hash": "66d53402b6f9b32078c8f500d0c9d52b",
+    "hash": "d91a85c2039247ce4fc1462a93abf5b0",
+    "content-hash": "d08590a42e245efb8e66d95aaad36e61",
     "packages": [
         {
             "name": "3ch3r46/bootui-datetimepicker",
@@ -50,6 +50,22 @@
                 "yii2"
             ],
             "time": "2015-01-17 02:33:13"
+        },
+        {
+            "name": "bower-asset/blueimp-gallery",
+            "version": "v2.22.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blueimp/Gallery.git",
+                "reference": "c91c4de0ef9882c91bffaf1ef990081e581235d1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blueimp/Gallery/zipball/c91c4de0ef9882c91bffaf1ef990081e581235d1",
+                "reference": "c91c4de0ef9882c91bffaf1ef990081e581235d1",
+                "shasum": ""
+            },
+            "type": "bower-asset-library"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -615,7 +631,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-datepicker/zipball/92e04c6a9ff90c4290db7566f68af429f2d641d5",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-datepicker/zipball/33c7f4751291eaa34413b7b82b1659ae44ea8b23",
                 "reference": "33c7f4751291eaa34413b7b82b1659ae44ea8b23",
                 "shasum": ""
             },
@@ -658,6 +674,110 @@
                 "yii2"
             ],
             "time": "2016-10-08 18:16:58"
+        },
+        {
+            "name": "onmotion/yii2-gallery",
+            "version": "1.1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/onmotion/yii2-gallery.git",
+                "reference": "7c9d54290021cc1d06661573f26c7f2aa9b3d32c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/onmotion/yii2-gallery/zipball/7c9d54290021cc1d06661573f26c7f2aa9b3d32c",
+                "reference": "7c9d54290021cc1d06661573f26c7f2aa9b3d32c",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/blueimp-gallery": ">=v2.17.0",
+                "onmotion/yii2-helpers": "*",
+                "yiisoft/yii2": ">=2.0.1"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "onmotion\\gallery\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexandr Kozhevnikov",
+                    "email": "onmotion1@gmail.com",
+                    "homepage": "http://kozhevnikov.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "blueimp gallery with fileupload in your Yii2 application",
+            "keywords": [
+                "blueimp",
+                "gallery",
+                "module",
+                "photo",
+                "yii2"
+            ],
+            "time": "2017-01-13 10:46:04"
+        },
+        {
+            "name": "onmotion/yii2-helpers",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/onmotion/yii2-helpers.git",
+                "reference": "2a2c7a02bed1c336469a0d3d5b92b24c46460fe4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/onmotion/yii2-helpers/zipball/2a2c7a02bed1c336469a0d3d5b92b24c46460fe4",
+                "reference": "2a2c7a02bed1c336469a0d3d5b92b24c46460fe4",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "onmotion\\helpers\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexandr Kozhevnikov",
+                    "email": "onmotion1@gmail.com",
+                    "homepage": "http://kozhevnikov.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The helpers for Yii2 application",
+            "homepage": "https://github.com/onmotion/yii2-helpers",
+            "keywords": [
+                " helpers",
+                " ru2en",
+                " translator",
+                "yii2"
+            ],
+            "time": "2016-09-21 07:25:56"
         },
         {
             "name": "psr/http-message",
