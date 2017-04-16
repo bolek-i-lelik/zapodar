@@ -12,6 +12,12 @@ use Yii;
  * @property integer $parent
  * @property integer $pokaz
  * @property integer $picture
+ * @property string $meta_title
+ * @property string $meta_keywords
+ * @property string $meta_description
+ * @property string $text
+ * @property integer $deko_id
+ * @property integer $deko_parent
  */
 class Category extends \yii\db\ActiveRecord
 {
@@ -31,9 +37,9 @@ class Category extends \yii\db\ActiveRecord
         return [
             [['id'], 'required'],
             [['name'], 'required'],
-            [['pokaz'], 'integer'],
-            [['name'], 'string', 'max' => 255],
-
+            [['pokaz', 'deko_id', 'deko_parent'], 'integer'],
+            [['name', 'picture', 'meta_title', 'meta_keywords', 'meta_description'], 'string', 'max' => 255],
+            [['text'], 'string', 'max' => 10000],
         ];
     }
 
@@ -48,6 +54,12 @@ class Category extends \yii\db\ActiveRecord
             'parent' => 'ID родительской категории',
             'pokaz' => 'Публикация',
             'picture' => 'Изображение',
+            'meta_title' => 'title',
+            'meta_keywords' => 'keywords',
+            'meta_description' => 'description',
+            'text' => 'text',
+            'deko_id' => 'deko_id',
+            'deko_parent' => 'deko_parent',
         ];
     }
 }

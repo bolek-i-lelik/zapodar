@@ -46,26 +46,27 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-            ['class' => 'yii\rest\UrlRule', 'controller' => 'basket'],
-            'contact/<name>' => 'site/contact',
-            'category/<id>' => 'site/category',
-            'product/<alias>' => 'product/index',
-            'new/<alias>' => 'new/onenew',
-            'about' => 'site/about',
-            'action' => 'site/action',
-            'catalog' => 'site/catalog',
-            'contact' => 'site/contact',
-            'login' => 'site/login',
-            'news' => 'site/news',
-            'partner' => 'site/partner',
-            'reg' => 'site/reg',
-            'basket' => 'basket/basket',
-            'newparol' => 'site/newparol',
-            'vp/<secret_key>' => 'site/vp',
-            'message' => 'site/message',
-            'search' => 'site/search',
-            'logout' => 'site/logout',
-            ''
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'basket'],
+                'contact/<name>' => 'site/contact',
+                'category/<id>' => 'site/category',
+                'product/<alias>' => 'product/index',
+                'new/<alias>' => 'new/onenew',
+                'about' => 'site/about',
+                //'sitemap.xml' => 'sitemap/index',
+                'action' => 'site/action',
+                'catalog' => 'site/catalog',
+                'contact' => 'site/contact',
+                'login' => 'site/login',
+                'news' => 'site/news',
+                'partner' => 'site/partner',
+                'reg' => 'site/reg',
+                'basket' => 'basket/basket',
+                'newparol' => 'site/newparol',
+                'vp/<secret_key>' => 'site/vp',
+                'message' => 'site/message',
+                'search' => 'site/search',
+                'logout' => 'site/logout',
+                ''
             ],
         ],
         
@@ -76,10 +77,10 @@ $config = [
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
-    $config['bootstrap'][] = 'debug';
+    /*$config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-    ];
+    ];*/
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [

@@ -9786,7 +9786,7 @@ border: 2px solid rgba(0,0,0, 0.1);
 box-sizing: border-box;
 border-radius: 5px;
 box-shadow: 0 0 30px rgba(0,0,0,.2);
-min-height: 350px;
+min-height: 300px;
 max-height: 500px;
 font-size: 16px;
 
@@ -10000,7 +10000,7 @@ margin: 10px;
     min-height: 650px;
 }
 .wrapper{
-    margin: 20px;
+    /*margin: 20px;*/
 }
 .site-login
 {
@@ -10025,4 +10025,8 @@ margin: 10px;
     .navbar-form button {
         margin-top: -10px;
     }
+}
+
+.childCats{
+    margin-left: 30px;
 }

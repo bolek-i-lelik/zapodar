@@ -114,19 +114,18 @@ Redirect 301 /new1-3310.htm http://www.za-podar.com/product/185746343-nabor-kart
 Redirect 301 /new1-3311.htm http://www.za-podar.com/product/p185746348-nabor-kartochnyj-kozhzamenitel
 Redirect 301 /new1-3312.htm http://www.za-podar.com/product/p185746353-nabor-kartochnyj-kapuchino
 
-#RewriteCond %{REQUEST_URI} !^/(web)
-#RewriteRule ^assets/(.*)$ /web/assets/$1 [L]
-#RewriteRule ^css/(.*)$ web/css/$1 [L]
-#RewriteRule ^fonts/(.*)$ web/fonts/$1 [L]
-#RewriteRule ^js/(.*)$ web/js/$1 [L]
-#RewriteRule ^img/(.*)$ web/img/$1 [L]
-#RewriteRule ^uploads/(.*)$ web/uploads/$1 [L]
-#RewriteRule ^phpMyAdmin/(.*)$ web/phpMyAdmin/$1 [L]
-#RewriteRule (.*) /web/$1
+RewriteCond %{REQUEST_URI} !^/(web)
+RewriteRule ^assets/(.*)$ /web/assets/$1 [L]
+RewriteRule ^css/(.*)$ web/css/$1 [L]
+RewriteRule ^fonts/(.*)$ web/fonts/$1 [L]
+RewriteRule ^js/(.*)$ web/js/$1 [L]
+RewriteRule ^img/(.*)$ web/img/$1 [L]
+RewriteRule ^uploads/(.*)$ web/uploads/$1 [L]
+RewriteRule ^phpMyAdmin/(.*)$ web/phpMyAdmin/$1 [L]
+RewriteRule (.*) /web/$1
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /web/index.php
 
-php_value upload_max_filesize 30M
-php_value post_max_size 10M
+

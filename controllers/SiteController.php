@@ -182,6 +182,61 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionCompany()
+    {
+        $url = Url::to('');
+
+        $article = ArticleController::getArticle($url);
+
+        return $this->render('company', [
+            'article' => $article,
+        ]);
+    }
+
+    public function actionOplata()
+    {
+        $url = Url::to('');
+
+        $article = ArticleController::getArticle($url);
+
+        return $this->render('oplata', [
+            'article' => $article,
+        ]);
+    }
+
+    public function actionDostavka()
+    {
+        $url = Url::to('');
+
+        $article = ArticleController::getArticle($url);
+
+        return $this->render('dostavka', [
+            'article' => $article,
+        ]);
+    }
+
+    public function actionLogo()
+    {
+        $url = Url::to('');
+
+        $article = ArticleController::getArticle($url);
+
+        return $this->render('logo', [
+            'article' => $article,
+        ]);
+    }
+
+    public function actionInfo()
+    {
+        $url = Url::to('');
+
+        $article = ArticleController::getArticle($url);
+
+        return $this->render('info', [
+            'article' => $article,
+        ]);
+    }
+
     /**
      * Displays about page.
      *
@@ -532,4 +587,4 @@ class SiteController extends Controller
         ]);
     }
 
-}
+} 

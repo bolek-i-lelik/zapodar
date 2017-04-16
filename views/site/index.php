@@ -23,7 +23,7 @@ $this->title = 'Подарки';
 
 <div class="site-index">
 <link href="https://fonts.googleapis.com/css?family=Marck+Script|Rubik" rel="stylesheet"> 
-    <div class="row">
+    <!--<div class="row">
         <div class="col-lg-12">
             <div id="carousel" class="carousel slide">
                 <ol class="carousel-indicators">
@@ -61,7 +61,7 @@ $this->title = 'Подарки';
                 </a>
             </div>
         </div>
-    </div>
+    </div>-->
     
     <div class="index">
         <center>
@@ -73,7 +73,7 @@ $this->title = 'Подарки';
             </div>
             <div class="row">
                 <div class="col-lg-3">
-                    <a href="/search?hash=&filterid=1001&1001minvalue=0&1001maxvalue=99999&1001value1=&filterid=1000&1000minvalue=0&1000maxvalue=999999&1000value1=&1000value2=&material=кожа&color=&articul=">
+                    <a href="/category/1">
                         <img src="/img/kozha.jpg">
                     </a>
                 </div>
@@ -97,7 +97,7 @@ $this->title = 'Подарки';
                 <div class="col-lg-3">
                     <center>
                         <br/>
-                        <a href="/search?hash=&filterid=1001&1001minvalue=0&1001maxvalue=99999&1001value1=&filterid=1000&1000minvalue=0&1000maxvalue=999999&1000value1=&1000value2=&material=кожа&color=&articul=">
+                        <a href="/category/1">
                             <b>Изделия из кожи</b>
                         </a>
                     </center>
@@ -145,9 +145,9 @@ $this->title = 'Подарки';
                     <?php foreach ($news as $new):?>
                         <div class="itemNews col-lg-4 col-md-4 col-sm-4 col-xs-10">
                             <center>
-                                <!--<a href="/new/<?= $new->alias ?>" rel="nofollow">
+                                <a href="/new/<?= $new->alias ?>" rel="nofollow">
                                     <span class="imageNews"><img src="/img/news/<?= $new->prev_foto ?>" alt=""></span>
-                                </a>-->
+                                </a>
                                 <a href="/new/<?= $new->alias ?>">
                                     <span class="titleNews zapodarTitle" style="font-size: 20pt;"><?= $new->name ?></span>
                                 </a>

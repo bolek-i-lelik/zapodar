@@ -6,15 +6,15 @@ use yii\helpers\Html;
 
 $this->registerMetaTag([
     'name' => 'description',
-    'content' => $article->description
+    'content' => $article['description']
 ]);
 
 $this->registerMetaTag([
     'name' => 'keywords',
-    'content' => $article->keywords
+    'content' => $article['keywords']
 ]);
 
-$this->title = 'About';
+$this->title = 'О нас';
 $this->params['breadcrumbs'][] = $this->title;
 
 
@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= $article->text ?>
+        <?= $article['text'] ?>
     </p>
 
     

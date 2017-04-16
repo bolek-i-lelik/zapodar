@@ -23,7 +23,6 @@ foreach ($bread as $value) {
 $this->params['breadcrumbs'][] = $this->title;
 
 Yii::$app->language = 'ru';
-
 $foto = stristr($product->picture, ',', true);
 $fotos = explode(",", $product->picture);
 ?>
@@ -82,7 +81,7 @@ $fotos = explode(",", $product->picture);
             ?>
 
 
-            <?= $price ?> &#8381;</p>
+            <?= $price ?></p>
             <?php if($guest == FALSE):?>
                 <?php if($onbasket == FALSE):?>
                     <div id="basket">
@@ -104,6 +103,7 @@ $fotos = explode(",", $product->picture);
                 <?php endif;?>
             <?php else:?>
                 <p style="color:#952828; font-size: 15pt">Войдите или зарегистрируйтесь, чтобы положить в корзину</p>
+                <a href="/reg" class="btn btn-success">Зарегистрироваться</a>
             <?php endif;?>
 
             

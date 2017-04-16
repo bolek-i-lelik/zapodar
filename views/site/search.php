@@ -48,16 +48,28 @@ Yii::$app->language = 'ru';
                 <tr>
                     <td>
                         <a href="<?= Url::toRoute('/product/'.$model->alias, true)?>"><?= $model->name ?></a>
+                        <br/>
+                        <b>Артикул: <?= $model->vendorcode ?></b>
                     </td>
                     <td>
                         <?php if($model->picture):?>
-                        <img src="/img/products/<?= stristr($model->picture, ',', true) ?>" height="150">
+                        <a href="<?= Url::toRoute('/product/'.$model->alias, true)?>">
+                            <img src="/img/products/<?= stristr($model->picture, ',', true) ?>" height="150">
+                        </a>
                         <?php else:?>
                             нет фото
                         <?php endif;?>
                     </td>
                     <td>
-                        <?= $model->price ?>
+                        <?php
+                            $pos = strpos($model->price, '.');
+                            if($pos){
+                            $price = substr($model->price, 0, $pos+3);
+                            }else{
+                                $price = $model->price;
+                            }
+                        ?>
+                        <?= $price ?>
                     </td>
                     <td>
                         <?php if($model->nalichie == '+'):?>

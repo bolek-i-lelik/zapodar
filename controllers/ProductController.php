@@ -11,10 +11,9 @@ class ProductController extends \yii\web\Controller
     {
         $request = Yii::$app->request;
         $alias = $request->get('alias');
-        $product = Products::find('prosmotr')->where(['alias'=>$alias])->one();
+        $product = Products::find()->where(['alias'=>$alias])->one();
         $product_id = $product->categoryid;
-        $product->prosmotr = (string)($product->prosmotr + 1);
-        $product->save();
+        
         //формируем хлебные крошки
         $bread = array();
         $bread = $this->breadcrumbs($product_id, $bread);

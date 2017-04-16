@@ -50,7 +50,7 @@ class NewController extends \yii\web\Controller
 
     public function populationNews()
     {
-    	$news = News::find('alias', 'prev_text', 'prev_foto', 'created_at', 'name')->orderBy('created_at asc')->limit(3)->all();
+    	$news = News::find('alias', 'prev_text', 'prev_foto', 'created_at', 'name')->orderBy('created_at desc')->limit(3)->all();
 
     	return $news;
     }

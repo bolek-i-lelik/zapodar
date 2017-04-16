@@ -23,36 +23,85 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php $count = 0;?>
 <?php $max = count($files);?>
 <?php $min = 1;?>
+<?php $number_photo = 1;?>
 <div class="container">
 <?php foreach ($files as $file):?>
     <?php if($count <12 && $count != 0 && $count != 11 && $min < $max):?>
         <div class="col-lg-1">
-            <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="addPhoto('<?= $file ?>')">
-                <img src="/img/pack/<?= $file ?>" width="75px">
-            </a>
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        <center><?= $number_photo?></center>
+                        <?php $number_photo += 1;?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="addPhoto('<?= $file ?>')">
+                            <img src="/img/pack/<?= $file ?>" width="75px">
+                        </a>
+                    </td>
+                </tr>
+            </table>
         </div>
         <?php $count += 1;?>
     <?php elseif($count == 0  && $min < $max):?>
         <div class="row">
             <div class="col-lg-1">
-                <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="addPhoto('<?= $file ?>')">
-                    <img src="/img/pack/<?= $file ?>" width="75px">
-                </a>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <center><?= $number_photo?></center>
+                            <?php $number_photo += 1;?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="addPhoto('<?= $file ?>')">
+                                <img src="/img/pack/<?= $file ?>" width="75px">
+                            </a>
+                        </td>
+                    </tr>
+                </table>
             </div>
         <?php $count += 1;?>
     <?php elseif($count == 11  && $min < $max):?>
             <div class="col-lg-1">
-                <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="addPhoto('<?= $file ?>')">
-                    <img src="/img/pack/<?= $file ?>" width="75px">
-                </a>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <center><?= $number_photo?></center>
+                            <?php $number_photo += 1;?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="addPhoto('<?= $file ?>')">
+                                <img src="/img/pack/<?= $file ?>" width="75px">
+                            </a>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
         <?php $count = 0;?>
     <?php elseif ($min == $max):?>
             <div class="col-lg-1">
-                <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="addPhoto('<?= $file ?>')">
-                    <img src="/img/pack/<?= $file ?>" width="75px">
-                </a>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <center><?= $number_photo?></center>
+                            <?php $number_photo += 1;?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="addPhoto('<?= $file ?>')">
+                                <img src="/img/pack/<?= $file ?>" width="75px">
+                            </a>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     <?php endif;?>

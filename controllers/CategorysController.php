@@ -226,4 +226,55 @@ class CategorysController extends Controller
             'picture' => $picture, 
         ]);
     }
+
+    public function actionStructure()
+    {
+        $categorys = Category::find()->where(['parent' => 0])->asArray()->all();
+
+
+        return $this->render('structure',[
+            'categorys' => $categorys,
+        ]);
+
+    }
+
+    public function actionChilds()
+    {
+        if(Yii::$app->request->isPOST ){
+            $postquery = Yii::$app->request->post();
+            $categorys = Category::find()->where(['parent' => $postquery['parent_id']])->asArray()->all();
+            $categorys = json_encode($categorys);
+            return $categorys;
+        }
+    }
+
+    public function actionAll()
+    {
+        if(Yii::$app->request->isPOST ){
+            $postquery = Yii::$app->request->post();
+            $categorys = Category::find()->asArray()->all();
+            $cats = array();
+            foreach ($categorys as $value) {
+                $c = array();
+                $c['id'] = $value['id'];
+                $c['name'] = $value['name'];
+                $cats[] = $c;
+            }
+            $categorys = json_encode($cats);
+            return $categorys;
+        }   
+    }
+
+    public function actionNewparent()
+    {
+        if(Yii::$app->request->isPOST ){
+            $postquery = Yii::$app->request->post();
+            $category = Category::find()->where(['id' => $postquery['id']])->one();
+                
+            $category->parent = $postquery['parent_id'];
+            $category->save();
+
+            return 'OK';
+        } 
+    }
 }

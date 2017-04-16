@@ -24,7 +24,7 @@ use Yii;
  * @property integer $buy
  * @property string $available
  * @property integer $productsid
- * @property integer $vendorcode
+ * @property string $vendorcode
  * @property string $vendor
  * @property string $country
  * @property string $edinica

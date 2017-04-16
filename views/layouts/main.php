@@ -39,11 +39,14 @@ Yii::$app->language = 'ru';
             <i class="fa fa-phone" aria-hidden="true"></i>
                 (495) 737-90-22
         </span>
-        <a href="/about">   О нас   </a>   
+        <a href="/site/about">   О нас   </a>   
         <a href="/new/">   Новости   </a>   
-        <a href="/action">   Акции   </a>   
-        <a href="/partner">   Партнерам   </a>   
-        <a href="/contact">   Контакты   </a>   
+        <a href="/site/action">   Акции и скидки   </a>   
+        <a href="/site/oplata">   Оплата   </a> 
+        <a href="/site/dostavka">   Доставка   </a>
+        <a href="/site/logo">   Нанесение ЛОГО   </a>
+        <a href="/site/info">   Полезная информация   </a>
+        <a href="/site/contact">   Контакты   </a>   
         <?php if(!Yii::$app->user->isGuest):?>
             <a href="/cabinet">   Личный кабинет   </a>
         <?php endif;?>

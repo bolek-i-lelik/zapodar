@@ -10,12 +10,12 @@ use yii\captcha\Captcha;
 
 $this->registerMetaTag([
     'name' => 'description',
-    'content' => $article->description
+    'content' => $article['description']
 ]);
 
 $this->registerMetaTag([
     'name' => 'keywords',
-    'content' => $article->keywords
+    'content' => $article['keywords']
 ]);
 
 $this->title = 'Контакты';
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
 
         <p>
-            <?= $article->text ?>
+            <?= $article['text'] ?>
         </p>
 
         

@@ -36,7 +36,7 @@ AdminAsset::register($this);
         <header class="header">
             <a href="<?= Url::toRoute('/admin', true)?>" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                AdminLTE
+                za-podar.com
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -64,10 +64,15 @@ AdminAsset::register($this);
                                 
                             </ul>
                         </li>
-                        <li>
-                            <a href="<?= Url::toRoute('/categorys', true)?>">
+                        <li class="">
+                            <a href="#">
                                 <i class="fa fa-th"></i> <span>Категории</span>
                             </a>
+                            <ul class="" style="margin-left: 25px; margin-bottom:5px;">
+                                <li><a href="<?= Url::toRoute('/categorys', true)?>"><i class="fa fa-angle-double-right"></i> Список</a></li>
+                                <li><a href="<?= Url::toRoute('/categorys/structure', true)?>"><i class="fa fa-angle-double-right"></i> Структура каталога</a></li>
+                                
+                            </ul>
                         </li>
                         <li class="">
                             <a href="#">
@@ -126,6 +131,12 @@ AdminAsset::register($this);
                                 
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= Url::toRoute('/media/', true)?>">
+                                <i class="fa fa-picture-o"></i> <span>Медиа-менеджер</span>
+                                
+                            </a>
+                        </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->
@@ -155,7 +166,21 @@ AdminAsset::register($this);
 
         <!-- add new calendar event modal -->
 
-
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h4 class="modal-title" id="myModalLabel">Выберите родительскую категорию</h4>
+      </div>
+      <div class="modal-body" id="modal-body">
+        ...
+      </div>
+      
+    </div>
+  </div>
+</div>
         <!-- jQuery 2.0.2 -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- Morris.js charts -->
